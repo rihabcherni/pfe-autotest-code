@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AutoTest - Security Scan Report</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background-color: #f8fafc;
+            color: #333333;
+            line-height: 1.5;
+        }
+        .email-container {
+            max-width: 950px;
+            margin: 10px auto;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        .header {
+            background: #3956b6;
+            padding: 10px 0;
+            color: white;
+            text-align: center;
+        }
+        .header h2 {
+            font-size: 22px;
+            font-weight: 600;
+            margin: 10px 20px;
+            text-align: center;
+        }
+        .content {
+            padding: 25px 30px;
+        }
+        p {
+            font-size: 15px;
+            color: #555555;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        .scan-summary {
+            background: #f5f8ff;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 3px solid #3a5ccc;
+        }
+        .scan-summary h3 {
+            color: #3a5ccc;
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        .scan-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e6e9f0;
+        }
+        .info-label {
+            font-weight: 500;
+            color: #666666;
+        }
+        .info-value {
+            font-weight: 600;
+            color: #333333;
+        }
+        .severity-indicator {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .severity-critical {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+        .severity-high {
+            background: #fef3c7;
+            color: #d97706;
+        }
+        .severity-medium {
+            background: #fef7cd;
+            color: #ca8a04;
+        }
+        .severity-low {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+        .severity-info {
+            background: #dbeafe;
+            color: #2563eb;
+        }
+        .vulnerabilities-section {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #e6e9f0;
+        }
+        .vulnerabilities-section h3 {
+            font-size: 16px;
+            color: #333333;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        .vuln-stats {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 20px;
+            text-align: center;
+        }
+        .vuln-stat {
+            flex: 1;
+        }
+        .vuln-count {
+            font-size: 24px;
+            font-weight: 700;
+            display: block;
+        }
+        .vuln-label {
+            font-size: 12px;
+            color: #666666;
+            text-transform: uppercase;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        .downloads-section {
+            background: #f0f9ff;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            border-left: 3px solid #0ea5e9;
+        }
+        .downloads-section h3 {
+            color: #0ea5e9;
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        .download-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+        .download-btn {
+            background: #ffffff;
+            color: #3a5ccc !important;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            border: 2px solid #3a5ccc;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+        .download-btn:hover {
+            background: #3a5ccc;
+            color: white !important;
+        }
+        .download-icon {
+            font-size: 16px;
+        }
+        .button-container {
+            text-align: center;
+            margin: 25px 0 20px;
+        }  
+        .button {
+            background: #3a5ccc;
+            color: white !important;
+            text-decoration: none;
+            padding: 12px 28px;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 500;
+            box-shadow: 0 2px 6px rgba(58, 92, 204, 0.2);
+            display: inline-block;
+        }
+        .button:hover {
+            background: #2d4aa8;
+        }
+        .help-section {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            border: 1px solid #e6e9f0;
+        }
+        .help-section h3 {
+            font-size: 16px;
+            color: #333333;
+            margin-top: 0;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .help-section p {
+            font-size: 14px;
+            color: #555555;
+            margin-bottom: 0;
+        }
+        .help-section a {
+            color: #3a5ccc;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .help-section a:hover {
+            text-decoration: underline;
+        }
+        .footer {
+            background: #f8fafc;
+            padding: 15px 30px;
+            border-top: 1px solid #e6e9f0;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 13px;
+            color: #666666;
+            margin: 8px 0;
+        }
+        .footer-links {
+            margin: 12px 0;
+        }
+        .footer-links a {
+            color: #3a5ccc;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        .company-info {
+            font-size: 12px;
+            color: #888888;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #e6e9f0;
+        }
+        .alert-box {
+            background: #fef2f2;
+            border-left: 3px solid #ef4444;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .alert-box.warning {
+            background: #fffbeb;
+            border-left-color: #f59e0b;
+        }
+        .alert-box.success {
+            background: #f0f9ff;
+            border-left-color: #10b981;
+        }
+        .alert-box p {
+            margin: 0;
+            color: #374151;
+        }
+        @media only screen and (max-width: 600px) {
+            .email-container {
+                margin: 0;
+                border-radius: 0;
+                width: 100%;
+            }
+            .content {
+                padding: 20px 15px;
+            }
+            .header {
+                padding: 20px 0;
+            }
+            .scan-info {
+                grid-template-columns: 1fr;
+            }
+            .vuln-stats {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .download-buttons {
+                flex-direction: column;
+            }
+            .download-btn {
+                justify-content: center;
+            }
+            .button {
+                display: block;
+                width: 100%;
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <h2>AutoTest - Security Scan Report</h2>
+        </div>
+        <div class="content">            
+            <p>Hello {{ user_name }},</p>
+            
+            <p>Your security scan has been completed successfully. Please find below a summary of the results and download links for your detailed reports.</p>
+            
+            <div class="scan-summary">
+                <h3>📊 Scan Summary</h3>
+                <div class="scan-info">
+                    <div class="info-item">
+                        <span class="info-label">Target:</span>
+                        <span class="info-value">{{ target_url }}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Scan Type:</span>
+                        <span class="info-value">{{ scan_type }}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Started:</span>
+                        <span class="info-value">{{ start_time }}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Completed:</span>
+                        <span class="info-value">{{ end_time }}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Duration:</span>
+                        <span class="info-value">{{ duration }}</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="vulnerabilities-section">
+                <h3>🔍 Vulnerabilities Breakdown</h3>
+                <div class="vuln-stats">
+                    <div class="vuln-stat">
+                        <span class="vuln-count" style="color: #dc2626;">{{ high_count }}</span>
+                        <span class="vuln-label">High</span>
+                    </div>
+                    <div class="vuln-stat">
+                        <span class="vuln-count" style="color: #ca8a04;">{{ medium_count }}</span>
+                        <span class="vuln-label">Medium</span>
+                    </div>
+                    <div class="vuln-stat">
+                        <span class="vuln-count" style="color: #16a34a;">{{ low_count }}</span>
+                        <span class="vuln-label">Low</span>
+                    </div>
+                    <div class="vuln-stat">
+                        <span class="vuln-count" style="color: #2563eb;">{{ info_count }}</span>
+                        <span class="vuln-label">Info</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="button-container">
+                <a href="{{ dashboard_url }}" class="button">View Full Dashboard</a>
+            </div>
+            
+            <div class="help-section">
+                <h3>Need Help Understanding Your Results?</h3>
+                <p>Our security experts are here to help you interpret your results and implement fixes. Contact our support team at <a href="mailto:security@pentra.com">security@pentra.com</a> or schedule a consultation through your dashboard.</p>
+            </div>
+        </div> 
+        <div class="footer">
+            <p>This is an automated security report. Please do not reply to this message.</p>
+            <div class="footer-links">
+                <a href="{{ front_link }}/privacy">Privacy Policy</a>
+                <a href="{{ front_link }}/terms">Terms of Service</a>
+                <a href="{{ front_link }}/security">Security Center</a>
+            </div>
+            <p class="company-info">© 2025 AutoTest Security Platform. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

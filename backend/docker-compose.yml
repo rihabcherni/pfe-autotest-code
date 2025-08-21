@@ -1,0 +1,200 @@
+services:
+  selenoid:
+    image: aerokube/selenoid:latest
+    container_name: selenoid
+    ports:
+      - "4444:4444"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./selenoid/config:/etc/selenoid"
+      - "./selenoid/video:/opt/selenoid/video"
+      - "./selenoid/logs:/opt/selenoid/logs"
+    environment:
+      - OVERRIDE_VIDEO_OUTPUT_DIR=./selenoid/video
+    command: ["-conf", "/etc/selenoid/browsers.json", "-video-output-dir", "/opt/selenoid/video", "-log-output-dir", "/opt/selenoid/logs"]
+    networks:
+      - zapnet
+
+  selenoid-ui:
+    image: aerokube/selenoid-ui:latest
+    container_name: selenoid-ui
+    ports:
+      - "9090:9090"
+    command: ["--selenoid-uri", "http://selenoid:4444"]
+    depends_on:
+      - selenoid
+    networks:
+      - zapnet
+      
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: pentesting
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - zapnet
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  zap:
+    image: zaproxy/zap-stable
+    container_name: zap_container
+    command: >
+      zap.sh -daemon
+      -host 0.0.0.0
+      -port 8080
+      -config api.addrs.addr.name=.*
+      -config api.addrs.addr.regex=true
+      -config api.key=vvefu2qa063ejt7ngvqglj0ugc
+    ports:
+      - "8080:8080"
+    networks:
+      - zapnet
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    domainname: rabbitmq.com
+    container_name: rabbitmq_container
+    ports:
+      - "5672:5672" 
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: user
+      RABBITMQ_DEFAULT_PASS: pass
+    networks:
+      - zapnet
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: backend_container
+    ports:
+      - "8000:8000"
+      - "8001:8001"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      zap:
+        condition: service_started
+      rabbitmq:
+        condition: service_healthy  # Wait for RabbitMQ to be healthy
+    volumes:
+      - .:/backend
+      - /var/run/docker.sock:/var/run/docker.sock  
+    restart: unless-stopped
+    networks:
+      - zapnet
+    environment:
+      DATABASE_URL: postgresql://postgres:123456@postgres:5432/pentesting
+      ZAP_HOST: zap
+      ZAP_PORT: 8080
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_USER: user
+      RABBITMQ_PASS: pass
+      RABBITMQ_PORT: 5672
+
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python scan_consumer.py
+    container_name: worker_container
+    depends_on:
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy  
+    networks:
+      - zapnet
+    environment:
+      DATABASE_URL: postgresql://postgres:123456@postgres:5432/pentesting
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_USER: user
+      RABBITMQ_PASS: pass
+      RABBITMQ_PORT: 5672
+    volumes:
+      - .:/backend
+    restart: unless-stopped
+
+  sqlmap:
+    image: parrotsec/sqlmap
+    container_name: sqlmap_container
+    command: tail -f /dev/null
+    networks:
+      - zapnet
+    depends_on:
+      - backend
+
+  nikto:
+    image: alpine/nikto
+    container_name: nikto_container
+    command: tail -f /dev/null
+    networks:
+      - zapnet
+    depends_on:
+      - backend
+
+  nmap:
+    image: parrotsec/nmap:latest
+    container_name: nmap_container
+    restart: on-failure
+    entrypoint: ["tail", "-f", "/dev/null"]
+    networks:
+      - zapnet
+    depends_on:
+      - backend
+
+  wapiti:
+    image: cyberwatch/wapiti
+    container_name: wapiti_container
+    command: tail -f /dev/null
+    networks:
+      - zapnet
+    depends_on:
+      - backend
+
+  nuclei:
+    image: projectdiscovery/nuclei:latest
+    container_name: nuclei_container
+    command: tail -f /dev/null
+    platform: linux/amd64
+    networks:
+      - zapnet
+    depends_on:
+      - backend
+
+  xsstrike:
+    image: femtopixel/xsstrike:3.1.4
+    container_name: xsstrike_container
+    platform: linux/amd64
+    entrypoint: ["tail", "-f", "/dev/null"]
+    networks:
+      - zapnet
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
+  rabbitmq_data: 
+  
+networks:
+  zapnet:
+    driver: bridge

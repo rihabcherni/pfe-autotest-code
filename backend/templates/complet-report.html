@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Rapport d'Analyse Complet - {{ data.url }}</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #2d3748;
+      min-height: 100vh;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 24px;
+      padding: 40px;
+      max-width: 1400px;
+      margin: 0 auto;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+
+    h1 {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-size: 2.5rem;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 30px;
+      letter-spacing: -0.025em;
+    }
+
+    h2 {
+      color: #1a202c;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    h3 {
+      color: #2d3748;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    h4 {
+      color: #2d3748;
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section {
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      border-radius: 16px 16px 0 0;
+    }
+
+    .section:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
+    }
+
+    .main-tabs {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 24px;
+      background: rgba(226, 232, 240, 0.5);
+      padding: 4px;
+      border-radius: 12px;
+      flex-wrap: wrap;
+    }
+
+    .main-tab {
+      flex: 1;
+      min-width: 150px;
+      padding: 12px 20px;
+      background: transparent;
+      color: #64748b;
+      cursor: pointer;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      text-align: center;
+      border: none;
+      font-size: 0.95rem;
+    }
+
+    .main-tab:hover {
+      background: rgba(102, 126, 234, 0.1);
+      color: #4c51bf;
+    }
+
+    .main-tab.active {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+      transform: translateY(-1px);
+    }
+
+    .main-tab-content {
+      display: none;
+    }
+
+    .main-tab-content.active {
+      display: block;
+      animation: fadeInUp 0.3s ease;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin: 4px;
+    }
+
+    .status-running {
+      background: rgba(251, 191, 36, 0.2);
+      color: #f59e0b;
+      border: 1px solid rgba(251, 191, 36, 0.3);
+    }
+
+    .status-completed {
+      background: rgba(34, 197, 94, 0.2);
+      color: #15803d;
+      border: 1px solid rgba(34, 197, 94, 0.3);
+    }
+
+    .status-failed {
+      background: rgba(239, 68, 68, 0.2);
+      color: #dc2626;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+      list-style: none;
+    }
+
+    .info-item {
+      background: rgba(102, 126, 234, 0.1);
+      padding: 16px;
+      border-radius: 12px;
+      border-left: 4px solid #667eea;
+      transition: all 0.2s ease;
+    }
+
+    .info-item:hover {
+      background: rgba(102, 126, 234, 0.2);
+      transform: translateX(4px);
+    }
+
+    .info-item strong {
+      color: #4c51bf;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .vulnerability-summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .vuln-card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border-left: 4px solid;
+    }
+
+    .vuln-high {
+      border-left-color: #dc2626;
+    }
+
+    .vuln-medium {
+      border-left-color: #f59e0b;
+    }
+
+    .vuln-low {
+      border-left-color: #10b981;
+    }
+
+    .vuln-info {
+      border-left-color: #3b82f6;
+    }
+
+    .vuln-count {
+      font-size: 2rem;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .vuln-high .vuln-count {
+      color: #dc2626;
+    }
+
+    .vuln-medium .vuln-count {
+      color: #f59e0b;
+    }
+
+    .vuln-low .vuln-count {
+      color: #10b981;
+    }
+
+    .vuln-info .vuln-count {
+      color: #3b82f6;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 20px;
+      background: rgba(226, 232, 240, 0.5);
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 10px 0;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      border-radius: 10px;
+      transition: width 0.3s ease;
+    }
+
+    .progress-text {
+      text-align: center;
+      font-weight: 600;
+      margin-top: 8px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      margin-top: 16px;
+    }
+
+    th {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      padding: 16px;
+      font-weight: 600;
+      text-align: left;
+    }
+
+    td {
+      padding: 16px;
+      border-bottom: 1px solid #e2e8f0;
+      transition: background-color 0.2s ease;
+    }
+
+    tr:hover td {
+      background: rgba(102, 126, 234, 0.05);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .screenshot-container {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .screenshot-container img {
+      max-width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .screenshot-container img:hover {
+      transform: scale(1.02);
+    }
+
+    .pages-404 {
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(185, 28, 28, 0.05));
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+
+    .pages-404 ul {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+    }
+
+    .pages-404 li {
+      background: rgba(239, 68, 68, 0.1);
+      padding: 12px 16px;
+      border-radius: 8px;
+      border-left: 4px solid #ef4444;
+      color: #dc2626;
+      font-weight: 500;
+    }
+
+    .no-404 {
+      color: #22c55e;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .no-404::before {
+      content: '✓';
+      font-size: 1.2rem;
+    }
+
+    .functional-message {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(37, 99, 235, 0.05));
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 16px 0;
+    }
+
+    .datetime {
+      color: #64748b;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 10px;
+      }
+      
+      .container {
+        padding: 20px;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .main-tabs {
+        flex-direction: column;
+      }
+      
+      .main-tab {
+        min-width: unset;
+      }
+      
+      .vulnerability-summary {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  <script>
+    function openMainTab(event, tabName) {
+      var tabContents = document.querySelectorAll('.main-tab-content');
+      tabContents.forEach(function(content) {
+        content.classList.remove('active');
+      });
+      var tabs = document.querySelectorAll('.main-tab');
+      tabs.forEach(function(tab) {
+        tab.classList.remove('active');
+      });
+      document.getElementById(tabName).classList.add('active');
+      event.currentTarget.classList.add('active');
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>📊 Rapport d'Analyse Complet - {{ data.url }}</h1>
+
+    <!-- Informations générales -->
+    <div class="section">
+      <h2>📋 Informations Générales</h2>
+      <div class="info-grid">
+        <div class="info-item">
+          <strong>ID du Scan:</strong>
+          {{ data.id }}
+        </div>
+        <div class="info-item">
+          <strong>Utilisateur:</strong>
+          {{ data.user_id }}
+        </div>
+        <div class="info-item">
+          <strong>Type de Scan:</strong>
+          {{ data.scan_type }}
+        </div>
+        <div class="info-item">
+          <strong>Statut:</strong>
+          <span class="status-badge status-{{ data.status }}">{{ data.status }}</span>
+        </div>
+        <div class="info-item">
+          <strong>Authentification:</strong>
+          {% if data.authentification %}
+            <span class="status-badge status-completed">Activée</span>
+          {% else %}
+            <span class="status-badge status-failed">Désactivée</span>
+          {% endif %}
+        </div>
+        <div class="info-item">
+          <strong>Scan Programmé:</strong>
+          {% if data.schedule_scan %}
+            <span class="status-badge status-completed">Oui</span>
+          {% else %}
+            <span class="status-badge status-failed">Non</span>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="info-grid" style="margin-top: 20px;">
+        <div class="info-item">
+          <strong>Démarré le:</strong>
+          <span class="datetime">{{ data.scan_started_at }}</span>
+        </div>
+        <div class="info-item">
+          <strong>Terminé le:</strong>
+          <span class="datetime">{{ data.scan_finished_at }}</span>
+        </div>
+        <div class="info-item" style="grid-column: 1 / -1;">
+          <strong>Progression:</strong>
+          <div class="progress-bar">
+            <!-- <div class="progress-fill" style="width: {{ data.progression }}%"></div> -->
+          </div>
+          <div class="progress-text">{{ data.progression }}%</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Onglets principaux -->
+    <div class="main-tabs">
+      <div class="main-tab active" onclick="openMainTab(event, 'seo-tab')">🔍 Analyse SEO</div>
+      <div class="main-tab" onclick="openMainTab(event, 'security-tab')">🔒 Sécurité</div>
+      <div class="main-tab" onclick="openMainTab(event, 'functional-tab')">⚙️ Tests Fonctionnels</div>
+      <div class="main-tab" onclick="openMainTab(event, 'auth-tab')">🔐 Authentification</div>
+    </div>
+
+    <!-- Contenu SEO -->
+    <div id="seo-tab" class="main-tab-content active">
+      {% if data.seo_details %}
+      <div class="section">
+        <h2>📈 Résumé SEO</h2>
+        <div class="info-grid">
+          <div class="info-item">
+            <strong>Score Moyen:</strong>
+            {{ data.seo_details.average_score }}
+          </div>
+          <div class="info-item">
+            <strong>Pages Analysées:</strong>
+            {{ data.seo_details.total_pages_analyzed }}
+          </div>
+          <div class="info-item">
+            <strong>ID Rapport:</strong>
+            {{ data.seo_details.report_id }}
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>🖥️ Informations Serveur</h3>
+        <div class="info-grid">
+          <div class="info-item">
+            <strong>IP Serveur:</strong>
+            {{ data.seo_details.server_ip }}
+          </div>
+          <div class="info-item">
+            <strong>OS Serveur:</strong>
+            {{ data.seo_details.server_os }}
+          </div>
+          <div class="info-item">
+            <strong>Logiciel Serveur:</strong>
+            {{ data.seo_details.server_software }}
+          </div>
+          <div class="info-item">
+            <strong>CMS Détecté:</strong>
+            {{ data.seo_details.server_cms }}
+          </div>
+        </div>
+        
+        {% if data.seo_details.server_backend %}
+        <div class="info-item" style="margin-top: 16px;">
+          <strong>Technologies Backend:</strong>
+          {{ data.seo_details.server_backend | join(", ") }}
+        </div>
+        {% endif %}
+        
+        {% if data.seo_details.server_frontend %}
+        <div class="info-item" style="margin-top: 16px;">
+          <strong>Technologies Frontend:</strong>
+          {{ data.seo_details.server_frontend | join(", ") }}
+        </div>
+        {% endif %}
+      </div>
+
+      {% if data.seo_details.screenshot %}
+      <div class="section">
+        <h3>📸 Capture d'écran</h3>
+        <div class="screenshot-container">
+          <img src="data:image/png;base64,{{ data.seo_details.screenshot }}" alt="Capture d'écran du site" />
+        </div>
+      </div>
+      {% endif %}
+
+      {% if data.seo_details.pages_404 %}
+      <div class="section">
+        <h3>❌ Pages 404</h3>
+        <div class="pages-404">
+          {% if data.seo_details.pages_404|length > 0 %}
+            <ul>
+              {% for page in data.seo_details.pages_404 %}
+                <li>{{ page }}</li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p class="no-404">Aucune page 404 détectée</p>
+          {% endif %}
+        </div>
+      </div>
+      {% endif %}
+
+      {% if data.seo_details.keywords %}
+      <div class="section">
+        <h3>🔍 Mots-clés</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Mot-clé</th>
+              <th>Fréquence</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for keyword, count in data.seo_details.keywords.items() %}
+              <tr>
+                <td>{{ keyword }}</td>
+                <td><strong>{{ count }}</strong></td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% endif %}
+
+      {% if data.seo_details.phrases %}
+      <div class="section">
+        <h3>💬 Phrases Récurrentes</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Phrase</th>
+              <th>Fréquence</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for phrase, count in data.seo_details.phrases.items() %}
+              <tr>
+                <td>{{ phrase }}</td>
+                <td><strong>{{ count }}</strong></td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% endif %}
+      {% endif %}
+    </div>
+
+    <!-- Contenu Sécurité -->
+    <div id="security-tab" class="main-tab-content">
+      {% if data.security_details %}
+      <div class="section">
+        <h2>🛡️ Résumé Sécurité</h2>
+        <div class="vulnerability-summary">
+          <div class="vuln-card vuln-high">
+            <div class="vuln-count">{{ data.security_details.total_High }}</div>
+            <div>Vulnérabilités Critiques</div>
+          </div>
+          <div class="vuln-card vuln-medium">
+            <div class="vuln-count">{{ data.security_details.total_Medium }}</div>
+            <div>Vulnérabilités Moyennes</div>
+          </div>
+          <div class="vuln-card vuln-low">
+            <div class="vuln-count">{{ data.security_details.total_Low }}</div>
+            <div>Vulnérabilités Faibles</div>
+          </div>
+          <div class="vuln-card vuln-info">
+            <div class="vuln-count">{{ data.security_details.total_Informational }}</div>
+            <div>Informations</div>
+          </div>
+        </div>
+
+        <div class="info-grid">
+          <div class="info-item">
+            <strong>Total Vulnérabilités:</strong>
+            {{ data.security_details.number_vulnerabilities }}
+          </div>
+          <div class="info-item">
+            <strong>Outils Utilisés:</strong>
+            {{ data.security_details.tools_used }}
+          </div>
+          <div class="info-item">
+            <strong>Créé le:</strong>
+            <span class="datetime">{{ data.security_details.created_at }}</span>
+          </div>
+        </div>
+
+        {% if data.security_details.host_metadata %}
+        <div class="info-item" style="margin-top: 16px;">
+          <strong>Métadonnées de l'hôte:</strong>
+          <pre style="background: #f8f9fa; padding: 16px; border-radius: 8px; overflow-x: auto; margin-top: 8px;">{{ data.security_details.host_metadata }}</pre>
+        </div>
+        {% endif %}
+
+        {% if data.security_details.categories %}
+        <div class="info-item" style="margin-top: 16px;">
+          <strong>Catégories:</strong>
+          {{ data.security_details.categories | join(", ") }}
+        </div>
+        {% endif %}
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- Contenu Tests Fonctionnels -->
+    <div id="functional-tab" class="main-tab-content">
+      {% if data.functional_details %}
+      <div class="section">
+        <h2>⚙️ Tests Fonctionnels</h2>
+        
+        <div class="info-grid">
+          <div class="info-item">
+            <strong>ID:</strong>
+            {{ data.functional_details.id }}
+          </div>
+          <div class="info-item">
+            <strong>ID Rapport:</strong>
+            {{ data.functional_details.report_id }}
+          </div>
+        </div>
+
+        {% if data.functional_details.message_result %}
+        <div class="functional-message">
+          <h4>📝 Résultat du Message</h4>
+          <p>{{ data.functional_details.message_result }}</p>
+        </div>
+        {% endif %}
+
+        {% if data.functional_details.workflows %}
+        <div style="margin-top: 20px;">
+          <h4>🔄 Workflows</h4>
+          {% if data.functional_details.workflows|length > 0 %}
+            <table>
+              <thead>
+                <tr>
+                  <th>Workflow</th>
+                  <th>Statut</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for workflow in data.functional_details.workflows %}
+                  <tr>
+                    <td>{{ workflow.name if workflow.name else 'Workflow ' + loop.index|string }}</td>
+                    <td>{{ workflow.status if workflow.status else 'N/A' }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          {% else %}
+            <p>Aucun workflow configuré.</p>
+          {% endif %}
+        </div>
+        {% endif %}
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- Contenu Authentification -->
+    <div id="auth-tab" class="main-tab-content">
+      {% if data.authentication_details %}
+      <div class="section">
+        <h2>🔐 Détails d'Authentification</h2>
+        
+        <div class="info-grid">
+          <div class="info-item">
+            <strong>ID:</strong>
+            {{ data.authentication_details.id }}
+          </div>
+          <div class="info-item">
+            <strong>Page de Connexion:</strong>
+            {{ data.authentication_details.login_page_url }}
+          </div>
+          <div class="info-item">
+            <strong>Nom d'utilisateur:</strong>
+            {{ data.authentication_details.username }}
+          </div>
+          <div class="info-item">
+            <strong>Mot de passe:</strong>
+            {% if data.authentication_details.password %}
+              <span style="background: #f3f4f6; padding: 4px 8px; border-radius: 4px; font-family: monospace;">••••••••</span>
+            {% else %}
+              Non défini
+            {% endif %}
+          </div>
+        </div>
+
+        {% if data.authentication_details.token %}
+        <div class="info-item" style="margin-top: 16px;">
+          <strong>Token:</strong>
+          <pre style="background: #f8f9fa; padding: 16px; border-radius: 8px; overflow-x: auto; margin-top: 8px; font-size: 0.9rem;">{{ data.authentication_details.token }}</pre>
+        </div>
+        {% endif %}
+
+        {% if data.authentication_details.cookies %}
+        <div class="info-item" style="margin-top: 16px;">
+          <strong>Cookies:</strong>
+          <pre style="background: #f8f9fa; padding: 16px; border-radius: 8px; overflow-x: auto; margin-top: 8px; font-size: 0.9rem;">{{ data.authentication_details.cookies }}</pre>
+        </div>
+        {% endif %}
+      </div>
+      {% endif %}
+    </div>
+
+  </div>
+</body>
+</html>

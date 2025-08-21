@@ -1,0 +1,11 @@
+{
+  "depth_crawl": 3,
+  "zap_dc": 5,
+  "zap_d": 5,
+  "wapiti_scan_time": 5,
+  "wapiti_level": 2,
+  "sqlmap_level": 3,
+  "sqlmap_risk": 3,
+  "sqlmap_threads": 5, 
+  "sqlmap_technique": "BEUSTQ"
+}

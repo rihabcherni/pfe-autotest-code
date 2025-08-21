@@ -1,0 +1,1630 @@
+{
+  "user_id": 2,
+  "scan_type": "seo",
+  "authentification": false,
+  "schedule_scan": false,
+  "scan_started_at": "2025-06-22T02:42:09.568537",
+  "scan_finished_at": "2025-06-22T02:42:49.066685",
+  "url": "https://www.ensit.tn/",
+  "status": "completed",
+  "progression": 0,
+  "id": 76,
+  "authentication_details": null,
+  "security_details": null,
+  "seo_details": {
+    "average_score": 72.85714285714286,
+    "total_pages_analyzed": 21,
+    "screenshot": "static\\screenshots\\screenshot_www_ensit_tn_20250622024236.png",
+    "server_ip": "79.137.112.24",
+    "server_os": "",
+    "server_software": "OVHcloud",
+    "server_backend": [
+      "PHP"
+    ],
+    "server_frontend": [
+      "jQuery",
+      "Bootstrap",
+      "Next.js"
+    ],
+    "server_cms": "",
+    "keywords": {
+      "du": 1,
+      "mot": 1,
+      "nos": 2,
+      "meta": 21,
+      "clés": 1,
+      "ensit": 23,
+      "master": 2,
+      "missing": 21,
+      "chiffres": 1,
+      "diplôme": 3,
+      "qualité": 1,
+      "sommaire": 1,
+      "assurance": 1,
+      "directeur": 1,
+      "politique": 1,
+      "historique": 1,
+      "description": 21,
+      "partenaires": 2,
+      "organisation": 1,
+      "habilitations": 2
+    },
+    "phrases": {
+      "mot du": 1,
+      "ensit mot": 1,
+      "ensit nos": 2,
+      "ensit ensit": 2,
+      "du directeur": 1,
+      "missing meta": 21,
+      "ensit missing": 4,
+      "ensit diplôme": 3,
+      "diplôme master": 2,
+      "ensit politique": 1,
+      "nos partenaires": 2,
+      "ensit historique": 1,
+      "meta description": 21,
+      "qualité missing": 1,
+      "description ensit": 20,
+      "directeur missing": 1,
+      "assurance qualité": 1,
+      "ensit habilitations": 2,
+      "politique assurance": 1,
+      "habilitations missing": 2
+    },
+    "pages_404": [],
+    "id": 6,
+    "report_id": 76,
+    "crawled_pages": [
+      {
+        "url": "https://www.ensit.tn/",
+        "title": "ENSIT",
+        "meta_description": "❌ Missing meta description",
+        "load_time_ms": 584,
+        "html_size_kb": 56.25,
+        "canonical": "https://www.ensit.tn/",
+        "robots": "max-image-preview:large",
+        "favicon": "http://www.nts-tunisie.com/ensit/wp-content/uploads/2015/05/favico.ico",
+        "internal_links_count": 71,
+        "external_links_count": 16,
+        "seo_score": 80,
+        "grade": "B",
+        "good_practices": [
+          "✅ Title tag is present",
+          "✅ 2 <h1> tag(s) found",
+          "✅ 2 <h2> tag(s) found",
+          "✅ 17 <h3> tag(s) found",
+          "✅ 15 <h4> tag(s) found",
+          "✅ 8 <h6> tag(s) found",
+          "✅ Canonical tag is defined",
+          "✅ Robots meta tag is present",
+          "✅ Favicon is present"
+        ],
+        "bad_practices": [
+          "❌ Missing meta description",
+          "❌ No <h5> tag found",
+          "❌ 34 images missing alt attributes"
+        ],
+        "header_tags": {
+          "h1_tags": [
+            "",
+            "Présentation de l'ENSIT"
+          ],
+          "h2_tags": [
+            "l'ENSIT: lien Youtube",
+            "accéder a la page: Forum de l'ENSIT"
+          ],
+          "h3_tags": [
+            "Appels d'offres et consultations des marchés public",
+            "ENSITen quelques mots",
+            "Evènements",
+            "Actualités",
+            "Diplôme d’Ingénieur",
+            "Diplôme Master de Recherche",
+            "Diplôme Master Professionnel",
+            "Ecole Doctorale",
+            "Mission Vision Valeurs",
+            "Historique",
+            "ENSIT Centre UNEVOC",
+            "Les Clubs",
+            "ENSIT en chiffre",
+            "Nos partenaires",
+            "ENSIT",
+            "Menu rapide",
+            "Contactez-nous"
+          ],
+          "h4_tags": [
+            "Université de Tunis - Ecole Nationale Supérieure d'ingénieurs de Tunis",
+            "Formations certifiantes SolidWorks",
+            "Conférence JSTMM",
+            "Candidature pour le hackathon Méga Camp Multidisciplinaire",
+            "Journée culturelle Palestenienne",
+            "OUVERTURE DES CANDIDATURES AUX MASTERS DE L’ENSIT",
+            "Résultat de la troisième session TOEIC",
+            "",
+            "",
+            "",
+            "",
+            "900",
+            "142",
+            "97%",
+            "85.65%"
+          ],
+          "h5_tags": [
+            "❌ No <h5> tags found"
+          ],
+          "h6_tags": [
+            "Lire plus",
+            "Lire plus",
+            "Lire plus",
+            "Lire plus",
+            "Etudiants (dont 77% élèves ingénieurs)",
+            "Enseignants (dont 42% maitres de conférence et professeurs)",
+            "Taux de réussite",
+            "Taux d'emplyabilité"
+          ]
+        },
+        "images_missing_alt": [
+          "https://www.ensit.tn/wp-content/uploads/2015/05/logo-ecole-1170x284.png",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/insight_2023.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/photo7.png",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/photo31.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/Capture_eurace_3.jpg",
+          "",
+          "https://www.ensit.tn/wp-content/themes/kallyas2.3/kallyas/images/ok.png",
+          "https://www.ensit.tn/wp-content/uploads/2024/08/new-gif-007.gif",
+          "https://www.ensit.tn/wp-content/uploads/2025/05/flag_sw-scaled-54x54.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2024/11/JSTMM-2024-54x54.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2024/11/465030542_553495734303681_6859238564789231998_n-54x54.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2025/05/ensit_palestine-scaled-54x54.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2024/08/new-gif-007.gif",
+          "https://www.ensit.tn/wp-content/uploads/2024/08/new-gif-007.gif",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/ing_eurace14.png",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/rech.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/pro1.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/doctorat1.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/img1b-270x146.png",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/img2b1-270x146.png",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/unevoc-270x146.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/clubs-270x146.jpg",
+          "http://www.nts-tunisie.com/ensit/wp-content/uploads/2015/05/SEO-Icons-10.png",
+          "http://www.nts-tunisie.com/ensit/wp-content/uploads/2015/05/SEO-Icons-22.png",
+          "http://www.nts-tunisie.com/ensit/wp-content/uploads/2015/05/SEO-Icons-2.png",
+          "http://www.nts-tunisie.com/ensit/wp-content/uploads/2015/05/SEO-Icons-21.png",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/addixo.png",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/STmicro.png",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/telnet.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/newaccess.png",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/allcircuits.png",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/MaibornWolff.png",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/Linedata.png",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/AxeFinance.png"
+        ],
+        "id": 16
+      },
+      {
+        "url": "https://www.ensit.tn",
+        "title": "ENSIT",
+        "meta_description": "❌ Missing meta description",
+        "load_time_ms": 645,
+        "html_size_kb": 56.25,
+        "canonical": "https://www.ensit.tn/",
+        "robots": "max-image-preview:large",
+        "favicon": "http://www.nts-tunisie.com/ensit/wp-content/uploads/2015/05/favico.ico",
+        "internal_links_count": 71,
+        "external_links_count": 16,
+        "seo_score": 80,
+        "grade": "B",
+        "good_practices": [
+          "✅ Title tag is present",
+          "✅ 2 <h1> tag(s) found",
+          "✅ 2 <h2> tag(s) found",
+          "✅ 17 <h3> tag(s) found",
+          "✅ 15 <h4> tag(s) found",
+          "✅ 8 <h6> tag(s) found",
+          "✅ Canonical tag is defined",
+          "✅ Robots meta tag is present",
+          "✅ Favicon is present"
+        ],
+        "bad_practices": [
+          "❌ Missing meta description",
+          "❌ No <h5> tag found",
+          "❌ 34 images missing alt attributes"
+        ],
+        "header_tags": {
+          "h1_tags": [
+            "",
+            "Présentation de l'ENSIT"
+          ],
+          "h2_tags": [
+            "l'ENSIT: lien Youtube",
+            "accéder a la page: Forum de l'ENSIT"
+          ],
+          "h3_tags": [
+            "Appels d'offres et consultations des marchés public",
+            "ENSITen quelques mots",
+            "Evènements",
+            "Actualités",
+            "Diplôme d’Ingénieur",
+            "Diplôme Master de Recherche",
+            "Diplôme Master Professionnel",
+            "Ecole Doctorale",
+            "Mission Vision Valeurs",
+            "Historique",
+            "ENSIT Centre UNEVOC",
+            "Les Clubs",
+            "ENSIT en chiffre",
+            "Nos partenaires",
+            "ENSIT",
+            "Menu rapide",
+            "Contactez-nous"
+          ],
+          "h4_tags": [
+            "Université de Tunis - Ecole Nationale Supérieure d'ingénieurs de Tunis",
+            "Formations certifiantes SolidWorks",
+            "Conférence JSTMM",
+            "Candidature pour le hackathon Méga Camp Multidisciplinaire",
+            "Journée culturelle Palestenienne",
+            "OUVERTURE DES CANDIDATURES AUX MASTERS DE L’ENSIT",
+            "Résultat de la troisième session TOEIC",
+            "",
+            "",
+            "",
+            "",
+            "900",
+            "142",
+            "97%",
+            "85.65%"
+          ],
+          "h5_tags": [
+            "❌ No <h5> tags found"
+          ],
+          "h6_tags": [
+            "Lire plus",
+            "Lire plus",
+            "Lire plus",
+            "Lire plus",
+            "Etudiants (dont 77% élèves ingénieurs)",
+            "Enseignants (dont 42% maitres de conférence et professeurs)",
+            "Taux de réussite",
+            "Taux d'emplyabilité"
+          ]
+        },
+        "images_missing_alt": [
+          "https://www.ensit.tn/wp-content/uploads/2015/05/logo-ecole-1170x284.png",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/insight_2023.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/photo7.png",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/photo31.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/Capture_eurace_3.jpg",
+          "",
+          "https://www.ensit.tn/wp-content/themes/kallyas2.3/kallyas/images/ok.png",
+          "https://www.ensit.tn/wp-content/uploads/2024/08/new-gif-007.gif",
+          "https://www.ensit.tn/wp-content/uploads/2025/05/flag_sw-scaled-54x54.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2024/11/JSTMM-2024-54x54.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2024/11/465030542_553495734303681_6859238564789231998_n-54x54.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2025/05/ensit_palestine-scaled-54x54.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2024/08/new-gif-007.gif",
+          "https://www.ensit.tn/wp-content/uploads/2024/08/new-gif-007.gif",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/ing_eurace14.png",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/rech.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/pro1.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/doctorat1.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/img1b-270x146.png",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/img2b1-270x146.png",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/unevoc-270x146.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/clubs-270x146.jpg",
+          "http://www.nts-tunisie.com/ensit/wp-content/uploads/2015/05/SEO-Icons-10.png",
+          "http://www.nts-tunisie.com/ensit/wp-content/uploads/2015/05/SEO-Icons-22.png",
+          "http://www.nts-tunisie.com/ensit/wp-content/uploads/2015/05/SEO-Icons-2.png",
+          "http://www.nts-tunisie.com/ensit/wp-content/uploads/2015/05/SEO-Icons-21.png",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/addixo.png",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/STmicro.png",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/telnet.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/newaccess.png",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/allcircuits.png",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/MaibornWolff.png",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/Linedata.png",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/AxeFinance.png"
+        ],
+        "id": 17
+      },
+      {
+        "url": "https://www.ensit.tn/",
+        "title": "ENSIT",
+        "meta_description": "❌ Missing meta description",
+        "load_time_ms": 492,
+        "html_size_kb": 56.25,
+        "canonical": "https://www.ensit.tn/",
+        "robots": "max-image-preview:large",
+        "favicon": "http://www.nts-tunisie.com/ensit/wp-content/uploads/2015/05/favico.ico",
+        "internal_links_count": 71,
+        "external_links_count": 16,
+        "seo_score": 80,
+        "grade": "B",
+        "good_practices": [
+          "✅ Title tag is present",
+          "✅ 2 <h1> tag(s) found",
+          "✅ 2 <h2> tag(s) found",
+          "✅ 17 <h3> tag(s) found",
+          "✅ 15 <h4> tag(s) found",
+          "✅ 8 <h6> tag(s) found",
+          "✅ Canonical tag is defined",
+          "✅ Robots meta tag is present",
+          "✅ Favicon is present"
+        ],
+        "bad_practices": [
+          "❌ Missing meta description",
+          "❌ No <h5> tag found",
+          "❌ 34 images missing alt attributes"
+        ],
+        "header_tags": {
+          "h1_tags": [
+            "",
+            "Présentation de l'ENSIT"
+          ],
+          "h2_tags": [
+            "l'ENSIT: lien Youtube",
+            "accéder a la page: Forum de l'ENSIT"
+          ],
+          "h3_tags": [
+            "Appels d'offres et consultations des marchés public",
+            "ENSITen quelques mots",
+            "Evènements",
+            "Actualités",
+            "Diplôme d’Ingénieur",
+            "Diplôme Master de Recherche",
+            "Diplôme Master Professionnel",
+            "Ecole Doctorale",
+            "Mission Vision Valeurs",
+            "Historique",
+            "ENSIT Centre UNEVOC",
+            "Les Clubs",
+            "ENSIT en chiffre",
+            "Nos partenaires",
+            "ENSIT",
+            "Menu rapide",
+            "Contactez-nous"
+          ],
+          "h4_tags": [
+            "Université de Tunis - Ecole Nationale Supérieure d'ingénieurs de Tunis",
+            "Formations certifiantes SolidWorks",
+            "Conférence JSTMM",
+            "Candidature pour le hackathon Méga Camp Multidisciplinaire",
+            "Journée culturelle Palestenienne",
+            "OUVERTURE DES CANDIDATURES AUX MASTERS DE L’ENSIT",
+            "Résultat de la troisième session TOEIC",
+            "",
+            "",
+            "",
+            "",
+            "900",
+            "142",
+            "97%",
+            "85.65%"
+          ],
+          "h5_tags": [
+            "❌ No <h5> tags found"
+          ],
+          "h6_tags": [
+            "Lire plus",
+            "Lire plus",
+            "Lire plus",
+            "Lire plus",
+            "Etudiants (dont 77% élèves ingénieurs)",
+            "Enseignants (dont 42% maitres de conférence et professeurs)",
+            "Taux de réussite",
+            "Taux d'emplyabilité"
+          ]
+        },
+        "images_missing_alt": [
+          "https://www.ensit.tn/wp-content/uploads/2015/05/logo-ecole-1170x284.png",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/insight_2023.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/photo7.png",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/photo31.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/Capture_eurace_3.jpg",
+          "",
+          "https://www.ensit.tn/wp-content/themes/kallyas2.3/kallyas/images/ok.png",
+          "https://www.ensit.tn/wp-content/uploads/2024/08/new-gif-007.gif",
+          "https://www.ensit.tn/wp-content/uploads/2025/05/flag_sw-scaled-54x54.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2024/11/JSTMM-2024-54x54.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2024/11/465030542_553495734303681_6859238564789231998_n-54x54.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2025/05/ensit_palestine-scaled-54x54.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2024/08/new-gif-007.gif",
+          "https://www.ensit.tn/wp-content/uploads/2024/08/new-gif-007.gif",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/ing_eurace14.png",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/rech.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/pro1.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/doctorat1.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/img1b-270x146.png",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/img2b1-270x146.png",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/unevoc-270x146.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/clubs-270x146.jpg",
+          "http://www.nts-tunisie.com/ensit/wp-content/uploads/2015/05/SEO-Icons-10.png",
+          "http://www.nts-tunisie.com/ensit/wp-content/uploads/2015/05/SEO-Icons-22.png",
+          "http://www.nts-tunisie.com/ensit/wp-content/uploads/2015/05/SEO-Icons-2.png",
+          "http://www.nts-tunisie.com/ensit/wp-content/uploads/2015/05/SEO-Icons-21.png",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/addixo.png",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/STmicro.png",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/telnet.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/newaccess.png",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/allcircuits.png",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/MaibornWolff.png",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/Linedata.png",
+          "https://www.ensit.tn/wp-content/uploads/2015/05/AxeFinance.png"
+        ],
+        "id": 18
+      },
+      {
+        "url": "https://www.ensit.tn/ensit/",
+        "title": "ENSIT | ENSIT",
+        "meta_description": "❌ Missing meta description",
+        "load_time_ms": 436,
+        "html_size_kb": 39.57,
+        "canonical": "https://www.ensit.tn/ensit/",
+        "robots": "max-image-preview:large",
+        "favicon": "http://www.nts-tunisie.com/ensit/wp-content/uploads/2015/05/favico.ico",
+        "internal_links_count": 57,
+        "external_links_count": 7,
+        "seo_score": 75,
+        "grade": "C",
+        "good_practices": [
+          "✅ Title tag is present",
+          "✅ 1 <h1> tag(s) found",
+          "✅ 1 <h2> tag(s) found",
+          "✅ 6 <h3> tag(s) found",
+          "✅ 5 <h4> tag(s) found",
+          "✅ Canonical tag is defined",
+          "✅ Robots meta tag is present",
+          "✅ Favicon is present"
+        ],
+        "bad_practices": [
+          "❌ Missing meta description",
+          "❌ No <h5> tag found",
+          "❌ No <h6> tag found",
+          "❌ 2 images missing alt attributes"
+        ],
+        "header_tags": {
+          "h1_tags": [
+            "ENSIT"
+          ],
+          "h2_tags": [
+            "ENSIT"
+          ],
+          "h3_tags": [
+            "",
+            "Actualités",
+            "Catégories",
+            "ENSIT",
+            "Menu rapide",
+            "Contactez-nous"
+          ],
+          "h4_tags": [
+            "Formations certifiantes SolidWorks",
+            "Journée culturelle Palestenienne",
+            "OUVERTURE DES CANDIDATURES AUX MASTERS DE L’ENSIT",
+            "Résultat de la troisième session TOEIC",
+            "Bourse de mobilité SITEF"
+          ],
+          "h5_tags": [
+            "❌ No <h5> tags found"
+          ],
+          "h6_tags": [
+            "❌ No <h6> tags found"
+          ]
+        },
+        "images_missing_alt": [
+          "https://www.ensit.tn/wp-content/uploads/2025/05/flag_sw-scaled-54x54.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2025/05/ensit_palestine-scaled-54x54.jpg"
+        ],
+        "id": 19
+      },
+      {
+        "url": "https://www.ensit.tn/ensit/mot-du-directeur/",
+        "title": "ENSIT | Mot du Directeur",
+        "meta_description": "❌ Missing meta description",
+        "load_time_ms": 500,
+        "html_size_kb": 43.33,
+        "canonical": "https://www.ensit.tn/ensit/mot-du-directeur/",
+        "robots": "max-image-preview:large",
+        "favicon": "http://www.nts-tunisie.com/ensit/wp-content/uploads/2015/05/favico.ico",
+        "internal_links_count": 56,
+        "external_links_count": 7,
+        "seo_score": 70,
+        "grade": "C",
+        "good_practices": [
+          "✅ Title tag is present",
+          "✅ 1 <h2> tag(s) found",
+          "✅ 6 <h3> tag(s) found",
+          "✅ 5 <h4> tag(s) found",
+          "✅ Canonical tag is defined",
+          "✅ Robots meta tag is present",
+          "✅ Favicon is present"
+        ],
+        "bad_practices": [
+          "❌ Missing meta description",
+          "❌ No <h1> tag found",
+          "❌ No <h5> tag found",
+          "❌ No <h6> tag found",
+          "❌ 3 images missing alt attributes"
+        ],
+        "header_tags": {
+          "h1_tags": [
+            "❌ No <h1> tags found"
+          ],
+          "h2_tags": [
+            "Mot du Directeur"
+          ],
+          "h3_tags": [
+            "",
+            "Actualités",
+            "Catégories",
+            "ENSIT",
+            "Menu rapide",
+            "Contactez-nous"
+          ],
+          "h4_tags": [
+            "Formations certifiantes SolidWorks",
+            "Journée culturelle Palestenienne",
+            "OUVERTURE DES CANDIDATURES AUX MASTERS DE L’ENSIT",
+            "Résultat de la troisième session TOEIC",
+            "Bourse de mobilité SITEF"
+          ],
+          "h5_tags": [
+            "❌ No <h5> tags found"
+          ],
+          "h6_tags": [
+            "❌ No <h6> tags found"
+          ]
+        },
+        "images_missing_alt": [
+          "https://www.ensit.tn/wp-content/uploads/2025/01/directeur_ensit.png",
+          "https://www.ensit.tn/wp-content/uploads/2025/05/flag_sw-scaled-54x54.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2025/05/ensit_palestine-scaled-54x54.jpg"
+        ],
+        "id": 20
+      },
+      {
+        "url": "https://www.ensit.tn/ensit/politique-assurance-qualite/",
+        "title": "ENSIT | Politique Assurance Qualité",
+        "meta_description": "❌ Missing meta description",
+        "load_time_ms": 436,
+        "html_size_kb": 40.95,
+        "canonical": "https://www.ensit.tn/ensit/politique-assurance-qualite/",
+        "robots": "max-image-preview:large",
+        "favicon": "http://www.nts-tunisie.com/ensit/wp-content/uploads/2015/05/favico.ico",
+        "internal_links_count": 57,
+        "external_links_count": 7,
+        "seo_score": 70,
+        "grade": "C",
+        "good_practices": [
+          "✅ Title tag is present",
+          "✅ 1 <h2> tag(s) found",
+          "✅ 6 <h3> tag(s) found",
+          "✅ 5 <h4> tag(s) found",
+          "✅ Canonical tag is defined",
+          "✅ Robots meta tag is present",
+          "✅ Favicon is present"
+        ],
+        "bad_practices": [
+          "❌ Missing meta description",
+          "❌ No <h1> tag found",
+          "❌ No <h5> tag found",
+          "❌ No <h6> tag found",
+          "❌ 2 images missing alt attributes"
+        ],
+        "header_tags": {
+          "h1_tags": [
+            "❌ No <h1> tags found"
+          ],
+          "h2_tags": [
+            "Politique Assurance Qualité"
+          ],
+          "h3_tags": [
+            "",
+            "Actualités",
+            "Catégories",
+            "ENSIT",
+            "Menu rapide",
+            "Contactez-nous"
+          ],
+          "h4_tags": [
+            "Formations certifiantes SolidWorks",
+            "Journée culturelle Palestenienne",
+            "OUVERTURE DES CANDIDATURES AUX MASTERS DE L’ENSIT",
+            "Résultat de la troisième session TOEIC",
+            "Bourse de mobilité SITEF"
+          ],
+          "h5_tags": [
+            "❌ No <h5> tags found"
+          ],
+          "h6_tags": [
+            "❌ No <h6> tags found"
+          ]
+        },
+        "images_missing_alt": [
+          "https://www.ensit.tn/wp-content/uploads/2025/05/flag_sw-scaled-54x54.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2025/05/ensit_palestine-scaled-54x54.jpg"
+        ],
+        "id": 21
+      },
+      {
+        "url": "https://www.ensit.tn/ensit/historique-sommaire/",
+        "title": "ENSIT | Historique sommaire",
+        "meta_description": "❌ Missing meta description",
+        "load_time_ms": 483,
+        "html_size_kb": 38.66,
+        "canonical": "https://www.ensit.tn/ensit/historique-sommaire/",
+        "robots": "max-image-preview:large",
+        "favicon": "http://www.nts-tunisie.com/ensit/wp-content/uploads/2015/05/favico.ico",
+        "internal_links_count": 45,
+        "external_links_count": 7,
+        "seo_score": 75,
+        "grade": "C",
+        "good_practices": [
+          "✅ Title tag is present",
+          "✅ 1 <h2> tag(s) found",
+          "✅ 4 <h3> tag(s) found",
+          "✅ 4 <h4> tag(s) found",
+          "✅ Canonical tag is defined",
+          "✅ All images have alt tags",
+          "✅ Robots meta tag is present",
+          "✅ Favicon is present"
+        ],
+        "bad_practices": [
+          "❌ Missing meta description",
+          "❌ No <h1> tag found",
+          "❌ No <h5> tag found",
+          "❌ No <h6> tag found"
+        ],
+        "header_tags": {
+          "h1_tags": [
+            "❌ No <h1> tags found"
+          ],
+          "h2_tags": [
+            "Historique sommaire"
+          ],
+          "h3_tags": [
+            "",
+            "ENSIT",
+            "Menu rapide",
+            "Contactez-nous"
+          ],
+          "h4_tags": [
+            "ENPA",
+            "ENSET",
+            "ESSTT",
+            "ENSIT"
+          ],
+          "h5_tags": [
+            "❌ No <h5> tags found"
+          ],
+          "h6_tags": [
+            "❌ No <h6> tags found"
+          ]
+        },
+        "images_missing_alt": [],
+        "id": 22
+      },
+      {
+        "url": "https://www.ensit.tn/ensit/chiffres-cles/",
+        "title": "ENSIT | Chiffres Clés",
+        "meta_description": "❌ Missing meta description",
+        "load_time_ms": 430,
+        "html_size_kb": 39.96,
+        "canonical": "https://www.ensit.tn/ensit/chiffres-cles/",
+        "robots": "max-image-preview:large",
+        "favicon": "http://www.nts-tunisie.com/ensit/wp-content/uploads/2015/05/favico.ico",
+        "internal_links_count": 55,
+        "external_links_count": 7,
+        "seo_score": 70,
+        "grade": "C",
+        "good_practices": [
+          "✅ Title tag is present",
+          "✅ 1 <h2> tag(s) found",
+          "✅ 6 <h3> tag(s) found",
+          "✅ 5 <h4> tag(s) found",
+          "✅ Canonical tag is defined",
+          "✅ Robots meta tag is present",
+          "✅ Favicon is present"
+        ],
+        "bad_practices": [
+          "❌ Missing meta description",
+          "❌ No <h1> tag found",
+          "❌ No <h5> tag found",
+          "❌ No <h6> tag found",
+          "❌ 2 images missing alt attributes"
+        ],
+        "header_tags": {
+          "h1_tags": [
+            "❌ No <h1> tags found"
+          ],
+          "h2_tags": [
+            "Chiffres Clés"
+          ],
+          "h3_tags": [
+            "",
+            "Actualités",
+            "Catégories",
+            "ENSIT",
+            "Menu rapide",
+            "Contactez-nous"
+          ],
+          "h4_tags": [
+            "Formations certifiantes SolidWorks",
+            "Journée culturelle Palestenienne",
+            "OUVERTURE DES CANDIDATURES AUX MASTERS DE L’ENSIT",
+            "Résultat de la troisième session TOEIC",
+            "Bourse de mobilité SITEF"
+          ],
+          "h5_tags": [
+            "❌ No <h5> tags found"
+          ],
+          "h6_tags": [
+            "❌ No <h6> tags found"
+          ]
+        },
+        "images_missing_alt": [
+          "https://www.ensit.tn/wp-content/uploads/2025/05/flag_sw-scaled-54x54.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2025/05/ensit_palestine-scaled-54x54.jpg"
+        ],
+        "id": 23
+      },
+      {
+        "url": "https://www.ensit.tn/formation/",
+        "title": "ENSIT | Formations",
+        "meta_description": "❌ Missing meta description",
+        "load_time_ms": 402,
+        "html_size_kb": 39.44,
+        "canonical": "https://www.ensit.tn/formation/",
+        "robots": "max-image-preview:large",
+        "favicon": "http://www.nts-tunisie.com/ensit/wp-content/uploads/2015/05/favico.ico",
+        "internal_links_count": 56,
+        "external_links_count": 7,
+        "seo_score": 75,
+        "grade": "C",
+        "good_practices": [
+          "✅ Title tag is present",
+          "✅ 1 <h1> tag(s) found",
+          "✅ 1 <h2> tag(s) found",
+          "✅ 6 <h3> tag(s) found",
+          "✅ 5 <h4> tag(s) found",
+          "✅ Canonical tag is defined",
+          "✅ Robots meta tag is present",
+          "✅ Favicon is present"
+        ],
+        "bad_practices": [
+          "❌ Missing meta description",
+          "❌ No <h5> tag found",
+          "❌ No <h6> tag found",
+          "❌ 2 images missing alt attributes"
+        ],
+        "header_tags": {
+          "h1_tags": [
+            "Formations"
+          ],
+          "h2_tags": [
+            "Formations"
+          ],
+          "h3_tags": [
+            "",
+            "Actualités",
+            "Catégories",
+            "ENSIT",
+            "Menu rapide",
+            "Contactez-nous"
+          ],
+          "h4_tags": [
+            "Formations certifiantes SolidWorks",
+            "Journée culturelle Palestenienne",
+            "OUVERTURE DES CANDIDATURES AUX MASTERS DE L’ENSIT",
+            "Résultat de la troisième session TOEIC",
+            "Bourse de mobilité SITEF"
+          ],
+          "h5_tags": [
+            "❌ No <h5> tags found"
+          ],
+          "h6_tags": [
+            "❌ No <h6> tags found"
+          ]
+        },
+        "images_missing_alt": [
+          "https://www.ensit.tn/wp-content/uploads/2025/05/flag_sw-scaled-54x54.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2025/05/ensit_palestine-scaled-54x54.jpg"
+        ],
+        "id": 29
+      },
+      {
+        "url": "https://www.ensit.tn/ensit/organisation/",
+        "title": "ENSIT | Organisation",
+        "meta_description": "❌ Missing meta description",
+        "load_time_ms": 494,
+        "html_size_kb": 40.94,
+        "canonical": "https://www.ensit.tn/ensit/organisation/",
+        "robots": "max-image-preview:large",
+        "favicon": "http://www.nts-tunisie.com/ensit/wp-content/uploads/2015/05/favico.ico",
+        "internal_links_count": 57,
+        "external_links_count": 7,
+        "seo_score": 70,
+        "grade": "C",
+        "good_practices": [
+          "✅ Title tag is present",
+          "✅ 1 <h2> tag(s) found",
+          "✅ 6 <h3> tag(s) found",
+          "✅ 5 <h4> tag(s) found",
+          "✅ Canonical tag is defined",
+          "✅ Robots meta tag is present",
+          "✅ Favicon is present"
+        ],
+        "bad_practices": [
+          "❌ Missing meta description",
+          "❌ No <h1> tag found",
+          "❌ No <h5> tag found",
+          "❌ No <h6> tag found",
+          "❌ 2 images missing alt attributes"
+        ],
+        "header_tags": {
+          "h1_tags": [
+            "❌ No <h1> tags found"
+          ],
+          "h2_tags": [
+            "Organisation"
+          ],
+          "h3_tags": [
+            "",
+            "Actualités",
+            "Catégories",
+            "ENSIT",
+            "Menu rapide",
+            "Contactez-nous"
+          ],
+          "h4_tags": [
+            "Formations certifiantes SolidWorks",
+            "Journée culturelle Palestenienne",
+            "OUVERTURE DES CANDIDATURES AUX MASTERS DE L’ENSIT",
+            "Résultat de la troisième session TOEIC",
+            "Bourse de mobilité SITEF"
+          ],
+          "h5_tags": [
+            "❌ No <h5> tags found"
+          ],
+          "h6_tags": [
+            "❌ No <h6> tags found"
+          ]
+        },
+        "images_missing_alt": [
+          "https://www.ensit.tn/wp-content/uploads/2025/05/flag_sw-scaled-54x54.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2025/05/ensit_palestine-scaled-54x54.jpg"
+        ],
+        "id": 24
+      },
+      {
+        "url": "https://www.ensit.tn/ensit/nos-partenaires-en-tunisie/",
+        "title": "ENSIT | Nos partenaires en Tunisie",
+        "meta_description": "❌ Missing meta description",
+        "load_time_ms": 493,
+        "html_size_kb": 39.61,
+        "canonical": "https://www.ensit.tn/ensit/nos-partenaires-en-tunisie/",
+        "robots": "max-image-preview:large",
+        "favicon": "http://www.nts-tunisie.com/ensit/wp-content/uploads/2015/05/favico.ico",
+        "internal_links_count": 55,
+        "external_links_count": 7,
+        "seo_score": 70,
+        "grade": "C",
+        "good_practices": [
+          "✅ Title tag is present",
+          "✅ 1 <h2> tag(s) found",
+          "✅ 6 <h3> tag(s) found",
+          "✅ 5 <h4> tag(s) found",
+          "✅ Canonical tag is defined",
+          "✅ Robots meta tag is present",
+          "✅ Favicon is present"
+        ],
+        "bad_practices": [
+          "❌ Missing meta description",
+          "❌ No <h1> tag found",
+          "❌ No <h5> tag found",
+          "❌ No <h6> tag found",
+          "❌ 2 images missing alt attributes"
+        ],
+        "header_tags": {
+          "h1_tags": [
+            "❌ No <h1> tags found"
+          ],
+          "h2_tags": [
+            "Nos partenaires en Tunisie"
+          ],
+          "h3_tags": [
+            "",
+            "Actualités",
+            "Catégories",
+            "ENSIT",
+            "Menu rapide",
+            "Contactez-nous"
+          ],
+          "h4_tags": [
+            "Formations certifiantes SolidWorks",
+            "Journée culturelle Palestenienne",
+            "OUVERTURE DES CANDIDATURES AUX MASTERS DE L’ENSIT",
+            "Résultat de la troisième session TOEIC",
+            "Bourse de mobilité SITEF"
+          ],
+          "h5_tags": [
+            "❌ No <h5> tags found"
+          ],
+          "h6_tags": [
+            "❌ No <h6> tags found"
+          ]
+        },
+        "images_missing_alt": [
+          "https://www.ensit.tn/wp-content/uploads/2025/05/flag_sw-scaled-54x54.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2025/05/ensit_palestine-scaled-54x54.jpg"
+        ],
+        "id": 25
+      },
+      {
+        "url": "https://www.ensit.tn/ensit/nos-partenaires-dans-le-monde/",
+        "title": "ENSIT | Nos partenaires dans le monde",
+        "meta_description": "❌ Missing meta description",
+        "load_time_ms": 445,
+        "html_size_kb": 39.64,
+        "canonical": "https://www.ensit.tn/ensit/nos-partenaires-dans-le-monde/",
+        "robots": "max-image-preview:large",
+        "favicon": "http://www.nts-tunisie.com/ensit/wp-content/uploads/2015/05/favico.ico",
+        "internal_links_count": 55,
+        "external_links_count": 7,
+        "seo_score": 70,
+        "grade": "C",
+        "good_practices": [
+          "✅ Title tag is present",
+          "✅ 1 <h2> tag(s) found",
+          "✅ 6 <h3> tag(s) found",
+          "✅ 5 <h4> tag(s) found",
+          "✅ Canonical tag is defined",
+          "✅ Robots meta tag is present",
+          "✅ Favicon is present"
+        ],
+        "bad_practices": [
+          "❌ Missing meta description",
+          "❌ No <h1> tag found",
+          "❌ No <h5> tag found",
+          "❌ No <h6> tag found",
+          "❌ 2 images missing alt attributes"
+        ],
+        "header_tags": {
+          "h1_tags": [
+            "❌ No <h1> tags found"
+          ],
+          "h2_tags": [
+            "Nos partenaires dans le monde"
+          ],
+          "h3_tags": [
+            "",
+            "Actualités",
+            "Catégories",
+            "ENSIT",
+            "Menu rapide",
+            "Contactez-nous"
+          ],
+          "h4_tags": [
+            "Formations certifiantes SolidWorks",
+            "Journée culturelle Palestenienne",
+            "OUVERTURE DES CANDIDATURES AUX MASTERS DE L’ENSIT",
+            "Résultat de la troisième session TOEIC",
+            "Bourse de mobilité SITEF"
+          ],
+          "h5_tags": [
+            "❌ No <h5> tags found"
+          ],
+          "h6_tags": [
+            "❌ No <h6> tags found"
+          ]
+        },
+        "images_missing_alt": [
+          "https://www.ensit.tn/wp-content/uploads/2025/05/flag_sw-scaled-54x54.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2025/05/ensit_palestine-scaled-54x54.jpg"
+        ],
+        "id": 26
+      },
+      {
+        "url": "https://www.ensit.tn/ensit/plan-dacces/",
+        "title": "ENSIT | Admission",
+        "meta_description": "❌ Missing meta description",
+        "load_time_ms": 463,
+        "html_size_kb": 42.12,
+        "canonical": "https://www.ensit.tn/ensit/plan-dacces/",
+        "robots": "max-image-preview:large",
+        "favicon": "http://www.nts-tunisie.com/ensit/wp-content/uploads/2015/05/favico.ico",
+        "internal_links_count": 57,
+        "external_links_count": 7,
+        "seo_score": 70,
+        "grade": "C",
+        "good_practices": [
+          "✅ Title tag is present",
+          "✅ 1 <h2> tag(s) found",
+          "✅ 6 <h3> tag(s) found",
+          "✅ 5 <h4> tag(s) found",
+          "✅ Canonical tag is defined",
+          "✅ Robots meta tag is present",
+          "✅ Favicon is present"
+        ],
+        "bad_practices": [
+          "❌ Missing meta description",
+          "❌ No <h1> tag found",
+          "❌ No <h5> tag found",
+          "❌ No <h6> tag found",
+          "❌ 2 images missing alt attributes"
+        ],
+        "header_tags": {
+          "h1_tags": [
+            "❌ No <h1> tags found"
+          ],
+          "h2_tags": [
+            "Admission"
+          ],
+          "h3_tags": [
+            "",
+            "Actualités",
+            "Catégories",
+            "ENSIT",
+            "Menu rapide",
+            "Contactez-nous"
+          ],
+          "h4_tags": [
+            "Formations certifiantes SolidWorks",
+            "Journée culturelle Palestenienne",
+            "OUVERTURE DES CANDIDATURES AUX MASTERS DE L’ENSIT",
+            "Résultat de la troisième session TOEIC",
+            "Bourse de mobilité SITEF"
+          ],
+          "h5_tags": [
+            "❌ No <h5> tags found"
+          ],
+          "h6_tags": [
+            "❌ No <h6> tags found"
+          ]
+        },
+        "images_missing_alt": [
+          "https://www.ensit.tn/wp-content/uploads/2025/05/flag_sw-scaled-54x54.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2025/05/ensit_palestine-scaled-54x54.jpg"
+        ],
+        "id": 27
+      },
+      {
+        "url": "https://www.ensit.tn/ensit/ensit-centre-unevoc/",
+        "title": "ENSIT | ENSIT Centre UNEVOC",
+        "meta_description": "❌ Missing meta description",
+        "load_time_ms": 450,
+        "html_size_kb": 41.16,
+        "canonical": "https://www.ensit.tn/ensit/ensit-centre-unevoc/",
+        "robots": "max-image-preview:large",
+        "favicon": "http://www.nts-tunisie.com/ensit/wp-content/uploads/2015/05/favico.ico",
+        "internal_links_count": 56,
+        "external_links_count": 7,
+        "seo_score": 70,
+        "grade": "C",
+        "good_practices": [
+          "✅ Title tag is present",
+          "✅ 1 <h2> tag(s) found",
+          "✅ 6 <h3> tag(s) found",
+          "✅ 5 <h4> tag(s) found",
+          "✅ Canonical tag is defined",
+          "✅ Robots meta tag is present",
+          "✅ Favicon is present"
+        ],
+        "bad_practices": [
+          "❌ Missing meta description",
+          "❌ No <h1> tag found",
+          "❌ No <h5> tag found",
+          "❌ No <h6> tag found",
+          "❌ 2 images missing alt attributes"
+        ],
+        "header_tags": {
+          "h1_tags": [
+            "❌ No <h1> tags found"
+          ],
+          "h2_tags": [
+            "ENSIT Centre UNEVOC"
+          ],
+          "h3_tags": [
+            "",
+            "Actualités",
+            "Catégories",
+            "ENSIT",
+            "Menu rapide",
+            "Contactez-nous"
+          ],
+          "h4_tags": [
+            "Formations certifiantes SolidWorks",
+            "Journée culturelle Palestenienne",
+            "OUVERTURE DES CANDIDATURES AUX MASTERS DE L’ENSIT",
+            "Résultat de la troisième session TOEIC",
+            "Bourse de mobilité SITEF"
+          ],
+          "h5_tags": [
+            "❌ No <h5> tags found"
+          ],
+          "h6_tags": [
+            "❌ No <h6> tags found"
+          ]
+        },
+        "images_missing_alt": [
+          "https://www.ensit.tn/wp-content/uploads/2025/05/flag_sw-scaled-54x54.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2025/05/ensit_palestine-scaled-54x54.jpg"
+        ],
+        "id": 28
+      },
+      {
+        "url": "https://www.ensit.tn/formation/diplome-dingenieur/",
+        "title": "ENSIT | Diplôme d’Ingénieur",
+        "meta_description": "❌ Missing meta description",
+        "load_time_ms": 432,
+        "html_size_kb": 49.41,
+        "canonical": "https://www.ensit.tn/formation/diplome-dingenieur/",
+        "robots": "max-image-preview:large",
+        "favicon": "http://www.nts-tunisie.com/ensit/wp-content/uploads/2015/05/favico.ico",
+        "internal_links_count": 95,
+        "external_links_count": 8,
+        "seo_score": 70,
+        "grade": "C",
+        "good_practices": [
+          "✅ Title tag is present",
+          "✅ 1 <h2> tag(s) found",
+          "✅ 6 <h3> tag(s) found",
+          "✅ 5 <h4> tag(s) found",
+          "✅ Canonical tag is defined",
+          "✅ Robots meta tag is present",
+          "✅ Favicon is present"
+        ],
+        "bad_practices": [
+          "❌ Missing meta description",
+          "❌ No <h1> tag found",
+          "❌ No <h5> tag found",
+          "❌ No <h6> tag found",
+          "❌ 2 images missing alt attributes"
+        ],
+        "header_tags": {
+          "h1_tags": [
+            "❌ No <h1> tags found"
+          ],
+          "h2_tags": [
+            "Diplôme d’Ingénieur"
+          ],
+          "h3_tags": [
+            "",
+            "Actualités",
+            "Catégories",
+            "ENSIT",
+            "Menu rapide",
+            "Contactez-nous"
+          ],
+          "h4_tags": [
+            "Formations certifiantes SolidWorks",
+            "Journée culturelle Palestenienne",
+            "OUVERTURE DES CANDIDATURES AUX MASTERS DE L’ENSIT",
+            "Résultat de la troisième session TOEIC",
+            "Bourse de mobilité SITEF"
+          ],
+          "h5_tags": [
+            "❌ No <h5> tags found"
+          ],
+          "h6_tags": [
+            "❌ No <h6> tags found"
+          ]
+        },
+        "images_missing_alt": [
+          "https://www.ensit.tn/wp-content/uploads/2025/05/flag_sw-scaled-54x54.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2025/05/ensit_palestine-scaled-54x54.jpg"
+        ],
+        "id": 30
+      },
+      {
+        "url": "https://www.ensit.tn/formation/diplome-master-de-recherche/",
+        "title": "ENSIT | Diplôme Master de Recherche",
+        "meta_description": "❌ Missing meta description",
+        "load_time_ms": 445,
+        "html_size_kb": 43.29,
+        "canonical": "https://www.ensit.tn/formation/diplome-master-de-recherche/",
+        "robots": "max-image-preview:large",
+        "favicon": "http://www.nts-tunisie.com/ensit/wp-content/uploads/2015/05/favico.ico",
+        "internal_links_count": 66,
+        "external_links_count": 7,
+        "seo_score": 70,
+        "grade": "C",
+        "good_practices": [
+          "✅ Title tag is present",
+          "✅ 1 <h2> tag(s) found",
+          "✅ 6 <h3> tag(s) found",
+          "✅ 9 <h4> tag(s) found",
+          "✅ Canonical tag is defined",
+          "✅ Robots meta tag is present",
+          "✅ Favicon is present"
+        ],
+        "bad_practices": [
+          "❌ Missing meta description",
+          "❌ No <h1> tag found",
+          "❌ No <h5> tag found",
+          "❌ No <h6> tag found",
+          "❌ 2 images missing alt attributes"
+        ],
+        "header_tags": {
+          "h1_tags": [
+            "❌ No <h1> tags found"
+          ],
+          "h2_tags": [
+            "Diplôme Master de Recherche"
+          ],
+          "h3_tags": [
+            "",
+            "Actualités",
+            "Catégories",
+            "ENSIT",
+            "Menu rapide",
+            "Contactez-nous"
+          ],
+          "h4_tags": [
+            "–Régime des études et des examens applicable à l’ENSIT pour la formation en master de Recherche selon le décret 2012-1227:",
+            "",
+            "Régime_ENSIT_Mast_Rech_act",
+            "–5 mentions et 6 parcours(2024/2025)",
+            "Formations certifiantes SolidWorks",
+            "Journée culturelle Palestenienne",
+            "OUVERTURE DES CANDIDATURES AUX MASTERS DE L’ENSIT",
+            "Résultat de la troisième session TOEIC",
+            "Bourse de mobilité SITEF"
+          ],
+          "h5_tags": [
+            "❌ No <h5> tags found"
+          ],
+          "h6_tags": [
+            "❌ No <h6> tags found"
+          ]
+        },
+        "images_missing_alt": [
+          "https://www.ensit.tn/wp-content/uploads/2025/05/flag_sw-scaled-54x54.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2025/05/ensit_palestine-scaled-54x54.jpg"
+        ],
+        "id": 31
+      },
+      {
+        "url": "https://www.ensit.tn/formation/diplome-master-professionnel/",
+        "title": "ENSIT | Diplôme Master Professionnel",
+        "meta_description": "❌ Missing meta description",
+        "load_time_ms": 506,
+        "html_size_kb": 52.96,
+        "canonical": "https://www.ensit.tn/formation/diplome-master-professionnel/",
+        "robots": "max-image-preview:large",
+        "favicon": "http://www.nts-tunisie.com/ensit/wp-content/uploads/2015/05/favico.ico",
+        "internal_links_count": 66,
+        "external_links_count": 12,
+        "seo_score": 70,
+        "grade": "C",
+        "good_practices": [
+          "✅ Title tag is present",
+          "✅ 6 <h2> tag(s) found",
+          "✅ 8 <h3> tag(s) found",
+          "✅ 6 <h4> tag(s) found",
+          "✅ Canonical tag is defined",
+          "✅ Robots meta tag is present",
+          "✅ Favicon is present"
+        ],
+        "bad_practices": [
+          "❌ Missing meta description",
+          "❌ No <h1> tag found",
+          "❌ No <h5> tag found",
+          "❌ No <h6> tag found",
+          "❌ 2 images missing alt attributes"
+        ],
+        "header_tags": {
+          "h1_tags": [
+            "❌ No <h1> tags found"
+          ],
+          "h2_tags": [
+            "Diplôme Master Professionnel",
+            "1/. Industrie 4.0",
+            "2/. Management des Technologies Intelligentes et Propriétés Industrielles (MTIPI)",
+            "",
+            "",
+            "3/. IASRIA"
+          ],
+          "h3_tags": [
+            "",
+            "",
+            "Manager la propriété industrielle dans un monde ou les technologies intelligentes sont de plus en plus fréquentes.  Ce master est en collaboration avec l’Ecole Supérieure des Sciences Economiques et Commerciales de Tunis (ESSECT), INNORPI, Ministère de l’Industrie des Mines et de l’Energie.",
+            "Actualités",
+            "Catégories",
+            "ENSIT",
+            "Menu rapide",
+            "Contactez-nous"
+          ],
+          "h4_tags": [
+            "Pilotage des concepts de l’Industre 4.0  en collaboration avec l’ENIM, Ministère de l’Industrie des Mines et de l’Energie, Employment 4. YOuth, ONUDI, Coopération allemande.",
+            "Formations certifiantes SolidWorks",
+            "Journée culturelle Palestenienne",
+            "OUVERTURE DES CANDIDATURES AUX MASTERS DE L’ENSIT",
+            "Résultat de la troisième session TOEIC",
+            "Bourse de mobilité SITEF"
+          ],
+          "h5_tags": [
+            "❌ No <h5> tags found"
+          ],
+          "h6_tags": [
+            "❌ No <h6> tags found"
+          ]
+        },
+        "images_missing_alt": [
+          "https://www.ensit.tn/wp-content/uploads/2025/05/flag_sw-scaled-54x54.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2025/05/ensit_palestine-scaled-54x54.jpg"
+        ],
+        "id": 32
+      },
+      {
+        "url": "https://www.ensit.tn/formation/ecole-doctorale/",
+        "title": "ENSIT | Habilitations",
+        "meta_description": "❌ Missing meta description",
+        "load_time_ms": 556,
+        "html_size_kb": 52.05,
+        "canonical": "https://www.ensit.tn/formation/ecole-doctorale/",
+        "robots": "max-image-preview:large",
+        "favicon": "http://www.nts-tunisie.com/ensit/wp-content/uploads/2015/05/favico.ico",
+        "internal_links_count": 57,
+        "external_links_count": 7,
+        "seo_score": 75,
+        "grade": "C",
+        "good_practices": [
+          "✅ Title tag is present",
+          "✅ 1 <h1> tag(s) found",
+          "✅ 3 <h2> tag(s) found",
+          "✅ 10 <h3> tag(s) found",
+          "✅ 5 <h4> tag(s) found",
+          "✅ Canonical tag is defined",
+          "✅ Robots meta tag is present",
+          "✅ Favicon is present"
+        ],
+        "bad_practices": [
+          "❌ Missing meta description",
+          "❌ No <h5> tag found",
+          "❌ No <h6> tag found",
+          "❌ 2 images missing alt attributes"
+        ],
+        "header_tags": {
+          "h1_tags": [
+            "Les critère de recevabilité des habilitations universitaires"
+          ],
+          "h2_tags": [
+            "Habilitations",
+            "GENIE ELCTRIQUE.",
+            "GENIE MECANIQUE."
+          ],
+          "h3_tags": [
+            "",
+            "Critères minimaux de recevabilité d’un dossier d’Habilitation Universitaire en Génie Electrique de l’ENSIT:EDST-CHU-GE(*)",
+            "Pièces à fournir pour le dossier d’Habilitation Universitaire en Génie Electrique de l’ENSIT(**)",
+            "Critères minimaux de recevabilité d’un dossier d’Habilitation Universitaire enGénie Mécanique de l’ENSITEDST-CHU-GM(*)",
+            "Pièces à fournir pour le dossier d’Habilitation Universitaire enGénie Mécanique de l’ENSIT(**)",
+            "Actualités",
+            "Catégories",
+            "ENSIT",
+            "Menu rapide",
+            "Contactez-nous"
+          ],
+          "h4_tags": [
+            "Formations certifiantes SolidWorks",
+            "Journée culturelle Palestenienne",
+            "OUVERTURE DES CANDIDATURES AUX MASTERS DE L’ENSIT",
+            "Résultat de la troisième session TOEIC",
+            "Bourse de mobilité SITEF"
+          ],
+          "h5_tags": [
+            "❌ No <h5> tags found"
+          ],
+          "h6_tags": [
+            "❌ No <h6> tags found"
+          ]
+        },
+        "images_missing_alt": [
+          "https://www.ensit.tn/wp-content/uploads/2025/05/flag_sw-scaled-54x54.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2025/05/ensit_palestine-scaled-54x54.jpg"
+        ],
+        "id": 33
+      },
+      {
+        "url": "https://www.ensit.tn/formation/ecole-doctorale/",
+        "title": "ENSIT | Habilitations",
+        "meta_description": "❌ Missing meta description",
+        "load_time_ms": 550,
+        "html_size_kb": 52.05,
+        "canonical": "https://www.ensit.tn/formation/ecole-doctorale/",
+        "robots": "max-image-preview:large",
+        "favicon": "http://www.nts-tunisie.com/ensit/wp-content/uploads/2015/05/favico.ico",
+        "internal_links_count": 57,
+        "external_links_count": 7,
+        "seo_score": 75,
+        "grade": "C",
+        "good_practices": [
+          "✅ Title tag is present",
+          "✅ 1 <h1> tag(s) found",
+          "✅ 3 <h2> tag(s) found",
+          "✅ 10 <h3> tag(s) found",
+          "✅ 5 <h4> tag(s) found",
+          "✅ Canonical tag is defined",
+          "✅ Robots meta tag is present",
+          "✅ Favicon is present"
+        ],
+        "bad_practices": [
+          "❌ Missing meta description",
+          "❌ No <h5> tag found",
+          "❌ No <h6> tag found",
+          "❌ 2 images missing alt attributes"
+        ],
+        "header_tags": {
+          "h1_tags": [
+            "Les critère de recevabilité des habilitations universitaires"
+          ],
+          "h2_tags": [
+            "Habilitations",
+            "GENIE ELCTRIQUE.",
+            "GENIE MECANIQUE."
+          ],
+          "h3_tags": [
+            "",
+            "Critères minimaux de recevabilité d’un dossier d’Habilitation Universitaire en Génie Electrique de l’ENSIT:EDST-CHU-GE(*)",
+            "Pièces à fournir pour le dossier d’Habilitation Universitaire en Génie Electrique de l’ENSIT(**)",
+            "Critères minimaux de recevabilité d’un dossier d’Habilitation Universitaire enGénie Mécanique de l’ENSITEDST-CHU-GM(*)",
+            "Pièces à fournir pour le dossier d’Habilitation Universitaire enGénie Mécanique de l’ENSIT(**)",
+            "Actualités",
+            "Catégories",
+            "ENSIT",
+            "Menu rapide",
+            "Contactez-nous"
+          ],
+          "h4_tags": [
+            "Formations certifiantes SolidWorks",
+            "Journée culturelle Palestenienne",
+            "OUVERTURE DES CANDIDATURES AUX MASTERS DE L’ENSIT",
+            "Résultat de la troisième session TOEIC",
+            "Bourse de mobilité SITEF"
+          ],
+          "h5_tags": [
+            "❌ No <h5> tags found"
+          ],
+          "h6_tags": [
+            "❌ No <h6> tags found"
+          ]
+        },
+        "images_missing_alt": [
+          "https://www.ensit.tn/wp-content/uploads/2025/05/flag_sw-scaled-54x54.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2025/05/ensit_palestine-scaled-54x54.jpg"
+        ],
+        "id": 34
+      },
+      {
+        "url": "https://www.ensit.tn/formation/les-departements-denseignement/",
+        "title": "ENSIT | Les Départements",
+        "meta_description": "❌ Missing meta description",
+        "load_time_ms": 521,
+        "html_size_kb": 41.81,
+        "canonical": "https://www.ensit.tn/formation/les-departements-denseignement/",
+        "robots": "max-image-preview:large",
+        "favicon": "http://www.nts-tunisie.com/ensit/wp-content/uploads/2015/05/favico.ico",
+        "internal_links_count": 62,
+        "external_links_count": 8,
+        "seo_score": 75,
+        "grade": "C",
+        "good_practices": [
+          "✅ Title tag is present",
+          "✅ 1 <h1> tag(s) found",
+          "✅ 1 <h2> tag(s) found",
+          "✅ 6 <h3> tag(s) found",
+          "✅ 5 <h4> tag(s) found",
+          "✅ Canonical tag is defined",
+          "✅ Robots meta tag is present",
+          "✅ Favicon is present"
+        ],
+        "bad_practices": [
+          "❌ Missing meta description",
+          "❌ No <h5> tag found",
+          "❌ No <h6> tag found",
+          "❌ 2 images missing alt attributes"
+        ],
+        "header_tags": {
+          "h1_tags": [
+            "Présentation du département Informatique"
+          ],
+          "h2_tags": [
+            "Les Départements"
+          ],
+          "h3_tags": [
+            "",
+            "Actualités",
+            "Catégories",
+            "ENSIT",
+            "Menu rapide",
+            "Contactez-nous"
+          ],
+          "h4_tags": [
+            "Formations certifiantes SolidWorks",
+            "Journée culturelle Palestenienne",
+            "OUVERTURE DES CANDIDATURES AUX MASTERS DE L’ENSIT",
+            "Résultat de la troisième session TOEIC",
+            "Bourse de mobilité SITEF"
+          ],
+          "h5_tags": [
+            "❌ No <h5> tags found"
+          ],
+          "h6_tags": [
+            "❌ No <h6> tags found"
+          ]
+        },
+        "images_missing_alt": [
+          "https://www.ensit.tn/wp-content/uploads/2025/05/flag_sw-scaled-54x54.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2025/05/ensit_palestine-scaled-54x54.jpg"
+        ],
+        "id": 35
+      },
+      {
+        "url": "https://www.ensit.tn/formation/bibliotheque/",
+        "title": "ENSIT | Bibliothèque",
+        "meta_description": "❌ Missing meta description",
+        "load_time_ms": 432,
+        "html_size_kb": 42.41,
+        "canonical": "https://www.ensit.tn/formation/bibliotheque/",
+        "robots": "max-image-preview:large",
+        "favicon": "http://www.nts-tunisie.com/ensit/wp-content/uploads/2015/05/favico.ico",
+        "internal_links_count": 55,
+        "external_links_count": 10,
+        "seo_score": 70,
+        "grade": "C",
+        "good_practices": [
+          "✅ Title tag is present",
+          "✅ 1 <h2> tag(s) found",
+          "✅ 6 <h3> tag(s) found",
+          "✅ 5 <h4> tag(s) found",
+          "✅ Canonical tag is defined",
+          "✅ Robots meta tag is present",
+          "✅ Favicon is present"
+        ],
+        "bad_practices": [
+          "❌ Missing meta description",
+          "❌ No <h1> tag found",
+          "❌ No <h5> tag found",
+          "❌ No <h6> tag found",
+          "❌ 2 images missing alt attributes"
+        ],
+        "header_tags": {
+          "h1_tags": [
+            "❌ No <h1> tags found"
+          ],
+          "h2_tags": [
+            "Bibliothèque"
+          ],
+          "h3_tags": [
+            "",
+            "Actualités",
+            "Catégories",
+            "ENSIT",
+            "Menu rapide",
+            "Contactez-nous"
+          ],
+          "h4_tags": [
+            "Formations certifiantes SolidWorks",
+            "Journée culturelle Palestenienne",
+            "OUVERTURE DES CANDIDATURES AUX MASTERS DE L’ENSIT",
+            "Résultat de la troisième session TOEIC",
+            "Bourse de mobilité SITEF"
+          ],
+          "h5_tags": [
+            "❌ No <h5> tags found"
+          ],
+          "h6_tags": [
+            "❌ No <h6> tags found"
+          ]
+        },
+        "images_missing_alt": [
+          "https://www.ensit.tn/wp-content/uploads/2025/05/flag_sw-scaled-54x54.jpg",
+          "https://www.ensit.tn/wp-content/uploads/2025/05/ensit_palestine-scaled-54x54.jpg"
+        ],
+        "id": 36
+      }
+    ]
+  },
+  "functional_details": null
+}
