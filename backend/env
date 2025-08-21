@@ -1,0 +1,32 @@
+# .env
+DATABASE_URL="postgresql://postgres:123456@localhost:5432/pentesting"
+
+# Application Configuration
+APP_HOST="127.0.0.1"
+APP_PORT="8000"
+APP_PORT_WB="8001"
+
+# SMTP Configuration
+SMTP_USERNAME="rihabcherni000@gmail.com"
+SMTP_PASSWORD="pptg wcpz megn wuag"
+SMTP_PORT=465
+SMTP_SERVER="smtp.gmail.com"
+
+ZAP_API_KEY= "vvefu2qa063ejt7ngvqglj0ugc"
+ZAP_PORT= "8080"
+
+FRONT_LINK = "http://localhost:4200"
+WEBSOCKET_LINK= "ws://localhost:8001/ws"
+
+
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=123456
+POSTGRES_DB=pentesting
+
+
+RABBITMQ_HOST =localhost
+RABBITMQ_USER =user
+RABBITMQ_PASS =pass
+RABBITMQ_PORT =5672
+
+# ATATT3xFfGF02HSYemCj6jkTQdW-aePWCqiDWyyYGgV6JrNAlkfKVgbqsrzU9rry4Ky8IBt36l-IjkHtyIZEn9Y6dVhVvfUxkAMyDCINAL0_dJrQnjNHTvW9qhBlpNr2dDcC5igKm_Z7eN-BPiqudPVLyhCfWGo5ssMVB5wDUdFBpvB4gG5NdDE=086EA535
