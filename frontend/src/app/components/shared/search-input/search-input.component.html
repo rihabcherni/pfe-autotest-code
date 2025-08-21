@@ -1,0 +1,10 @@
+<div class="floating-label-group w-100 search">
+  <input
+    type="text"
+    class="form-control"
+    placeholder=" "
+    [value]="value"
+    (input)="onInput($event)" />
+  <label>{{ placeholder }}</label>
+  <button *ngIf="value" type="button" class="clear-button" (click)="clear()">×</button>
+</div>

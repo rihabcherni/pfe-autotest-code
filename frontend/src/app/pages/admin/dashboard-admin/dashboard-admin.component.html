@@ -1,0 +1,51 @@
+<div class="container-box">
+  <app-title [title]="titleValue"></app-title>
+  <app-statistics-cards></app-statistics-cards>
+  <div class="card shadow-sm charts pt-3 px-3">
+    <div class="d-flex align-items-center gap-2">
+      <label for="timeFilter" class="form-label mb-0">Filter by Time:</label>
+      <select id="timeFilter" class="form-select w-auto" (change)="onPeriodChange($event)">
+        <option value="day">Day</option>
+        <option value="week">Week</option>
+        <option value="month">Month</option>
+        <option value="year">Year</option>
+        <option value="all">All</option>
+      </select>
+      <label for="typeFilter" class="form-label mb-0">Filter by Type:</label>
+      <select id="typeFilter" class="form-select w-auto" (change)="onTypeChange($event)">
+        <option value="all">All</option>
+        <option value="seo">SEO</option>
+        <option value="security">Security</option>
+        <option value="functional">Functional</option>
+      </select>
+    </div>
+    <div>
+      <div class="row g-3">
+        <div class="col-12 col-md-6 col-lg-3" *ngFor="let risk of riskLevels">
+          <div class="card text-white text-center shadow risk-card animate-fade-in" [ngClass]="risk.bgColor">
+            <div class="card-body p-3">
+              <div class="d-flex align-items-center mb-2">
+                <i [ngClass]="risk.icon" class="me-2 fs-3"></i>
+                <span class="fs-5 fw-medium">{{ risk.title }}</span>
+              </div>
+              <div class="text-end">
+                <span class="display-6 fw-bold">{{ risk.count }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row g-3">
+      <div class="col-md-5 col-12 chart-graph">
+        <app-vulnerabilities-by-period [selectedPeriod]="selectedPeriod"></app-vulnerabilities-by-period>
+      </div>
+      <div class="col-md-7 col-12 chart-graph">
+        <app-reports-by-period 
+          [selectedPeriod]="selectedPeriod"
+          [selectedType]="selectedType">
+        </app-reports-by-period>
+      </div>
+    </div>
+  </div>
+</div>

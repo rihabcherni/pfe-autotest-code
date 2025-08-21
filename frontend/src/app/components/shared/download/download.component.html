@@ -1,0 +1,45 @@
+<div class="download-section">
+  <button mat-raised-button color="primary" [matMenuTriggerFor]="downloadMenu" class="download-btn">
+    <mat-icon>download</mat-icon>
+    Download
+    <mat-icon class="dropdown-arrow">keyboard_arrow_down</mat-icon>
+  </button>
+  <mat-menu #downloadMenu="matMenu" class="download-menu">
+    <button mat-menu-item (click)="handleDownload('pdf')" class="menu-item pdf-item">
+      <mat-icon class="format-icon pdf-icon">picture_as_pdf</mat-icon>
+      <div class="format-info">
+        <span class="format-name">PDF Document</span>
+      </div>
+    </button>
+    <button mat-menu-item (click)="handleDownload('html')" class="menu-item html-item">
+      <mat-icon class="format-icon html-icon">language</mat-icon>
+      <div class="format-info">
+        <span class="format-name">HTML Page</span>
+      </div>
+    </button>
+    <button mat-menu-item (click)="handleDownload('csv')" class="menu-item csv-item">
+      <mat-icon class="format-icon csv-icon">table_chart</mat-icon>
+      <div class="format-info">
+        <span class="format-name">CSV Spreadsheet</span>
+      </div>
+    </button>
+     <button mat-menu-item (click)="handleDownload('json')" class="menu-item json-item">
+      <mat-icon class="format-icon json-icon">code</mat-icon>
+      <div class="format-info">
+        <span class="format-name">Json Format</span>
+      </div>
+    </button>
+    <button mat-menu-item (click)="handleDownload('zip')" class="menu-item zip-item">
+      <mat-icon class="format-icon zip-icon">archive</mat-icon>
+      <div class="format-info">
+        <span class="format-name">Zip Package</span>
+      </div>
+    </button>
+  </mat-menu>
+</div>
+<div class="download-overlay" *ngIf="isDownloading">
+  <div class="download-spinner">
+    <mat-spinner diameter="40"></mat-spinner>
+    <p class="download-text">Preparing your report...</p>
+  </div>
+</div>

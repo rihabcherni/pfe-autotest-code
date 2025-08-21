@@ -1,0 +1,123 @@
+<div class="header-dashboard">
+  <div class="header-grid">
+    <div class="header-item" (click)="toggleDarkMode()">
+      <i class="fas" [ngClass]="isDarkMode ? 'fa-sun' : 'fa-moon'"></i>
+    </div>
+
+    <div class="popup-wrap noti type-header" [class.show]="isNotificationOpen">
+      <div class="header-item" (click)="toggleNotificationDropdown($event)">
+        <span class="notification-badge">
+          <i class="fas fa-bell"></i>
+          <span class="badge" *ngIf="notificationCount > 0">{{notificationCount}}</span>
+        </span>
+      </div>
+
+      <ul class="dropdown-menu dropdown-menu-end has-content" *ngIf="isNotificationOpen">
+        <li>
+          <div class="dropdown-header">
+            <span>Notifications</span>
+            <button 
+              *ngIf="notificationCount > 0" 
+              (click)="markAllAsRead()" 
+              class="mark-all-read-btn">
+              Mark all as read
+            </button>
+          </div>
+        </li>
+
+        <div class="notification-scroll-container">
+          <li *ngIf="notifications.length === 0" class="no-notifications">
+            <div class="noti-item">
+              <div class="content">
+                <div class="text-center">
+                  <i class="fas fa-bell-slash notification-empty-icon"></i>
+                  <p class="text-muted">No notifications</p>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li *ngFor="let notification of notifications; let i = index" 
+              [class.notification-unread]="!notification.is_read">
+            <div class="noti-item" (click)="markAsRead(notification, $event)">
+              <div class="image">
+                <i class="fas fa-info-circle notification-icon" 
+                  [ngClass]="{
+                    'text-primary': notification.type === 'info',
+                    'text-success': notification.type === 'success',
+                    'text-warning': notification.type === 'warning',
+                    'text-danger': notification.type === 'error'
+                  }"></i>
+              </div>
+              <div class="content">
+                <div class="info">
+                  <div class="body-title" [class.font-weight-bold]="!notification.is_read">
+                    {{notification.type}}
+                  </div>
+                  <div class="time">{{getNotificationTime(notification)}}</div>
+                </div>
+                <div class="text-tiny" [class.text-muted]="notification.is_read">
+                  {{notification.message}}
+                </div>
+              </div>
+              <div class="unread-indicator" *ngIf="!notification.is_read"></div>
+            </div>
+          </li>
+        </div>
+
+        <li class="dropdown-footer" *ngIf="notifications.length > 0">
+          <a [routerLink]="['/'+role+'/notifications']" class="tf-button w-full">
+            View all notifications
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="header-item button-fullscreen" (click)="toggleFullscreen()">
+      <i class="fas" [ngClass]="isFullscreen ? 'fa-compress' : 'fa-expand'"></i>
+    </div>
+
+    <div class="popup-wrap user type-header" [class.show]="isUserDropdownOpen">
+      <div class="header-item user-profile" (click)="toggleUserDropdown($event)">
+        <div class="header-user">
+          <div class="image">
+            <img [src]="user?.avatar || '/assets/images/default-avatar.png'" 
+                 [alt]="user?.name || 'User'" 
+                 onerror="this.src='/assets/images/default-avatar.png'">
+          </div>
+          <div class="info">
+            <span class="name">{{ user?.name || 'User' }}</span>
+            <span class="role">{{role}}</span>
+          </div>
+        </div>
+      </div>
+
+      <ul class="dropdown-menu dropdown-menu-end has-content" *ngIf="isUserDropdownOpen">
+        <li>
+          <a [routerLink]="['/', role, 'profile']" class="user-item">
+            <div class="icon">
+              <i class="bi-person"></i>
+            </div>
+            <div class="body-title-2">Profile</div>
+          </a>
+        </li>
+        <li>
+          <a [routerLink]="['/', role, 'settings']" class="user-item">
+            <div class="icon">
+              <i class="bi-gear"></i>
+            </div>
+            <div class="body-title-2">Settings</div>
+          </a>
+        </li>
+        <li>
+          <div class="user-item logout-item" (click)="logout()">
+            <div class="icon">
+              <i class="bi bi-box-arrow-right logout-icon"></i>
+            </div>
+            <div class="body-title-2">Logout</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

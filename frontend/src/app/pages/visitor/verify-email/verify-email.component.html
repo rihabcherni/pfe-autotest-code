@@ -1,0 +1,55 @@
+<div class="container-fluid top-div">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-xl-6 col-lg-6 col-md-10 col-sm-12 mx-auto">
+      <div class="card nga-card">
+        <h1 class="h2 text-center title">
+          <strong>Email Verification</strong>
+        </h1>
+        <p class="text-center m-1 px-3 text-muted">
+          Please enter the verification code that has been sent to your email address. This helps us confirm your identity and secure your account.
+        </p>
+        <div class="card-body px-lg-5 pt-4 verify-container">
+          <form (ngSubmit)="verifyEmail()" #verifyForm="ngForm" novalidate>
+            <input type="hidden" [(ngModel)]="email" name="email">
+            <div class="md-form mb-3">
+              <div class="form-floating">
+                <input type="text"
+                      class="form-control form-control-sm"
+                      name="code"
+                      id="verificationCode"
+                      placeholder="Verification Code"
+                      [(ngModel)]="code"
+                      required
+                      #codeInput="ngModel"
+                      [class.is-invalid]="codeInput.invalid && codeInput.touched">
+                <label for="verificationCode">Verification Code</label>
+              </div>
+              <div *ngIf="codeInput.touched && codeInput.invalid" class="text-danger small">
+                <div *ngIf="codeInput.errors?.['required']">Verification code is required.</div>
+              </div>
+            </div>
+            <button class="w-100 btn btn-primary me-0 me-sm-2 mx-1 m-3" [disabled]="verifyForm.invalid"
+                    type="submit"> Verify <i class="fas fa-check-circle"></i>
+            </button>
+              <div class="loading" *ngIf="loading">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-6 col-lg-6 d-none d-lg-flex justify-content-center align-items-center">
+      <img src="assets/img/home/email-verification.png"
+           class="img-fluid"
+           alt="Email verification"
+           style="max-height: 400px;">
+    </div>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>{{title}}</title>
+  <style>
+    body { font-family: Arial; margin: 40px; background-color: #f5f5f5; }
+    .container { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px #ccc; }
+    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+    .info-item { background: #eef; padding: 10px; border-radius: 4px; }
+    .risk-high { color: red; font-weight: bold; }
+    .risk-medium { color: orange; font-weight: bold; }
+    .risk-low { color: green; font-weight: bold; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 10px; }
+    th { background: #007acc; color: white; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>{{title}}</h1>
+    <div class="info-grid">
+      <div class="info-item"><strong>Scan Type:</strong> {{scanType}}</div>
+      <div class="info-item"><strong>Target URL:</strong> {{url}}</div>
+      <div class="info-item"><strong>Status:</strong> {{status}}</div>
+      <div class="info-item"><strong>Scan Duration:</strong> {{scanDuration}}</div>
+    </div>
+    <div class="info-grid">
+      <div class="info-item"><strong>Total Vulnerabilities:</strong> {{numberVuln}}</div>
+      <div class="info-item"><strong>High Risk:</strong> <span class="risk-high">{{highRisk}}</span></div>
+      <div class="info-item"><strong>Medium Risk:</strong> <span class="risk-medium">{{mediumRisk}}</span></div>
+      <div class="info-item"><strong>Low Risk:</strong> <span class="risk-low">{{lowRisk}}</span></div>
+    </div>
+    <div class="info-item"><strong>Tools Used:</strong> {{toolsUsed}}</div>
+
+    <h2>Detailed Vulnerability Report</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Vulnerability Name</th>
+          <th>Severity</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{vulnerabilityRows}}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<div class="container-box">
+  <app-title [title]="titleValue"></app-title>
+  <div *ngIf="!isLoading && !error && overviewStats" class="dashboard-content">
+    <app-cards-statistics-tester
+      [overviewStats]="overviewStats"
+      [completionRate]="completionRate"
+      [averageScore]="averageScore"
+      [functionalSuccessRate]="functionalSuccessRate"
+      [totalVulnerabilities]="totalVulnerabilities">
+    </app-cards-statistics-tester>
+
+    <div class="charts-grid">
+      <div class="chart-row">
+        <div class="chart-card">
+          <div class="chart-header">
+            <h3><i class="fas fa-chart-pie"></i> Type Distribution</h3>
+          </div>
+          <div class="chart-container" style="height:80%; width:100%">
+            <canvas #reportsByTypeChart></canvas>
+          </div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-header">
+            <h3><i class="fas fa-chart-bar"></i> Report Status</h3>
+          </div>
+          <div class="chart-container" style="height:80%; width:100%">
+            <canvas #reportsByStatusChart></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="chart-row full-width">
+        <div class="chart-card">
+          <div class="chart-header" style="display: flex; align-items: center; justify-content: space-between;">
+            <h3><i class="fas fa-history"></i> Reports by Period</h3>
+            <select
+              id="period"
+              [(ngModel)]="selectedPeriod"
+              (change)="createReportsByPeriodChart()"
+              style="
+                padding: 4px 8px;
+                font-size: 0.9rem;
+                border-radius: 4px;
+                border: 1px solid #007bff;
+                background-color: #e7f1ff;
+                color: #004085;
+                cursor: pointer;
+                min-width: 100px;
+              "
+            >
+              <option value="day">Day</option>
+              <option value="week">Week</option>
+              <option value="month">Month</option>
+              <option value="year">Year</option>
+              <option value="all">Total</option>
+            </select>
+          </div>
+          <div class="chart-container" style="height:80%; width:100%">
+            <canvas #reportsByPeriodChart></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="chart-row">
+                <div class="chart-card">
+          <div class="chart-header" style="display: flex; align-items: center; justify-content: space-between;">
+            <h3><i class="fas fa-calendar-alt"></i> Vulnerabilities by Period</h3>
+            <select
+              id="period"
+              [(ngModel)]="selectedPeriod"
+              (change)="updateVulnerabilityChart()"
+              style="
+                padding: 4px 8px;
+                font-size: 0.9rem;
+                border-radius: 4px;
+                border: 1px solid #007bff;
+                background-color: #e7f1ff;
+                color: #004085;
+                cursor: pointer;
+                min-width: 100px;
+              "
+            >
+              <option value="day">Day</option>
+              <option value="week">Week</option>
+              <option value="month">Month</option>
+              <option value="year">Year</option>
+            </select>
+          </div>
+          <div class="chart-container" style="height:80%; width:100%">
+            <canvas #vulnerabilitiesByPeriodChart></canvas>
+          </div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-header">
+            <h3><i class="fas fa-tasks"></i> Functional Workflows</h3>
+          </div>
+          <div class="chart-container" style="height:80%; width:100%">
+            <canvas #functionalWorkflowChart></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

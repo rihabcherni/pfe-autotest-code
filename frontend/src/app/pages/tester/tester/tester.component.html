@@ -1,0 +1,9 @@
+<div class="d-flex">
+  <app-sidebar  [isExpanded]="isSidebarOpen" (toggleSidebarEvent)="toggleSidebar($event)"></app-sidebar>
+  <main class="flex-grow-1 main-content" [ngClass]="{'closed-main': !isSidebarOpen}">
+    <app-topbar></app-topbar>
+    <div class="page-container">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>

@@ -1,0 +1,162 @@
+<mat-tab-group *ngIf="!isLoading && report">
+
+  <mat-tab label="Summary">
+    <div class="p-4">
+      <div class="info-grid">
+        <div class="info-item">
+          <strong [style.color]="getScoreColor(report.average_score)">Average Score:</strong>
+          {{ report.average_score.toFixed(1) }}
+        </div>
+        <div class="info-item">
+          <strong>Pages Analyzed:</strong>
+          {{ report.total_pages_analyzed }}
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Server Information">
+    <div class="p-4">
+      <div class="info-grid">
+        <div class="info-item"><strong>IP Address:</strong> {{ report.server_info.ip }}</div>
+        <div class="info-item"><strong>Operating System:</strong> {{ report.server_info.os || 'N/A' }}</div>
+        <div class="info-item"><strong>Server Software:</strong> {{ report.server_info.server || 'N/A' }}</div>
+        <div class="info-item" *ngIf="report.server_info.cms">
+          <strong>Detected CMS:</strong> {{ report.server_info.cms }}
+        </div>
+        <div class="info-item" *ngIf="report.server_info.backend?.length">
+          <strong>Backend Technologies:</strong>
+          <div class="badges">
+            <span class="badge" *ngFor="let tech of report.server_info.backend">{{ tech }}</span>
+          </div>
+        </div>
+        <div class="info-item" *ngIf="report.server_info.frontend?.length">
+          <strong>Frontend Technologies:</strong>
+          <div class="badges">
+            <span class="badge" *ngFor="let tech of report.server_info.frontend">{{ tech }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="404 Pages">
+    <div class="p-4">
+      <ul *ngIf="report.pages_404?.length; else no404">
+        <li *ngFor="let page of report.pages_404">{{ page }}</li>
+      </ul>
+      <ng-template #no404>
+        <p>No 404 pages detected.</p>
+      </ng-template>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Keywords & Phrases">
+    <div class="p-4 keywords-phrases-row">
+      <div *ngIf="keywordEntries.length">
+        <h3>🔍 Keywords</h3>
+        <table>
+          <thead><tr><th>Keyword</th><th>Frequency</th></tr></thead>
+          <tbody>
+            <tr *ngFor="let entry of keywordEntries">
+              <td>{{ entry[0] }}</td>
+              <td><strong>{{ entry[1] }}</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div *ngIf="phraseEntries.length">
+        <h3>💬 Recurring Phrases</h3>
+        <table>
+          <thead><tr><th>Phrase</th><th>Frequency</th></tr></thead>
+          <tbody>
+            <tr *ngFor="let entry of phraseEntries">
+              <td>{{ entry[0] }}</td>
+              <td><strong>{{ entry[1] }}</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Pages Overview">
+    <div class="p-4">
+      <table class="min-w-full bg-white">
+        <thead>
+          <tr class="bg-gray-100">
+            <th class="py-2 px-4 text-left">URL</th>
+            <th class="py-2 px-4 text-center">Score</th>
+            <th class="py-2 px-4 text-center">Grade</th>
+            <th class="py-2 px-4 text-center">Load Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let page of report.pages" class="border-b hover:bg-gray-50">
+            <td class="py-2 px-4">
+              <a [href]="page.url" target="_blank" class="text-blue-600 hover:text-blue-800">
+                {{ page.url }}
+              </a>
+            </td>
+            <td class="py-2 px-4 text-center" [style.color]="getScoreColor(page.seo_score)">
+              {{ page.seo_score.toFixed(1) }}
+            </td>
+            <td class="py-2 px-4 text-center" [ngClass]="getGradeClass(page.grade)">
+              {{ page.grade }}
+            </td>
+            <td class="py-2 px-4 text-center">
+              {{ page.load_time_ms }} ms
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Crawled Pages Details">
+    <mat-accordion class="p-4" *ngIf="report.pages?.length">
+      <mat-expansion-panel *ngFor="let page of report.pages">
+        <mat-expansion-panel-header>
+          📄 {{ page.title || page.url }}
+        </mat-expansion-panel-header>
+        <div class="practices-container">
+          <p><strong>Canonical URL:</strong> {{ page.canonical }}</p>
+          <p><strong>Meta Description:</strong> {{ page.meta_description }}</p>
+          <p><strong>Load Time:</strong> {{ page.load_time_ms }} ms</p>
+          <p><strong>HTML Size:</strong> {{ page.html_size_kb }} KB</p>
+          <p><strong>Favicon:</strong> <img [src]="page.favicon" alt="Favicon" style="height:16px;"></p>
+          <p><strong>Links:</strong> {{ page.internal_links }} internal | {{ page.external_links }} external</p>
+          <p><strong>SEO Score:</strong> {{ page.seo_score }} (Grade: {{ page.grade }})</p>
+
+          <div *ngIf="page.good_practices?.length">
+            <strong>✅ Good Practices:</strong>
+            <ul>
+              <li *ngFor="let item of page.good_practices">{{ item }}</li>
+            </ul>
+          </div>
+
+          <div *ngIf="page.bad_practices?.length">
+            <strong>❌ Bad Practices:</strong>
+            <ul>
+              <li *ngFor="let item of page.bad_practices">{{ item }}</li>
+            </ul>
+          </div>
+
+          <div *ngIf="page.header_tags">
+            <strong>Header Tags:</strong>
+            <div class="header-tags-grid">
+              <div class="header-tag-item" *ngFor="let tag of page.header_tags | keyvalue">
+                <em>{{ tag.key.replace('_', ' ') | titlecase }}:</em>
+                <ul class="header-tag-list">
+                  <li *ngFor="let val of tag.value">{{ val || '(empty)' }}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-tab>
+
+</mat-tab-group>

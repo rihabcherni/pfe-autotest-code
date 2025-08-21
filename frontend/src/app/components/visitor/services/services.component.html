@@ -1,0 +1,29 @@
+<section id="services" class="services section ">
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Services</h2>
+    <p>
+      Our services streamline security testing, offering automated vulnerability scans, functional testing,
+      and real-time alerts to enhance your workflow and ensure system safety.
+    </p>
+  </div>
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="row g-4">
+      <div
+        class="col-lg-4"
+        *ngFor="let service of services; let i = index"
+        [attr.data-aos-delay]="100 * (i + 1)"
+        data-aos="fade-up"
+      >
+        <div class="service-card d-flex">
+          <div>
+            <div class="icon flex-shrink-0">
+              <i class="{{ service.icon }}"></i>
+            </div>
+            <h3>{{ service.title }}</h3>
+            <p>{{ service.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

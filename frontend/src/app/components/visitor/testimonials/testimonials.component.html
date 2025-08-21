@@ -1,0 +1,34 @@
+<section id="testimonials" class="testimonials section ">
+    <div class="container section-title" data-aos="fade-up">
+      <h2>Testimonials</h2>
+      <p>What our users say about our automated security and functional testing platform</p>
+    </div>
+  
+    <div class="container">
+      <div class="row g-3">
+        <div class="col-lg-4" *ngFor="let testimonial of testimonials; let i = index" [attr.data-aos]="fadeUp" [attr.data-aos-delay]="100 * (i + 1)">
+          <div class="testimonial-item">
+            <div class="row testimonial-info-row">
+                <div class="col-7">
+                  <h3>{{ testimonial.name }}</h3>
+                  <h4>{{ testimonial.role }}</h4>
+                </div>
+                <div class="col-5">
+                  <div class="stars">
+                    <ng-container *ngFor="let star of getStars(testimonial.rating)">
+                      <i class="bi bi-star-fill"></i>
+                    </ng-container>
+                  </div>
+                </div>
+            </div>              
+            <p>
+              <i class="bi bi-quote quote-icon-left"></i>
+              <span>{{ testimonial.feedback }}</span>
+              <i class="bi bi-quote quote-icon-right"></i>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+  

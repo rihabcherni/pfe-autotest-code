@@ -1,0 +1,210 @@
+.hero {
+    position: relative;
+    padding-top: 160px;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--primary-color), transparent 95%) 50%, color-mix(in srgb, var(--primary-color), transparent 98%) 25%, transparent 50%);
+  }
+  
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 90% 10%, color-mix(in srgb, var(--primary-color), transparent 92%), transparent 40%);
+    pointer-events: none;
+  }
+  
+  .hero .hero-content {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .hero .hero-content h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+  
+  .hero .hero-content h1 .accent-text {
+    color: var(--primary-color);
+  }
+  
+  @media (max-width: 992px) {
+    .hero .hero-content {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+  
+    .hero .hero-content h1 {
+      font-size: 2.5rem;
+    }
+  
+    .hero .hero-content .hero-buttons {
+      justify-content: center;
+    }
+  }
+  
+  @media (max-width: 575px) {
+    .hero .hero-content h1 {
+      font-size: 2rem;
+    }
+  }
+  
+  .hero .company-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background-color: color-mix(in srgb, var(--primary-color), transparent 92%);
+    border-radius: 50px;
+    color: var(--primary-color);
+    font-weight: 500;
+  }
+  
+  .hero .company-badge i {
+    font-size: 1.25rem;
+  }
+  
+  .hero .btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--white-color);
+    padding: 0.75rem 2.5rem;
+    border-radius: 50px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  .hero .btn-primary:hover {
+    background-color: color-mix(in srgb, var(--primary-color), black 20%);
+    border-color: color-mix(in srgb, var(--primary-color), black 20%);
+  }
+  
+  .hero .btn-link {
+    color: var(--heading-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  .hero .btn-link:hover {
+    color: var(--primary-color);
+  }
+  
+  .hero .btn-link i {
+    font-size: 1.5rem;
+    vertical-align: middle;
+  }
+  
+  .hero .hero-image {
+    position: relative;
+    text-align: center;
+    z-index: 1;
+  }
+  
+  .hero .hero-image img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .hero .customers-badge {
+    position: absolute;
+    bottom: 0px;
+    right: 10px;
+    background-color: var(--white-color);
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    animation: float-badge 3s ease-in-out infinite;
+    will-change: transform;
+  }
+  
+  .hero .customers-badge p {
+    font-size: 0.975rem;
+  }
+  
+  @media (max-width: 992px) {
+    .hero .customers-badge {
+      display: none;
+    }
+  }
+  
+  .hero .stats-row {
+    position: relative;
+    z-index: 1;
+    margin-top: 5rem;
+    background-color: var(--white-color);
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    padding-bottom: 2rem;
+  }
+  
+  .hero .stat-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem;
+  }
+  
+  .hero .stat-item .stat-icon {
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: color-mix(in srgb, var(--primary-color), transparent 92%);
+    border-radius: 50px;
+    transition: 0.3s;
+  }
+  
+  .hero .stat-item .stat-icon i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+  }
+  
+  .hero .stat-item:hover .stat-icon {
+    background-color: var(--primary-color);
+  }
+  
+  .hero .stat-item:hover .stat-icon i {
+    color: var(--white-color);
+  }
+  
+  .hero .stat-item .stat-content {
+    flex-grow: 1;
+  }
+  
+  .hero .stat-item .stat-content h4 {
+    font-size: 1.25rem;
+    margin-bottom: 0.25rem;
+    font-weight: 600;
+  }
+  
+  .hero .stat-item .stat-content p {
+    font-size: 0.875rem;
+    color: color-mix(in srgb, var(--default-color), transparent 40%);
+    margin: 0;
+  }
+  
+  @media (max-width: 575px) {
+    .hero .stat-item {
+      padding: 1.5rem;
+    }
+  }
+  
+  @keyframes float-badge {
+    0% {
+      transform: translateY(0);
+    }
+  
+    50% {
+      transform: translateY(-10px);
+    }
+  
+    100% {
+      transform: translateY(0);
+    }
+  }

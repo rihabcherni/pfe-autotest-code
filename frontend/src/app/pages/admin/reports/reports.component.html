@@ -1,0 +1,173 @@
+<div class="container-box">
+    <app-title [title]="titleValue"></app-title>
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+    <div class="d-flex flex-wrap gap-2">
+        <div style="min-width: 250px;">
+            <app-search-input [placeholder]="'Search...'" [value]="searchTerm" (valueChange)="searchTerm = $event" 
+                (onSearch)="applyFilter()">
+            </app-search-input>
+        </div>
+        <div class="floating-label-group"  style="min-width: 250px;">
+            <select class="form-control" id="scanTypeSelect" [(ngModel)]="selectedScanType" (change)="applyFilter()">
+                <option value="">All</option>
+                <option value="seo">SEO</option>
+                <option value="security">Security</option>
+                <option value="functional">Functional</option>
+            </select>
+            <label for="scanTypeSelect">Scan Type</label>
+        </div>
+    </div>
+    <div>
+        <app-download [exportToPDF]="exportToPDF.bind(this)" [exportToHTML]="exportToHTML.bind(this)"
+         [exportToCSV]="exportToCSV.bind(this)" [downloadAllAsZip]="downloadAllAsZip.bind(this)">
+        </app-download>
+    </div>
+    </div>
+
+    <div class="table-responsive">
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z2 w-100">
+            <ng-container matColumnDef="user">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <div class="header-content">
+                        <mat-icon class="header-icon">person</mat-icon>
+                        <span>User</span>
+                    </div>
+                </th>
+                <td mat-cell *matCellDef="let report" class="data-cell">
+                    <div class="user-cell">
+                        <img *ngIf="report.user.profile_image; else initials"
+                            [src]="'http://localhost:8000/static/profile_images/' + report.user.profile_image"
+                            class="avatar" alt="Avatar" />
+                        <ng-template #initials>
+                        <div class="avatar">{{ getUserInitials(report.user.first_name, report.user.last_name) }}</div>
+                        </ng-template>
+                        <div class="user-info">
+                            <span class="user-name">{{ report.user.first_name }} {{ report.user.last_name }}</span>
+                        </div>
+                    </div>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="scan_type">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <div class="header-content">
+                        <mat-icon class="header-icon">scanner</mat-icon>
+                        <span>Type</span>
+                    </div>
+                </th>
+               <td mat-cell *matCellDef="let report">
+                    <span class="badge" [ngClass]="getScanTypeColor(report.scan_type)">
+                       <i class="material-icons badge-icon">{{ getScanTypeIcon(report.scan_type) }}</i>{{ report.scan_type }}
+                    </span>
+                </td>
+
+            </ng-container>
+            <ng-container matColumnDef="url">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <div class="header-content">
+                        <mat-icon class="header-icon">link</mat-icon>
+                        <span>URL</span>
+                    </div>
+                </th>
+                <td mat-cell *matCellDef="let report" class="url-cell">
+                    <a [href]="report.url" target="_blank" class="url-link">
+                        {{ report.url }}
+                        <mat-icon class="external-icon">open_in_new</mat-icon>
+                    </a>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <div class="header-content">
+                        <mat-icon class="header-icon">info</mat-icon>
+                        <span>Status</span>
+                    </div>
+                </th>
+               <td mat-cell *matCellDef="let report">
+                <span class="badge" [ngClass]="getStatusColor(report.status)">
+                    <i class="material-icons badge-icon">
+                    {{
+                        report.status === 'completed' ? 'check_circle' :
+                        report.status === 'running' ? 'hourglass_empty' :
+                        'error'
+                    }}
+                    </i>
+                    {{ report.status | titlecase }}
+                </span>
+                </td>
+
+            </ng-container>
+            <ng-container matColumnDef="schedule_scan">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <div class="header-content">
+                        <mat-icon class="header-icon">schedule</mat-icon>
+                        <span>Schedule</span>
+                    </div>
+                </th>
+                <td mat-cell *matCellDef="let report">
+                    <span class="badge" [ngClass]="getScheduleColor(report.schedule_scan)">
+                        <i class="material-icons badge-icon">
+                        {{ report.schedule_scan ? 'schedule' : 'flash_on' }}
+                        </i>
+                        {{ getScheduleText(report.schedule_scan) }}
+                    </span>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="scan_started_at">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <div class="header-content">
+                        <mat-icon class="header-icon">play_arrow</mat-icon>
+                        <span>Started-At</span>
+                    </div>
+                </th>
+                <td mat-cell *matCellDef="let report">
+                    <div class="date-cell">
+                        <span class="date-text">{{ report.scan_started_at | date:'short' }}</span>
+                    </div>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="scan_finished_at">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <div class="header-content">
+                        <mat-icon class="header-icon">stop</mat-icon>
+                        <span>Finished-At</span>
+                    </div>
+                </th>
+                <td mat-cell *matCellDef="let report">
+                    <div class="date-cell">
+                        <span class="date-text">{{ report.scan_finished_at | date:'short' }}</span>
+                    </div>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>
+                    <div class="header-content">
+                        <mat-icon class="header-icon">settings</mat-icon>
+                        <span>Actions</span>
+                    </div>
+                </th>
+                <td mat-cell *matCellDef="let report">
+                    <button mat-menu-item (click)="deleteReport(report.id)" class="delete-action">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr *ngIf="dataSource.data.length === 0">
+                <td [attr.colspan]="displayedColumns.length" class="text-center text-muted empty-state">
+                    <div class="empty-content">
+                        <mat-icon class="empty-icon">assessment</mat-icon>
+                        <p>No reports found</p>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <mat-paginator
+        [pageSize]="6"
+        [pageSizeOptions]="[5, 10, 25, 50]"
+        showFirstLastButtons>
+    </mat-paginator>
+</div>

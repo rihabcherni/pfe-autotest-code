@@ -1,0 +1,83 @@
+<div class="container-box">
+  <app-title [title]="titleValue"></app-title>  
+  <div class="notifications-page">
+    <div class="notifications-filters">
+      <div class="filter-group">
+        <label for="typeFilter">Filter by type:</label>
+        <select id="typeFilter" [(ngModel)]="selectedTypeFilter" (change)="applyFilters()" class="filter-select">
+          <option value="all">All Types</option>
+          <option value="info">Info</option>
+          <option value="success">Success</option>
+          <option value="warning">Warning</option>
+          <option value="error">Error</option>
+          <option value="alert">Alert</option>
+          <option value="progression">Progression</option>
+        </select>
+      </div>
+      
+      <div class="filter-group">
+        <label for="statusFilter">Filter by status:</label>
+        <select id="statusFilter" [(ngModel)]="selectedStatusFilter" (change)="applyFilters()" class="filter-select">
+          <option value="all">All Status</option>
+          <option value="unread">Unread Only</option>
+          <option value="read">Read Only</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="notifications-header">
+      <span>Notifications ({{filteredNotifications.length}}/{{notifications.length}})</span>
+      <button 
+        *ngIf="getUnreadCount() > 0" 
+        (click)="markAllAsRead()" 
+        class="mark-all-read-btn">
+        Mark all as read
+      </button>
+    </div>
+
+    <div class="notification-scroll-container">
+      <div *ngIf="filteredNotifications.length === 0" class="no-notifications">
+        <div class="noti-item">
+          <div class="content">
+            <div class="text-center">
+              <i class="fas fa-bell-slash notification-empty-icon"></i>
+              <p class="text-muted">
+                {{ notifications.length === 0 ? 'No notifications' : 'No notifications match your filters' }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngFor="let notification of filteredNotifications; let i = index" 
+           class="notification-item-wrapper"
+           [class.notification-unread]="!notification.is_read">
+        <div class="noti-item" (click)="markAsRead(notification, $event)">
+          <div class="image">
+            <i class="fas fa-info-circle notification-icon" 
+              [ngClass]="{
+                'text-primary': notification.type === 'info',
+                'text-success': notification.type === 'success',
+                'text-warning': notification.type === 'warning',
+                'text-danger': notification.type === 'error',
+                'text-alert': notification.type === 'alert',
+                'text-secondary': notification.type === 'progression'
+              }"></i>
+          </div>
+          <div class="content">
+            <div class="info">
+              <div class="body-title" [class.font-weight-bold]="!notification.is_read">
+                {{notification.type | titlecase}}
+              </div>
+              <div class="time">{{getNotificationTime(notification)}}</div>
+            </div>
+            <div class="text-tiny" [class.text-muted]="notification.is_read">
+              {{notification.message}}
+            </div>
+          </div>
+          <div class="unread-indicator" *ngIf="!notification.is_read"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

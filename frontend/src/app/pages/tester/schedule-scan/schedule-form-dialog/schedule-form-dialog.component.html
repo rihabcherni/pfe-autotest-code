@@ -1,0 +1,180 @@
+    <div class="scan-dialog">
+      <h2 mat-dialog-title class="dialog-title">
+        <mat-icon class="title-icon">{{ isEditMode ? 'edit' : 'calendar_today' }}</mat-icon>
+        {{ isEditMode ? 'Edit Scan' : 'Schedule a New Scan' }}
+      </h2>
+
+      <mat-dialog-content class="dialog-content">
+        <form [formGroup]="reportForm" class="scan-form">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Project Name *</mat-label>
+            <input matInput formControlName="project_name" placeholder="Project name" required>
+            <mat-icon matSuffix>folder</mat-icon>
+            <mat-error *ngIf="reportForm.get('project_name')?.hasError('required')">
+              Project name is required
+            </mat-error>
+            <mat-error *ngIf="reportForm.get('project_name')?.hasError('minlength')">
+              Project name must be at least 3 characters
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Target URL *</mat-label>
+            <input matInput formControlName="url" placeholder="https://example.com" required>
+            <mat-icon matSuffix>link</mat-icon>
+            <mat-error *ngIf="reportForm.get('url')?.hasError('required')">
+              Target URL is required
+            </mat-error>
+            <mat-error *ngIf="reportForm.get('url')?.hasError('pattern')">
+              Please enter a valid URL (must start with http:// or https://)
+            </mat-error>
+          </mat-form-field>
+          <div class="date-time-row">
+            <mat-form-field appearance="outline" class="date-field">
+              <mat-label>Scheduled Date *</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="schedule_date" required>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-error *ngIf="reportForm.get('schedule_date')?.hasError('required')">
+                Date is required
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="time-field">
+              <mat-label>Scheduled Time</mat-label>
+              <input matInput type="time" formControlName="schedule_time" required>
+              <mat-icon matSuffix>access_time</mat-icon>
+              <mat-error *ngIf="reportForm.get('schedule_time')?.hasError('required')">
+                Time is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Scan Type</mat-label>
+            <mat-select formControlName="scan_type">
+              <mat-option *ngFor="let option of scanTypeOptions" [value]="option.value">
+                {{ option.label }}
+              </mat-option>
+            </mat-select>
+            <mat-icon matSuffix>security</mat-icon>
+          </mat-form-field>
+
+          <div class="checkbox-section">
+            <mat-checkbox formControlName="enable_zap_manual" class="zap-checkbox">
+              Enable ZAP Manual Exploration
+            </mat-checkbox>
+            <div class="checkbox-hint">
+              <small>Allows deeper analysis through manual interaction</small>
+            </div>
+          </div>
+
+          <div *ngIf="reportForm.get('enable_zap_manual')?.value" class="auth-section">
+            <div class="auth-header">
+              <mat-icon class="auth-icon">shield</mat-icon>
+              <h3>Authentication Configuration</h3>
+            </div>
+
+            <mat-checkbox formControlName="authentification" class="auth-checkbox">
+              Enable Authentication
+            </mat-checkbox>
+
+            <div *ngIf="reportForm.get('authentification')?.value" class="auth-fields">
+
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Authentication Type</mat-label>
+                <mat-select formControlName="auth_type">
+                  <mat-option value="basic">Username / Password</mat-option>
+                  <mat-option value="token">Token</mat-option>
+                  <mat-option value="cookies">Cookies</mat-option>
+                </mat-select>
+                <mat-icon matSuffix>vpn_key</mat-icon>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Login Page URL</mat-label>
+                <input matInput formControlName="login_page_url" placeholder="https://example.com/login">
+                <mat-icon matSuffix>login</mat-icon>
+                <mat-hint>URL where the login form is located</mat-hint>
+                <mat-error *ngIf="reportForm.get('login_page_url')?.hasError('required')">
+                  Login page URL is required when authentication is enabled
+                </mat-error>
+                <mat-error *ngIf="reportForm.get('login_page_url')?.hasError('pattern')">
+                  Please enter a valid URL
+                </mat-error>
+              </mat-form-field>
+
+              <div *ngIf="reportForm.get('auth_type')?.value === 'basic'" class="basic-auth-row">
+                <mat-form-field appearance="outline" class="username-field">
+                  <mat-label>Username</mat-label>
+                  <input matInput formControlName="username" autocomplete="username">
+                  <mat-icon matSuffix>person</mat-icon>
+                  <mat-error *ngIf="reportForm.get('username')?.hasError('required')">
+                    Username is required
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="password-field">
+                  <mat-label>Password</mat-label>
+                  <input matInput formControlName="password" type="password" autocomplete="current-password">
+                  <mat-icon matSuffix>lock</mat-icon>
+                  <mat-error *ngIf="reportForm.get('password')?.hasError('required')">
+                    Password is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <mat-form-field *ngIf="reportForm.get('auth_type')?.value === 'token'"
+                              appearance="outline" class="full-width">
+                <mat-label>Authentication Token</mat-label>
+                <input matInput formControlName="token" placeholder="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...">
+                <mat-icon matSuffix>vpn_key</mat-icon>
+                <mat-hint>Include prefix if needed (Bearer, API-Key)</mat-hint>
+                <mat-error *ngIf="reportForm.get('token')?.hasError('required')">
+                  Authentication token is required
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field *ngIf="reportForm.get('auth_type')?.value === 'cookies'"
+                              appearance="outline" class="full-width">
+                <mat-label>Authentication Cookies</mat-label>
+                <textarea matInput formControlName="cookies"
+                          rows="3"
+                          placeholder="sessionid=abc123; csrftoken=xyz789; auth_token=def456">
+                </textarea>
+                <mat-icon matSuffix>cookie</mat-icon>
+                <mat-hint>Format: name=value; name2=value2 (separated by semicolons)</mat-hint>
+                <mat-error *ngIf="reportForm.get('cookies')?.hasError('required')">
+                  Authentication cookies are required
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div *ngIf="reportForm.invalid && (reportForm.dirty || reportForm.touched)"
+               class="validation-alert">
+            <mat-icon class="alert-icon">warning</mat-icon>
+            <div class="alert-content">
+              <strong>Warning:</strong> Please correct the form errors before continuing.
+            </div>
+          </div>
+
+        </form>
+      </mat-dialog-content>
+
+      <mat-dialog-actions class="dialog-actions">
+        <button mat-button (click)="onCancel()" [disabled]="isSubmitting" class="cancel-button">
+          <mat-icon>close</mat-icon>
+          Cancel
+        </button>
+        
+        <button mat-raised-button 
+                color="primary"
+                (click)="onSubmit()"
+                [disabled]="reportForm.invalid || isSubmitting"
+                class="submit-button">
+          <mat-spinner *ngIf="isSubmitting" diameter="20" class="spinner"></mat-spinner>
+          <mat-icon *ngIf="!isSubmitting">{{ isEditMode ? 'save' : 'schedule' }}</mat-icon>
+          {{ isSubmitting ? 'Processing...' : (isEditMode ? 'Update Scan' : 'Schedule Scan') }}
+        </button>
+      </mat-dialog-actions>
+    </div>

@@ -1,0 +1,211 @@
+<div *ngIf="report.seo_details" class="seo-details-container">
+    <div class="mb-1 section-card">
+      <div class="section-header">
+        <mat-icon class="section-icon">bar_chart</mat-icon>
+        <h6 class="section-title-details"> SEO Statistics</h6>
+      </div>
+      <div class="seo-header"> 
+        <div class="stats-seo-list">
+          <div class="stat-card total-card">
+            <div class="stat-header">
+              <mat-icon class="stat-icon">speed</mat-icon>
+              <span class="stat-label">Score</span>
+            </div>
+            <div class="stat-value">{{ report.seo_details.average_score.toFixed(1) }}/100</div>
+            <div class="stat-sublabel">SEO Rating</div>
+
+       
+                <span class="status-badge" [ngClass]="{
+                  'bg-green-100 text-green-800': report.average_score >= 90,
+                  'bg-yellow-100 text-yellow-800': report.average_score >= 70 && report.average_score < 90,
+                  'bg-red-100 text-red-800': report.average_score < 70
+                }">
+                  <span class="status-dot" [ngClass]="{
+                    'bg-green-500': report.average_score >= 90,
+                    'bg-yellow-500': report.average_score >= 70 && report.average_score < 90,
+                    'bg-red-500': report.average_score < 70
+                  }"></span>
+                  {{report.average_score >= 90 ? 'Excellent' : report.average_score >= 70 ? 'Good' : 'Needs Improvement'}}
+                </span>
+          </div>
+          <div class="stat-card low-risk-card">
+            <div class="stat-header">
+              <mat-icon class="stat-icon">travel_explore</mat-icon>
+              <span class="stat-label">Crawled</span>
+            </div>
+            <div class="stat-value">{{ report.seo_details.crawled_pages?.length || 0 }}</div>
+            <div class="stat-sublabel">Pages Found</div>
+          </div>
+          <div class="stat-card medium-risk-card">
+            <div class="stat-header">
+              <mat-icon class="stat-icon">error</mat-icon>
+              <span class="stat-label">404 Pages</span>
+            </div>
+            <div class="stat-value">{{ report.seo_details.pages_404?.length || 0 }}</div>
+            <div class="stat-sublabel">Error Pages</div>
+          </div>
+        </div>
+        <div *ngIf="report.seo_details.screenshot" class="mb-1">
+          <div class="category-details text-center">      
+            <div class="container-pc">
+              <img src="assets/img/laptop.png" class="laptop-frame" alt="Cadre PC Portable">
+              <img [src]="apiUrl+'/'+report.seo_details.screenshot" 
+                alt="Website Screenshot" 
+                class="img-fluid rounded shadow screen-image"
+                style="max-height: 400px; max-width: 100%;"
+                (error)="onImageError($event)">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mb-1 section-card">
+      <div class="section-header">
+        <mat-icon class="section-icon">dns</mat-icon>
+        <h6 class="section-title-details">Server Information</h6>
+      </div>
+      <div class="info-grid">
+        <div class="info-item" *ngIf="report.seo_details.server_ip">
+          <span class="info-label">IP Address</span>
+          <span class="info-value">{{ report.seo_details.server_ip }}</span>
+        </div>
+        <div class="info-item" *ngIf="report.seo_details.server_os">
+          <span class="info-label">Operating System</span>
+          <span class="info-value">{{ report.seo_details.server_os }}</span>
+        </div>
+        <div class="info-item" *ngIf="report.seo_details.server_software">
+          <span class="info-label">Server Software</span>
+          <span class="info-value">{{ report.seo_details.server_software }}</span>
+        </div>
+        <div class="info-item" *ngIf="report.seo_details.server_cms">
+          <span class="info-label">Content Management</span>
+          <span class="info-value">{{ report.seo_details.server_cms }}</span>
+        </div>
+      </div>
+      <div class="info-grid" *ngIf="report.seo_details.server_backend?.length || report.seo_details.server_frontend?.length">
+        <div class="info-item" *ngIf="report.seo_details.server_backend?.length">
+          <div class="info-label">
+            <span class="stat-label">Backend Technologies</span>
+          </div>
+          <div class="stat-tools-container">
+            <span *ngFor="let tech of report.seo_details.server_backend" class="stat-tool">
+              {{ tech }}
+            </span>
+          </div>
+        </div>
+        <div class="info-item" *ngIf="report.seo_details.server_frontend?.length">
+          <div class="info-label">
+            <span class="stat-label">Frontend Technologies</span>
+          </div>
+          <div class="stat-tools-container">
+            <span *ngFor="let tech of report.seo_details.server_frontend" class="stat-tool">
+              {{ tech }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="report.seo_details.keywords && objectKeys(report.seo_details.keywords).length > 0" class="mb-1 section-card">
+      <div class="section-header d-flex align-items-center">
+        <mat-icon class="section-icon me-2">search</mat-icon>
+        <h6 class="section-title-details mb-0">Top Keywords</h6>
+      </div>
+
+      <div class="row g-2 mb-1">
+      <div *ngFor="let keyword of getFilteredKeywords()" class="col-5per">
+          <div class="category-card border rounded shadow-sm h-100">
+            <div class="category-header d-flex justify-content-between align-items-center">
+              <div class="category-title-section d-flex align-items-center">
+                <mat-icon class="text-primary me-2">label</mat-icon>
+                <div class="category-info">
+                  <h6 class="category-title">{{ keyword }}</h6>
+                  <span class="category-risk">keyword</span>
+              </div>
+              </div>
+              <div class="category-count fw-bold text-end">{{ report.seo_details.keywords[keyword] }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="report.seo_details.phrases && objectKeys(report.seo_details.phrases).length > 0" class="mb-1 section-card">
+      <div class="section-header d-flex align-items-center">
+        <mat-icon class="section-icon">text_fields</mat-icon>
+        <h6 class="section-title-details">Key Phrases</h6>
+      </div>
+      <div class="row g-2 mb-1">
+      <div *ngFor="let phrase of getFilteredPhrases()" class="col-5per">
+          <div class="category-header">
+            <div class="category-title-section">
+              <mat-icon class="category-icon">notes</mat-icon>
+              <div class="category-info">
+                <h6 class="category-title">{{ phrase }}</h6>
+                <span class="category-risk">Phrase</span>
+              </div>
+            </div>
+            <div class="category-count">{{ report.seo_details.phrases[phrase] }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="report.seo_details.pages_404?.length" class="mb-1 section-card">
+      <div class="section-header">
+        <mat-icon class="section-icon">error_outline</mat-icon>
+        <h6 class="section-title-details">404 Error Pages</h6>
+      </div>
+      <div class="categories-container">
+        <div *ngFor="let page of report.seo_details.pages_404" class="category-card">
+          <div class="category-header">
+            <div class="category-title-section">
+              <mat-icon class="category-icon risk-high">error</mat-icon>
+              <div class="category-info">
+                <h6 class="category-title">{{ page }}</h6>
+                <span class="category-risk risk-high">Not Found</span>
+              </div>
+            </div>
+          </div>
+          <div class="category-details">
+            <div class="vulnerability-items">
+              <div class="vulnerability-item">
+                <a [href]="page" target="_blank" class="vulnerability-url">{{ page }}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <div *ngIf="report.seo_details.crawled_pages?.length" class="mb-4 card shadow-sm">
+    <div class="card-header d-flex align-items-center">
+      <mat-icon class="me-2">travel_explore</mat-icon>
+      <h6 class="mb-0">Crawled Pages ({{ report.seo_details.crawled_pages.length }})</h6>
+    </div>
+
+    <div class="card-body p-2" style="max-height: 300px; overflow-y: auto;">
+      <div *ngFor="let page of report.seo_details.crawled_pages; let i = index" class="mb-3 border rounded p-2 bg-light">
+        <div class="d-flex justify-content-between align-items-center mb-1">
+          <div class="d-flex align-items-center">
+            <mat-icon class="me-2">pages</mat-icon>
+            <h6 class="mb-0">Page {{ i + 1 }}</h6>
+          </div>
+          <span class="badge bg-success">Crawled</span>
+        </div>
+        <div>
+          <strong>URL:</strong>
+          <a [href]="page.url" target="_blank" class="text-decoration-none">{{ page.url }}</a>
+        </div>
+        <div *ngIf="page.title">
+          <strong>Title:</strong> {{ page.title }}
+        </div>
+        <div *ngIf="page.meta_description">
+          <strong>Description:</strong> {{ page.meta_description }}
+        </div>
+        <div *ngIf="page.load_time_ms !== null">
+          <strong>Load Time:</strong> {{ page.load_time_ms }} ms
+        </div>
+        <div *ngIf="page.html_size_kb !== null">
+          <strong>HTML Size:</strong> {{ page.html_size_kb }} KB
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

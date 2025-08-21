@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>Create workflow</h2>
+<mat-dialog-content [formGroup]="form" class="py-2">
+  <mat-form-field appearance="outline" class="form-field w-100">
+    <mat-label>Title</mat-label>
+    <input matInput formControlName="title" placeholder="Title" required />
+    <mat-error *ngIf="form.get('title')?.hasError('required') && form.get('title')?.touched">
+      Title is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="form-field w-100">
+    <mat-label>Description</mat-label>
+    <textarea matInput formControlName="description"></textarea>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-flat-button color="primary" (click)="submit()" [disabled]="form.invalid">Create</button>
+</mat-dialog-actions>
+

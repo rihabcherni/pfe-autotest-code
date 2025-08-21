@@ -1,0 +1,35 @@
+
+    .container-pc {
+      position: relative;
+      width: 590px;
+      margin: auto;
+    }
+
+    .laptop-frame {
+      width: 100%;
+      display: block;
+    }
+
+    .screen-image {
+      position: absolute;
+      top: 5%;  
+      left: 4.5%;
+      width: 91%; 
+      height: 66%;
+      object-fit: cover; 
+      border-radius: 4px;
+    }
+  .seo-header{
+    display: grid;
+    grid-template-columns: 30% 70%;
+  }
+  .stats-seo-list , .stats-seo-list .stat-card{
+    margin: 20px;  
+  }
+  .col-5per {
+  flex: 0 0 20%;
+  max-width: 20%;
+  padding-left: 0.75rem; /* garder l'espacement standard */
+  padding-right: 0.75rem;
+  box-sizing: border-box;
+}

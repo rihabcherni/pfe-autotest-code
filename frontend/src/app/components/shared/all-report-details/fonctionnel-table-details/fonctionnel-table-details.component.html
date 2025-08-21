@@ -1,0 +1,149 @@
+<div *ngIf="report.functional_details" class="mb-4">
+  <div class="stats-fn-container">
+    <div class="stat-card rounded shadow">
+      <div class="flex items-center">
+        <mat-icon>rule</mat-icon>
+        <span class="ml-2">Total Tests</span>
+      </div>
+      <div class="text-xl font-bold">{{ totalTests }}</div>
+    </div>
+
+    <div class="stat-card p-3 rounded shadow bg-green-50">
+      <div class="flex items-center">
+        <mat-icon color="primary" class="text-green-600">check_circle</mat-icon>
+        <span class="ml-2">Passed Tests</span>
+      </div>
+      <div class="text-xl font-bold text-green-600">{{ passedTests }}</div>
+    </div>
+
+    <div class="stat-card p-3 rounded shadow bg-red-50">
+      <div class="flex items-center">
+        <mat-icon color="warn" class="text-red-600">cancel</mat-icon>
+        <span class="ml-2">Failed Tests</span>
+      </div>
+      <div class="text-xl font-bold text-red-600">{{ failedTests }}</div>
+    </div>
+
+    <div class="stat-card p-3 rounded shadow bg-yellow-50">
+      <div class="flex items-center">
+        <mat-icon class="text-yellow-600">schedule</mat-icon>
+        <span class="ml-2">Pending Tests</span>
+      </div>
+      <div class="text-xl font-bold text-yellow-600">{{ pendingTests }}</div>
+    </div>
+  </div>
+
+  <div class="mt-4 p-3 rounded shadow bg-gray-50">
+    <div class="flex items-center justify-between mb-2">
+      <span class="font-medium">Test Progress</span>
+      <span class="text-sm text-gray-600">
+        {{ passedTests + failedTests }}/{{ totalTests }} completed
+      </span>
+    </div>
+    <div class="w-full bg-gray-200 rounded-full h-2">
+      <div 
+        class="bg-blue-600 h-2 rounded-full transition-all duration-300"
+        [style.width.%]="totalTests > 0 ? ((passedTests + failedTests) / totalTests) * 100 : 0">
+      </div>
+    </div>
+  </div>
+
+<div class="mt-3">
+  <div class="flex justify-between items-center mb-2">
+    <h6 class="font-16 font-semibold">Workflows</h6>
+    <button mat-raised-button color="success" class="new-scan-btn" (click)="addWorkflow()">
+      <mat-icon>add</mat-icon> Workflow
+    </button>
+  </div>
+  <div class="space-y-2">
+    <div *ngFor="let workflow of report.functional_details.workflows" class="p-3 border rounded-md">
+      <div class="flex justify-between items-center mb-1">
+        <h4 class="text-sm font-semibold">{{ workflow.title }}</h4>
+       <div class="flex items-center space-x-2">
+        <span class="text-xs px-2 py-0.5 rounded"
+              [ngClass]="{
+                'bg-green-100 text-green-800': workflow.statut === 'passed',
+                'bg-red-100 text-red-800': workflow.statut === 'failed',
+                'bg-yellow-100 text-yellow-800': workflow.statut === 'pending'
+              }">
+          {{ workflow.statut }}
+        </span>
+
+        <button mat-icon-button color="primary"
+                (click)="viewWorkflows(workflow)"
+                matTooltip="View Test Results"
+                class="action-button">
+          <mat-icon>visibility</mat-icon>
+        </button>
+      </div>
+
+      </div>
+      <p class="text-xs text-gray-600 mb-1">{{ workflow.description }}</p>
+      <div class="text-xs text-gray-500 mb-1">
+        <span>Start: {{ workflow.date_debut | date:'short' }}</span>
+        <span *ngIf="workflow.date_fin" class="ml-2">End: {{ workflow.date_fin | date:'short' }}</span>
+      </div>
+      <div *ngIf="workflow.test_cases?.length" class="mt-2">
+        <mat-accordion displayMode="flat" class="bg-white rounded" multi>
+          <mat-expansion-panel *ngFor="let testCase of workflow.test_cases">
+            <mat-expansion-panel-header>
+              <mat-panel-title class="text-sm font-medium">
+                <span class="bg-blue-100 text-blue-800 px-2 py-0.5 rounded mr-2 text-xs">#{{ testCase.ordre_execution }}</span>
+                {{ testCase.title }}
+              </mat-panel-title>
+              <mat-panel-description>
+                <span class="text-xs px-2 py-0.5 rounded"
+                      [ngClass]="{
+                        'bg-green-100 text-green-700': testCase.statut === 'passed',
+                        'bg-red-100 text-red-700': testCase.statut === 'failed',
+                        'bg-yellow-100 text-yellow-700': testCase.statut === 'pending'
+                      }">
+                  {{ testCase.statut }}
+                </span>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <div *ngIf="testCase.error_message" class="bg-red-50 border-l-2 border-red-400 text-red-700 text-xs p-2 mb-2">
+              <strong>Error:</strong> {{ testCase.error_message }}
+            </div>
+            <div *ngIf="testCase.step_tests?.length" class="pl-2 border-l-2 border-gray-200">
+              <div class="text-xs font-medium mb-2 flex items-center text-gray-700">
+                <mat-icon class="mr-1" style="font-size: 14px;">list</mat-icon> Steps ({{ testCase.step_tests.length }})
+              </div>
+
+              <div class="space-y-1">
+                <div *ngFor="let stepTest of testCase.step_tests" class="p-2 border rounded text-xs flex justify-between">
+                  <div class="flex-1">
+                    <div class="flex items-center mb-1">
+                      <span class="bg-gray-100 text-gray-700 px-1.5 py-0.5 rounded mr-2">{{ stepTest.ordre_execution }} .</span>
+                      <span class="font-medium">{{ stepTest.title }}</span>
+                    </div>
+                    <div *ngIf="stepTest.description" class="text-gray-600">{{ stepTest.description }}</div>
+                    <div *ngIf="stepTest.error_message" class="mt-1 bg-red-50 border-l-2 border-red-300 text-red-600 p-1">
+                      {{ stepTest.error_message }}
+                    </div>
+                    <div *ngIf="stepTest.screenshot_path" class="mt-1">
+                      <a [href]="stepTest.screenshot_path" target="_blank" class="text-blue-600 hover:underline flex items-center">
+                        <mat-icon style="font-size: 12px;" class="mr-1">image</mat-icon> Screenshot
+                      </a>
+                    </div>
+                  </div>
+                  <span class="ml-2 px-2 py-0.5 rounded text-xs h-fit"
+                        [ngClass]="{
+                          'bg-green-100 text-green-700': stepTest.statut === 'passed',
+                          'bg-red-100 text-red-700': stepTest.statut === 'failed',
+                          'bg-yellow-100 text-yellow-700': stepTest.statut === 'pending'
+                        }">
+                    {{ stepTest.statut }}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </div> 
+  </div>
+</div>
+
+</div>

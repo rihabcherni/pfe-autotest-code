@@ -1,0 +1,198 @@
+<div class="container-box">
+    <app-title [title]="titleValue"></app-title>
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+      <div class="flex-grow-1" style="max-width: 280px;">
+        <app-search-input [placeholder]="'Search user'"
+          [value]="searchTerm" (valueChange)="searchTerm = $event" (onSearch)="applyFilter()">
+        </app-search-input>
+      </div>
+      <app-download [exportToPDF]="exportToPDF.bind(this)" [exportToHTML]="exportToHTML.bind(this)"
+        [exportToCSV]="exportToCSV.bind(this)" [downloadAllAsZip]="downloadAllAsZip.bind(this)">
+      </app-download>
+    </div>
+  <div class="table-responsive users-table">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z2 w-100">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          <div class="header-content">
+            <mat-icon class="header-icon">person</mat-icon>
+            <span>Name</span>
+          </div>
+        </th>
+        <td mat-cell *matCellDef="let user" class="data-cell">
+          <div class="name-cell">            
+            <img *ngIf="user.profile_image; else initials"
+                [src]="'http://localhost:8000/static/profile_images/' + user.profile_image"
+                class="avatar" alt="Avatar" />
+            <ng-template #initials>
+            <div class="avatar">{{ getInitials(user.first_name, user.last_name) }}</div>
+            </ng-template>
+            <div class="name-info">
+              <span class="name-text">{{ user.first_name }} {{ user.last_name }}</span>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          <div class="header-content">
+            <mat-icon class="header-icon">email</mat-icon>
+            <span>Email</span>
+          </div>
+        </th>
+        <td mat-cell *matCellDef="let user">{{ user.email }}</td>
+      </ng-container>
+      <ng-container matColumnDef="phone">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          <div class="header-content">
+            <mat-icon class="header-icon">phone</mat-icon>
+            <span>Phone</span>
+          </div>
+        </th>
+        <td mat-cell *matCellDef="let user">{{ user.phone }}</td>
+      </ng-container>
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          <div class="header-content">
+            <mat-icon class="header-icon">location_on</mat-icon>
+            <span>Address</span>
+          </div>
+        </th>
+        <td mat-cell *matCellDef="let user">{{ user.address }}</td>
+      </ng-container>
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          <div class="header-content">
+            <mat-icon class="header-icon">verified</mat-icon>
+            <span>Status</span>
+          </div>
+        </th>
+        <td mat-cell *matCellDef="let user">
+          <span class="badge" [ngClass]="getStatusClass(user.is_verified)">
+            <i class="material-icons badge-icon">{{ user.is_verified ? 'verified' : 'pending' }}</i>
+            {{ getStatusText(user.is_verified) }}
+          </span>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="role">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          <div class="header-content">
+            <mat-icon class="header-icon">badge</mat-icon>
+            <span>Role</span>
+          </div>
+        </th>
+        <td mat-cell *matCellDef="let user">
+          <span class="badge" [ngClass]="getRoleClass(user.role)">
+            <i class="material-icons badge-icon">{{ user.role === 'admin' ? 'admin_panel_settings' : 'person' }}</i>
+            {{ user.role | titlecase }}
+          </span>
+        </td>
+      </ng-container>
+        <ng-container matColumnDef="permissions">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            <div class="header-content">
+            <mat-icon class="header-icon">lock</mat-icon>
+            <span>Permission</span>
+            </div>
+        </th>
+        <td mat-cell *matCellDef="let user">
+            <div class="permissions-display">
+              <span *ngFor="let permission of getPermissionsArray(user.permissions)" 
+                    class="badge badge-permission">
+                {{ permission }}
+              </span>
+              <span *ngIf="!user.permissions || user.permissions.length === 0" 
+                    class="badge badge-na">
+                N/A
+              </span>
+            </div>
+        </td>
+        </ng-container>
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>
+          <div class="header-content">
+            <mat-icon class="header-icon">settings</mat-icon>
+            <span>Actions</span>
+          </div>
+        </th>
+        <td mat-cell *matCellDef="let user">
+          <div class="actions-container">
+            <button mat-icon-button 
+                    (click)="editUserPermissions(user)" 
+                    class="edit-action"
+                    matTooltip="Edit Permissions"
+                    color="primary">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button 
+                    (click)="deleteUser(user.id)" 
+                    class="delete-action"
+                    matTooltip="Delete User"
+                    color="warn">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr *ngIf="dataSource.data.length === 0">
+        <td [attr.colspan]="displayedColumns.length" class="text-center text-muted empty-state">
+          <div class="empty-content">
+            <mat-icon class="empty-icon">group</mat-icon>
+            <p>No users found</p>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <mat-paginator
+    [pageSize]="5"
+    [pageSizeOptions]="[5, 10, 25, 50]"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>
+<div *ngIf="showEditDialog" class="dialog-overlay" (click)="closeEditDialog()">
+  <div class="dialog-content" (click)="$event.stopPropagation()">
+    <div class="dialog-header">
+      <h3>Edit Permissions for {{ selectedUser?.first_name }} {{ selectedUser?.last_name }}</h3>
+      <button mat-icon-button (click)="closeEditDialog()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    
+    <div class="dialog-body">
+      <p class="user-info">User: {{ selectedUser?.email }}</p>
+      <p class="user-role">Role: {{ selectedUser?.role | titlecase }}</p>  
+      <div class="permissions-section">
+        <h4>Available Permissions:</h4>
+        <div class="permissions-grid">
+          <mat-checkbox *ngFor="let permission of availablePermissions"
+                       [(ngModel)]="permission.selected"
+                       [disabled]="selectedUser?.role === 'admin'"
+                       class="permission-checkbox">
+            {{ permission.name }}
+          </mat-checkbox>
+        </div>
+        
+        <div *ngIf="selectedUser?.role === 'admin'" class="admin-notice">
+          <mat-icon>info</mat-icon>
+          <span>Administrators have all permissions by default</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="dialog-actions">
+      <button mat-button class="btn-cancel" (click)="closeEditDialog()">Cancel</button>
+
+      <button mat-raised-button 
+              class="save-btn"
+              (click)="savePermissions()"
+              [disabled]="selectedUser?.role === 'admin' || isSaving">
+        {{ isSaving ? 'Saving...' : 'Save' }}
+      </button>
+    </div>
+
+  </div>
+</div>

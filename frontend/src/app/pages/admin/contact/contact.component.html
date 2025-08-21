@@ -1,0 +1,76 @@
+<div class="container-box">
+    <app-title [title]="titleValue"></app-title>
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 my-3">
+    <div class="flex-grow-1" style="max-width: 280px;">
+      <app-search-input [placeholder]="'Search by name, email or subject...'"
+          [value]="searchTerm" (valueChange)="searchTerm = $event" (onSearch)="applyFilter()">
+        </app-search-input>
+      </div>
+      <app-download
+        [exportToPDF]="exportToPDF.bind(this)"
+        [exportToHTML]="exportToHTML.bind(this)"
+        [exportToCSV]="exportToCSV.bind(this)"
+        [downloadAllAsZip]="downloadAllAsZip.bind(this)">
+      </app-download>
+    </div>
+  <div class="table-responsive">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z2 w-100">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          <div class="header-content">
+            <mat-icon class="header-icon">person</mat-icon>
+            <span>Name</span>
+          </div>
+        </th>
+        <td mat-cell *matCellDef="let msg" class="data-cell">
+          <div class="name-cell">
+            <div class="avatar">{{ getInitials(msg.name) }}</div>
+            <span class="name-text">{{ msg.name }}</span>
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          <div class="header-content">
+            <mat-icon class="header-icon">email</mat-icon>
+            <span>Email</span>
+          </div>
+        </th>
+        <td mat-cell *matCellDef="let msg">{{ msg.email }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="subject">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          <div class="header-content">
+            <mat-icon class="header-icon">topic</mat-icon>
+            <span>Subject</span>
+          </div>
+        </th>
+        <td mat-cell *matCellDef="let msg">{{ msg.subject }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="message">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          <div class="header-content">
+            <mat-icon class="header-icon">message</mat-icon>
+            <span>Message</span>
+          </div>
+        </th>
+        <td mat-cell *matCellDef="let msg">{{ msg.message }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr *ngIf="dataSource.data.length === 0">
+        <td colspan="4" class="text-center text-muted">No messages found</td>
+      </tr>
+    </table>
+  </div>
+
+  <mat-paginator
+    [pageSize]="5"
+    [pageSizeOptions]="[5, 10, 25, 50]"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>

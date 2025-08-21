@@ -1,0 +1,13 @@
+.git
+README.md
+LICENSE
+.vscode
+npm-debug.log
+coverage
+.env
+.editorconfig
+.aws
+node_modules
+dist
+Dockerfile
+docker-compose.yml

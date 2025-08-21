@@ -1,0 +1,42 @@
+<div class="kpi-grid">
+  <div class="kpi-card border-left-primary">
+    <div class="kpi-icon reports">
+      <i class="fas fa-file-alt"></i>
+    </div>
+    <div class="kpi-content">
+      <h3>{{ overviewStats.reports.total }}</h3>
+      <p>Total Reports</p>
+      <span class="kpi-subtitle">{{ completionRate }}% completed</span>
+    </div>
+  </div>
+  <div class="kpi-card border-left-success">
+    <div class="kpi-icon seo">
+      <i class="fas fa-search"></i>
+    </div>
+    <div class="kpi-content">
+      <h3>{{ averageScore }}/100</h3>
+      <p>Average SEO Score</p>
+      <span class="kpi-subtitle">{{ overviewStats.reports.by_type.seo }} SEO scans</span>
+    </div>
+  </div>
+  <div class="kpi-card border-left-info">
+    <div class="kpi-icon functional">
+      <i class="fas fa-cogs"></i>
+    </div>
+    <div class="kpi-content">
+      <h3>{{ functionalSuccessRate }}%</h3>
+      <p>Success Rate</p>
+      <span class="kpi-subtitle">{{ overviewStats.functional.total }} workflows</span>
+    </div>
+  </div>
+  <div class="kpi-card border-left-error">
+    <div class="kpi-icon security">
+      <i class="fas fa-shield-alt"></i>
+    </div>
+    <div class="kpi-content">
+      <h3>{{ totalVulnerabilities }}</h3>
+      <p>Vulnerabilities</p>
+      <span class="kpi-subtitle">{{ overviewStats.security.by_risk.high }} critical</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,131 @@
+<div class="container-fluid top-div">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-xl-6 col-lg-6 col-md-10 col-sm-12 mx-auto">
+      <div class="card nga-card px-4">
+        <h1 class="h2 text-center title">
+          <strong>Sign Up</strong>
+        </h1>
+        <div class="card-body">
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+              <div class="col-md-6 mb-2">
+                <div class="form-floating">
+                  <input type="text" class="form-control form-control-sm" formControlName="first_name" id="first_name" placeholder="First Name"
+                    [class.is-invalid]="registerForm.get('first_name')?.invalid && registerForm.get('first_name')?.touched">
+                  <label for="first_name">First Name</label>
+                </div>
+                <div *ngIf="registerForm.get('first_name')?.touched && registerForm.get('first_name')?.invalid" class="text-danger small">
+                  <div *ngIf="registerForm.get('first_name')?.errors?.['required']">First name is required.</div>
+                </div>
+              </div>
+              <div class="col-md-6 mb-2">
+                <div class="form-floating">
+                  <input type="text" class="form-control form-control-sm" formControlName="last_name" id="last_name" placeholder="Last Name"
+                    [class.is-invalid]="registerForm.get('last_name')?.invalid && registerForm.get('last_name')?.touched">
+                  <label for="last_name">Last Name</label>
+                </div>
+                <div *ngIf="registerForm.get('last_name')?.touched && registerForm.get('last_name')?.invalid" class="text-danger small">
+                  <div *ngIf="registerForm.get('last_name')?.errors?.['required']">Last name is required.</div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-2">
+                <div class="form-floating">
+                  <input type="email" class="form-control form-control-sm" formControlName="email" id="email" placeholder="Email"
+                    [class.is-invalid]="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+                  <label for="email">Email Address</label>
+                </div>
+                <div *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid" class="text-danger small">
+                  <div *ngIf="registerForm.get('email')?.errors?.['required']">Email is required.</div>
+                  <div *ngIf="registerForm.get('email')?.errors?.['email']">Invalid email format.</div>
+                </div>
+              </div>
+              <div class="col-md-6 mb-2">
+                <div class="form-floating">
+                  <input type="text" class="form-control form-control-sm" formControlName="phone" id="phone" placeholder="Phone"
+                    [class.is-invalid]="registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched">
+                  <label for="phone">Phone Number</label>
+                </div>
+                <div *ngIf="registerForm.get('phone')?.touched && registerForm.get('phone')?.invalid" class="text-danger small">
+                  <div *ngIf="registerForm.get('phone')?.errors?.['required']">Phone number is required.</div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 mb-2">
+                <div class="form-floating">
+                  <input type="text" class="form-control form-control-sm" formControlName="address" id="address" placeholder="Address"
+                    [class.is-invalid]="registerForm.get('address')?.invalid && registerForm.get('address')?.touched">
+                  <label for="address">Address</label>
+                </div>
+                <div *ngIf="registerForm.get('address')?.touched && registerForm.get('address')?.invalid" class="text-danger small">
+                  <div *ngIf="registerForm.get('address')?.errors?.['required']">Address is required.</div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-2 position-relative">
+                <div class="form-floating">
+                  <input [type]="showPassword ? 'text' : 'password'" class="form-control form-control-sm" formControlName="password" id="password" placeholder="Password"
+                    [class.is-invalid]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+                  <label for="password">Password</label>
+                  <span class="position-absolute top-50 end-0 translate-middle-y me-3" style="cursor: pointer;" (click)="togglePasswordVisibility()">
+                    <i class="password-toggle-icon" [class]="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+                  </span>
+                </div>
+                <div *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid" class="text-danger small">
+                  <div *ngIf="registerForm.get('password')?.errors?.['required']">Password is required.</div>
+                  <div *ngIf="registerForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters.</div>
+                </div>
+              </div>
+
+              <div class="col-md-6 mb-2 position-relative">
+                <div class="form-floating">
+                  <input [type]="showConfirmPassword ? 'text' : 'password'" class="form-control form-control-sm" formControlName="confirmPassword" id="confirmPassword" placeholder="Confirm Password"
+                    [class.is-invalid]="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched">
+                  <label for="confirmPassword">Confirm Password</label>
+                  <span class="position-absolute top-50 end-0 translate-middle-y me-3" style="cursor: pointer;" (click)="toggleConfirmPasswordVisibility()">
+                    <i class="password-toggle-icon" [class]="showConfirmPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+                  </span>
+                </div>
+                <div *ngIf="registerForm.get('confirmPassword')?.touched && registerForm.get('confirmPassword')?.invalid" class="text-danger small">
+                  <div *ngIf="registerForm.get('confirmPassword')?.errors?.['required']">Confirm Password is required.</div>
+                  <div *ngIf="registerForm.get('confirmPassword')?.errors?.['match']">Passwords must match.</div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 mb-2">
+                <button class="btn btn-primary m-2" type="submit" [disabled]="!registerForm.valid">
+                  Sign Up <i class="fas fa-user-plus"></i>
+                </button>
+              </div>
+            </div>
+            <hr>
+            <p class="text-center mb-2">
+              Already have an account? <a routerLink="/login" class="text-primary">Login</a>
+            </p>
+            <div class="loading" *ngIf="loading">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-6 col-lg-6 d-none d-lg-flex justify-content-center align-items-center">
+        <img src="assets/img/home/register.png"
+            class="img-fluid"
+            alt="Register"
+            style="max-height: 500px;">
+      </div>
+
+  </div>
+</div>

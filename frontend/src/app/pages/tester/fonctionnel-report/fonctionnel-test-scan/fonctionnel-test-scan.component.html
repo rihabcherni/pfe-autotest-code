@@ -1,0 +1,192 @@
+<div class="container-fluid workflow-designer d-flex vh-100 p-2">
+  <div class="left-sidebar bg-light border-end p-3" style="width: 280px; overflow-y: auto;">
+    <div class="toolbar mb-2">
+        <div class="card mb-2">
+          <div class="card-header d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+              <i class="bi bi-diagram-3 me-2"></i>
+              <p class="mb-0 fw-bold">Workflow</p>
+            </div>
+            <button 
+              class="btn btn-sm btn-outline-primary" 
+              (click)="toggleEditMode()"
+              [disabled]="isUpdating">
+              <i class="bi" [class.bi-pencil]="!isEditingWorkflowDetails" [class.bi-x]="isEditingWorkflowDetails"></i>
+              {{isEditingWorkflowDetails ? 'Cancel' : 'Edit'}}
+            </button>
+          </div>
+          <div class="card-body">
+            <div *ngIf="!isEditingWorkflowDetails">
+              <p class="mb-2">
+                <strong class="text-primary">Title:</strong> 
+                <span class="ms-1">{{currentWorkflow?.title || 'Untitled Workflow'}}</span>
+              </p>
+              <p class="mb-0">
+                <strong class="text-primary">Description:</strong> 
+                <span class="ms-1 small">{{currentWorkflow?.description || 'No description'}}</span>
+              </p>
+            </div>
+
+            <!-- Edit mode -->
+            <div *ngIf="isEditingWorkflowDetails" [formGroup]="workflowDetailsForm">
+              <div class="mb-3">
+                <label for="workflowTitle" class="form-label">
+                  <strong class="text-primary">Title:</strong>
+                </label>
+                <input 
+                  id="workflowTitle"
+                  type="text" 
+                  class="form-control form-control-sm"
+                  formControlName="title"
+                  placeholder="Enter workflow title"
+                  [class.is-invalid]="workflowDetailsForm.get('title')?.invalid && workflowDetailsForm.get('title')?.touched">
+                <div class="invalid-feedback" *ngIf="workflowDetailsForm.get('title')?.invalid && workflowDetailsForm.get('title')?.touched">
+                  Title is required
+                </div>
+              </div>
+              
+              <div class="mb-3">
+                <label for="workflowDescription" class="form-label">
+                  <strong class="text-primary">Description:</strong>
+                </label>
+                <textarea 
+                  id="workflowDescription"
+                  class="form-control form-control-sm"
+                  formControlName="description"
+                  rows="3"
+                  placeholder="Enter workflow description (optional)"></textarea>
+              </div>
+
+              <div class="d-flex gap-2">
+                <button 
+                  class="btn btn-sm btn-success" 
+                  (click)="updateWorkflowDetails()"
+                  [disabled]="workflowDetailsForm.invalid || isUpdating">
+                  <span *ngIf="isUpdating" class="spinner-border spinner-border-sm me-1" role="status"></span>
+                  <i class="bi bi-check" *ngIf="!isUpdating"></i>
+                  {{isUpdating ? 'Saving...' : 'Save'}}
+                </button>
+                <button 
+                  class="btn btn-sm btn-secondary" 
+                  (click)="cancelEdit()"
+                  [disabled]="isUpdating">
+                  <i class="bi bi-x"></i>
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header d-flex align-items-center">
+            <i class="bi bi-layout-text-window-reverse me-2"></i>
+            <p class="mb-0">Elements</p>
+          </div>
+          <div class="card-body">
+            <div class="d-grid gap-2 mb-3">
+              <button class="btn btn-success d-flex align-items-center justify-content-center" (click)="addNode('start')">
+                <i class="bi bi-play-fill me-2"></i> Start
+              </button>
+              <button class="btn btn-primary  d-flex align-items-center justify-content-center" (click)="addNode('testcase')">
+                <i class="bi bi-card-checklist me-2"></i> Test Case
+              </button>
+              <button class="btn btn-danger d-flex align-items-center justify-content-center" (click)="addNode('end')">
+                <i class="bi bi-stop-fill me-2"></i> End
+              </button>
+            </div>
+            <hr />
+            <div class="d-grid gap-2">
+              <button class="btn btn-primary" (click)="saveWorkflow()">
+                <i class="bi bi-save me-2"></i> Save
+              </button>
+              <button class="btn btn-warning" (click)="executeWorkflow()">
+                <i class="bi bi-play me-2"></i> Execute
+              </button>
+              <button class="btn btn-secondary" (click)="clearWorkflow()">
+                <i class="bi bi-x-lg me-2"></i> Clear
+              </button>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  <div class="editor-container flex-grow-1 bg-white border mx-2" style="overflow: auto;">
+    <div #drawflowContainer id="drawflow" class="drawflow-editor w-100 h-100"></div>
+  </div>
+  <div class="right-sidebar bg-light border-start p-3" style="width: 320px; overflow-y: auto;">
+    <div *ngIf="selectedNode" class="properties-panel">
+      <div class="card">
+        <div class="card-header">
+          <p class="mb-0">Node Properties</p>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="nodeForm" (ngSubmit)="updateNode()">
+            <div class="mb-2">
+              <label for="titleInput" class="form-label">Title</label>
+              <input id="titleInput" type="text" class="form-control" formControlName="title" />
+            </div>
+
+            <div class="mb-2" *ngIf="selectedNode.name !== 'start' && selectedNode.name !== 'end'">
+              <label for="descriptionInput" class="form-label">Description</label>
+              <textarea id="descriptionInput" class="form-control" rows="3" formControlName="description"></textarea>
+            </div>
+
+            <div *ngIf="selectedNode.name === 'step'" class="step-options">
+              <div class="mb-2">
+                <label for="actionTypeSelect" class="form-label">Action Type</label>
+                <select id="actionTypeSelect" class="form-select" formControlName="actionType" (change)="onActionTypeChange()">
+                  <option value="">Select Action</option>
+                  <option value="click">Click Element</option>
+                  <option value="type">Type Text</option>
+                  <option value="navigate">Navigate URL</option>
+                  <option value="wait_visible">Wait Element to be Visible</option>
+                  <option value="wait_present">Wait Until Element Present</option>
+                  <option value="move_cursor">Move Cursor to Element</option>
+                  <option value="assert">Assert Element</option>
+                  <option value="screenshot">Take Screenshot</option>
+                  <option value="wait">Wait (seconds)</option>
+                  <option value="accept_alert">Accept Alert</option> 
+                </select>
+              </div>
+
+              <div class="mb-2" *ngIf="showSelectorField()">
+                <label for="selectorInput" class="form-label">XPath or CSS Selector</label>
+                <input id="selectorInput" type="text" class="form-control" 
+                      formControlName="selector" 
+                      placeholder="//button[@id='submit'] or #submit-btn" />
+                <div class="form-text">Enter XPath (starting with //) or CSS selector</div>
+              </div>
+
+              <div class="mb-2" *ngIf="showUrlField()">
+                <label for="urlInput" class="form-label">URL</label>
+                <input id="urlInput" type="url" class="form-control" 
+                      formControlName="url" 
+                      placeholder="https://example.com" />
+              </div>
+
+              <div class="mb-2" *ngIf="showTextField()">
+                <label for="textInput" class="form-label">Text to Type</label>
+                <input id="textInput" type="text" class="form-control" 
+                      formControlName="text" 
+                      placeholder="Enter text to type" />
+              </div>
+
+              <div class="mb-2" *ngIf="showTimeoutField()">
+                <label for="timeoutInput" class="form-label">Timeout (seconds)</label>
+                <input id="timeoutInput" type="number" class="form-control" 
+                      formControlName="timeout" 
+                      [value]="10" min="1" max="300" />
+                <div class="form-text">Maximum time to wait (1-300 seconds)</div>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-between">
+              <button type="submit" class="btn btn-primary">Update</button>
+              <button type="button" class="btn btn-outline-danger" (click)="deleteSelectedNode()">Delete</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

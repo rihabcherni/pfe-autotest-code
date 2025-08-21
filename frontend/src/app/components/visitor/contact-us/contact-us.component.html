@@ -1,0 +1,87 @@
+<section id="contact" class="contact section ">
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Contact</h2>
+    <p>If you have any questions or requests, feel free to contact us using the information below.</p>
+  </div>
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="row g-4 g-lg-5">
+      <div class="col-lg-5">
+        <div class="info-box" data-aos="fade-up" data-aos-delay="200">
+          <h3>Contact Information</h3>
+          <p>We are available to support your needs in IT security and automated testing.</p>
+
+          <div class="info-item-contact" data-aos="fade-up" data-aos-delay="300">
+            <div class="icon-box"><i class="bi bi-geo-alt"></i></div>
+            <div class="content">
+              <h4>Address</h4>
+              <p>Immeuble Etraton, Rue Khadija Ben Arfa, Centre Urbain Nord 1082, Tunis, Tunisia</p>
+            </div>
+          </div>
+          <div class="info-item-contact" data-aos="fade-up" data-aos-delay="400">
+            <div class="icon-box"><i class="bi bi-telephone"></i></div>
+            <div class="content">
+              <h4>Phone</h4>
+              <p>+216 50 099 824</p>
+            </div>
+          </div>
+
+          <div class="info-item-contact" data-aos="fade-up" data-aos-delay="500">
+            <div class="icon-box"><i class="bi bi-envelope"></i></div>
+            <div class="content">
+              <h4>Email</h4>
+              <p><a href="mailto:contact@addinn.com">contact&#64;addinn.com</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <div class="contact-form" data-aos="fade-up" data-aos-delay="300">
+          <h3>Send Us a Message</h3>
+          <p>Fill out the form below and we will get back to you as soon as possible.</p>
+          <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate>
+            <div class="row gy-4">
+              <div class="col-md-6">
+                <input formControlName="name" class="form-control" placeholder="Your Name" required>
+                <div class="text-danger small" *ngIf="contactForm.get('name')?.touched && contactForm.get('name')?.invalid">
+                  Name is required.
+                </div>
+              </div>
+              <div class="col-md-6">
+                <input formControlName="email" class="form-control" placeholder="Your Email" required>
+                <div class="text-danger small" *ngIf="contactForm.get('email')?.touched && contactForm.get('email')?.invalid">
+                  <div *ngIf="contactForm.get('email')?.errors?.['required']">Email is required.</div>
+                  <div *ngIf="contactForm.get('email')?.errors?.['email']">Invalid email format.</div>
+                </div>
+              </div>
+              <div class="col-12">
+                <input formControlName="subject" class="form-control" placeholder="Subject" required>
+                <div class="text-danger small" *ngIf="contactForm.get('subject')?.touched && contactForm.get('subject')?.invalid">
+                  Subject is required.
+                </div>
+              </div>
+              <div class="col-12">
+                <textarea formControlName="message" class="form-control" rows="6" placeholder="Message" required></textarea>
+                <div class="text-danger small" *ngIf="contactForm.get('message')?.touched && contactForm.get('message')?.invalid">
+                  Message is required.
+                </div>
+              </div>
+              <div class="col-12 text-center">
+                <div class="loading" *ngIf="loading">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+                <button type="submit" class="btn" [disabled]="contactForm.invalid || loading">Send Message</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,27 @@
+<div class="dialog-container">
+  <h2 mat-dialog-title class="dialog-title">
+    <mat-icon class="title-icon">assessment</mat-icon>Create SEO Report
+  </h2>
+
+  <mat-dialog-content class="dialog-content">
+    <form [formGroup]="reportForm" class="report-form">
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Target URL *</mat-label>
+        <input matInput formControlName="url" placeholder="https://example.com" required>
+        <mat-icon matSuffix>link</mat-icon>
+        <mat-error *ngIf="reportForm.get('url')?.hasError('required')">Target URL is required</mat-error>
+        <mat-error *ngIf="reportForm.get('url')?.hasError('pattern')">Please enter a valid URL</mat-error>
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end" class="dialog-actions">
+    <button mat-button (click)="close()" class="cancel-button">
+      <mat-icon>close</mat-icon>Cancel
+    </button>
+    <button mat-raised-button color="primary" (click)="submit()" [disabled]="reportForm.invalid || isSubmitting">
+      <mat-icon>send</mat-icon>{{ isSubmitting ? 'Creating...' : 'Create Report' }}
+    </button>
+  </mat-dialog-actions>
+</div>

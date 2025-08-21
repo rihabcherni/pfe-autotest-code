@@ -1,0 +1,41 @@
+.score-chip {
+  display: inline-block;
+  text-align: center;
+  min-width: 40px;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 16px;
+  font-size: 12px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-column-actions {
+  width: 180px;
+}
+
+.mat-column-average_score,
+.mat-column-total_pages_analyzed {
+  width: 100px;
+  text-align: center;
+}
+
+.mat-column-url {
+  max-width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

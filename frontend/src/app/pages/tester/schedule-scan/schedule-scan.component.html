@@ -1,0 +1,172 @@
+<div class="container-fluid">
+  <app-title [title]="titleValue"></app-title>
+  <div class="row">
+    <div class="col-12">
+      <div class="d-flex justify-content-end mb-1">
+        <button (click)="openModal()" class="btn btn-primary d-flex align-items-center">
+          <i class="bi bi-plus-circle me-2"></i>
+          <span>New Scan</span>
+        </button>
+      </div>
+      <div class="d-flex justify-content-between align-items-center mb-1">
+        <button (click)="navigateMonth(-1)" class="btn btn-outline-secondary">
+          <i class="bi bi-chevron-left"></i>
+        </button>
+        <h6 class="mb-0 text-capitalize">{{ getMonthYear() }}</h6>
+        <button (click)="navigateMonth(1)" class="btn btn-outline-secondary">
+          <i class="bi bi-chevron-right"></i>
+        </button>
+      </div>
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary bg-opacity-10">
+          <div class="row g-0">
+            <div *ngFor="let day of dayHeaders" class="col text-center fw-semibold text-primary">
+              {{ day }}
+            </div>
+          </div>
+        </div>
+        <div class="card-body p-1">
+          <div *ngFor="let week of getCalendarWeeks(); trackBy: trackByWeek" class="row g-1 mb-1">
+            <div *ngFor="let day of week; trackBy: trackByDate"
+                class="col p-1"
+                style="min-height: 120px;">
+              <div class="h-100 p-2 border rounded cursor-pointer position-relative"
+                  [ngClass]="{
+                    'bg-primary bg-opacity-10 border-primary': isToday(day.date),
+                    'bg-light': !day.isCurrentMonth,
+                    'bg-white': day.isCurrentMonth && !isToday(day.date)
+                  }"
+                  (click)="handleDateClick(day)">
+                <div class="fw-bold small mb-1"
+                    [ngClass]="{
+                      'text-primary': isToday(day.date),
+                      'text-muted': !day.isCurrentMonth,
+                      'text-dark': day.isCurrentMonth && !isToday(day.date)
+                    }">
+                  {{ day.date.getDate() }}
+                </div>
+                <div class="d-flex flex-column gap-1">
+                  <div *ngFor="let scan of getScansForDate(day.date).slice(0, 3)"
+                      class="d-flex align-items-center p-1 rounded-pill position-relative"
+                      [ngClass]="getScanTypeBootstrapClass(scan.scan_type)"
+                      style="font-size: 0.65rem;">
+                    <div class="position-absolute top-0 end-0 d-none scan-actions"
+                        style="background: rgba(255,255,255,0.9); border-radius: 0 8px 0 8px;">
+                      <button class="btn btn-sm p-1" (click)="editScan(scan, $event)" title="Edit">
+                        <i class="bi bi-pencil" style="font-size: 0.6rem;"></i>
+                      </button>
+                      <button class="btn btn-sm p-1 text-danger" (click)="deleteScan(scan.id, $event)" title="Delete">
+                        <i class="bi bi-trash" style="font-size: 0.6rem;"></i>
+                      </button>
+                    </div>
+
+                    <i [ngClass]="getScanTypeIcon(scan.scan_type)" style="font-size: 0.7rem;"></i>
+
+                    <a [href]="scan.url"
+                      target="_blank"
+                      class="text-decoration-none text-truncate mx-1 flex-fill"
+                      [ngClass]="getScanTypeLinkClass(scan.scan_type)"
+                      [title]="scan.url"
+                      style="max-width: 60px;">
+                      {{ getDisplayUrl(scan.url) | slice:0:8 }}
+                    </a>
+
+                    <span class="badge rounded-pill"
+                          [ngClass]="getStatusBootstrapClass(scan.status)"
+                          style="font-size: 0.5rem; min-width: 15px;">
+                      {{ getStatusAbbreviation(scan.status) }}
+                    </span>
+                  </div>
+                  <div *ngIf="getScansForDate(day.date).length > 3"
+                      class="text-center text-muted"
+                      style="font-size: 0.6rem;"
+                      (click)="showDayDetails(day.date, $event)">
+                    <small class="cursor-pointer text-decoration-underline">+{{ getScansForDate(day.date).length - 3 }} more</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-4">
+        <h3 class="mb-1">Scheduled Scans</h3>
+        <div class="card">
+          <div class="table-responsive">
+            <table class="table table-hover mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th scope="col">URL</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Date/Time</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Progress</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let scan of reports.slice(0, 10)">
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <i *ngIf="scan.authentification"
+                         class="bi bi-lock-fill text-warning me-2"></i>
+                      <a [href]="scan.url"
+                         target="_blank"
+                         class="text-decoration-none"
+                         [ngClass]="getScanTypeLinkClass(scan.scan_type)">
+                        {{ scan.url }}
+                      </a>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <i [ngClass]="getScanTypeIcon(scan.scan_type)" class="me-2"></i>
+                      <span>{{ getScanTypeConfig(scan.scan_type).label }}</span>
+                    </div>
+                  </td>
+                  <td>
+                    {{ formatDate(scan.schedule_date) }} at {{ scan.schedule_time }}
+                  </td>
+                  <td>
+                    <span class="badge rounded-pill"
+                          [ngClass]="getStatusBootstrapClass(scan.status)">
+                      {{ getStatusLabel(scan.status) }}
+                    </span>
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <div class="progress me-2" style="width: 100px; height: 8px;">
+                        <div class="progress-bar"
+                             [ngClass]="getProgressColor(scan.status)"
+                             [style.width.%]="scan.progression"
+                             [attr.aria-valuenow]="scan.progression"
+                             aria-valuemin="0"
+                             aria-valuemax="100"></div>
+                      </div>
+                      <small class="text-muted">{{ scan.progression }}%</small>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="btn-group btn-group-sm">
+                      <button class="btn btn-outline-primary"
+                              (click)="editScan(scan, $event)"
+                              title="Edit">
+                        <i class="bi bi-pencil"></i>
+                      </button>
+                      <button class="btn btn-outline-danger"
+                              (click)="deleteScan(scan.id, $event)"
+                              title="Delete">
+                        <i class="bi bi-trash"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

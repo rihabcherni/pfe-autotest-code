@@ -1,0 +1,73 @@
+{
+  "extends": [
+    "development"
+  ],
+  "hints": {
+    "compat-api/html": [
+      "default",
+      {
+        "ignore": [
+          "iframe[loading]"
+        ]
+      }
+    ],
+    "no-inline-styles": "off",
+    "compat-api/css": [
+      "default",
+      {
+        "ignore": [
+          "color: color-mix(in srgb, var(--default-color), transparent 30%)",
+          "color: color-mix(in srgb, var(--default-color), transparent 40%)",
+          "-webkit-text-size-adjust",
+          "text-align: -webkit-match-parent",
+          "backdrop-filter",
+          "background-color: color-mix(in srgb, var(--primary-color), transparent 20%)",
+          "color: color-mix(in srgb, var(--default-color), transparent 70%)",
+          "background-color: color-mix(in srgb, var(--contrast-color), transparent 85%)",
+          "background-color: color-mix(in srgb, var(--contrast-color), transparent 70%)",
+          "color: color-mix(in srgb, var(--default-color), transparent 25%)",
+          "border-color: color-mix(in srgb, var(--default-color), transparent 90%)",
+          "background-color: color-mix(in srgb, var(--white-color) 90%, white 5%)",
+          "color: color-mix(in srgb, var(--default-color), transparent 50%)",
+          "background-color: color-mix(in srgb, var(--primary-color), var(--contrast-color) 20%)",
+          "border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%)"
+        ]
+      }
+    ],
+    "axe/name-role-value": [
+      "default",
+      {
+        "button-name": "off",
+        "link-name": "off"
+      }
+    ],
+    "axe/forms": [
+      "default",
+      {
+        "label": "off",
+        "autocomplete-valid": "off",
+        "select-name": "off"
+      }
+    ],
+    "axe/text-alternatives": [
+      "default",
+      {
+        "image-alt": "off"
+      }
+    ],
+    "axe/aria": [
+      "default",
+      {
+        "aria-required-children": "off",
+        "aria-allowed-attr": "off"
+      }
+    ],
+    "axe/structure": [
+      "default",
+      {
+        "listitem": "off"
+      }
+    ],
+    "meta-viewport": "off"
+  }
+}

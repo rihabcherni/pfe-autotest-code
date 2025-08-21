@@ -1,0 +1,175 @@
+<div class="container-box configuration">
+  <app-title [title]="titleValue"></app-title>
+  <div class="wrapper">
+    <form class="form-right" (ngSubmit)="onSubmit()" #loginForm="ngForm">
+
+      <div class="form-field d-flex justify-content-end mb-3">
+        <button type="button" class="btn btn-link" (click)="isEditing = true" *ngIf="!isEditing">
+          <i class="fas fa-edit"></i> Modifier
+        </button>
+        <button type="button" class="btn btn-link" (click)="isEditing = false" *ngIf="isEditing">
+          <i class="fas fa-times"></i> Annuler
+        </button>
+      </div>
+
+      <div class="accordion-panel" [class.active]="selectedConfig === 'slack'">
+        <div class="accordion-header" (click)="toggleAccordion('slack')">
+          <p><i class="fab fa-slack logo-icon"></i> Slack Configuration</p>
+          <i class="fas" [ngClass]="selectedConfig === 'slack' ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+        </div>
+        <div class="accordion-content" [class.show]="selectedConfig === 'slack'">
+          <div class="alert alert-info">Slack configuration selected. Please provide the necessary details.</div>
+          <div class="row">
+            <div class="col-sm-6 mb-2">
+              <input type="text" placeholder="Enter your token" name="token" class="input-field"
+                     [(ngModel)]="token" #slackToken="ngModel" required [disabled]="!isEditing">
+              <div *ngIf="slackToken.invalid && (slackToken.dirty || slackToken.touched)" class="text-danger">
+                Token is required.
+              </div>
+            </div>
+            <div class="col-sm-6 mb-2">
+              <input type="text" placeholder="Enter your channel ID" name="channel_id" class="input-field" [class.disabled-field]="!isEditing"
+                     [(ngModel)]="channel_id" #slackChannelId="ngModel" required [disabled]="!isEditing">
+              <div *ngIf="slackChannelId.invalid && (slackChannelId.dirty || slackChannelId.touched)" class="text-danger">
+                Channel ID is required.
+              </div>
+            </div>
+          </div>
+          <div *ngIf="slackError" class="alert alert-danger">{{ slackError }}</div>
+        </div>
+      </div>
+      <div class="accordion-panel" [class.active]="selectedConfig === 'gmail'">
+        <div class="accordion-header" (click)="toggleAccordion('gmail')">
+          <p><i class="fab fa-google logo-icon"></i> Gmail Configuration</p>
+          <i class="fas" [ngClass]="selectedConfig === 'gmail' ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+        </div>
+        <div class="accordion-content" [class.show]="selectedConfig === 'gmail'">
+          <div class="alert alert-info">Gmail configuration selected. Please provide the necessary details.</div>
+          <div class="email-container">
+            <div *ngFor="let email of emails; let i = index" class="mb-2 input-with-icon">
+              <input type="email" class="input-field" placeholder="Enter your email" [class.disabled-field]="!isEditing"
+                     name="email{{i}}" [(ngModel)]="emails[i]" #emailField="ngModel" required [disabled]="!isEditing">
+              <div *ngIf="emailField.invalid && (emailField.dirty || emailField.touched)" class="text-danger">
+                A valid email is required.
+              </div>
+              <i class="fas fa-times remove-icon" (click)="removeEmailField(i)"
+                 *ngIf="emails.length > 1 && isEditing"></i>
+            </div>
+          </div>
+          <div class="form-field d-flex justify-content-end">
+            <button type="button" class="btn-add" (click)="addEmailField()" [disabled]="!isEditing">
+              Add Email
+            </button>
+          </div>
+          <div *ngIf="emailError" class="alert alert-danger">{{ emailError }}</div>
+        </div>
+      </div>
+
+      <div class="accordion-panel" [class.active]="selectedConfig === 'jira'">
+        <div class="accordion-header" (click)="toggleAccordion('jira')">
+          <p><i class="fab fa-jira logo-icon"></i> Jira Configuration</p>
+          <i class="fas" [ngClass]="selectedConfig === 'jira' ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+        </div>
+        <div class="accordion-content" [class.show]="selectedConfig === 'jira'">
+          <div class="alert alert-info">Jira configuration selected. Please provide the necessary details.</div>
+          <div class="row">
+            <div class="col-sm-6 mb-2">
+              <input type="email" placeholder="Enter your Jira Email" name="JIRA_EMAIL" [class.disabled-field]="!isEditing"
+                     class="input-field" [(ngModel)]="JIRA_EMAIL" #jiraEmail="ngModel"
+                     required [disabled]="!isEditing">
+              <div *ngIf="jiraEmail.invalid && (jiraEmail.dirty || jiraEmail.touched)" class="text-danger">
+                Jira Email is required.
+              </div>
+            </div>
+            <div class="col-sm-6 mb-2">
+              <input type="password" placeholder="Enter your token" name="jira_token" [class.disabled-field]="!isEditing"
+                     class="input-field" [(ngModel)]="jira_token" #jiraToken="ngModel"
+                     required [disabled]="!isEditing">
+              <div *ngIf="jiraToken.invalid && (jiraToken.dirty || jiraToken.touched)" class="text-danger">
+                Jira Token is required.
+              </div>
+            </div>
+            <div class="col-sm-6 mb-2">
+              <input type="text" placeholder="Enter your Jira Domain" name="JIRA_DOMAIN" [class.disabled-field]="!isEditing"
+                     class="input-field" [(ngModel)]="JIRA_DOMAIN" #jiraDomain="ngModel"
+                     required [disabled]="!isEditing">
+              <div *ngIf="jiraDomain.invalid && (jiraDomain.dirty || jiraDomain.touched)" class="text-danger">
+                Jira Domain is required.
+              </div>
+            </div>
+            <div class="col-sm-6 mb-2">
+              <input type="text" placeholder="Enter your Jira Project Key" name="JIRA_PROJECT_KEY" [class.disabled-field]="!isEditing"
+                     class="input-field" [(ngModel)]="JIRA_PROJECT_KEY" #jiraProjectKey="ngModel"
+                     required [disabled]="!isEditing">
+              <div *ngIf="jiraProjectKey.invalid && (jiraProjectKey.dirty || jiraProjectKey.touched)" class="text-danger">
+                Jira Project Key is required.
+              </div>
+            </div>
+            <div class="col-sm-6 mb-2">
+              <input type="text" placeholder="Enter your Jira Board" name="JIRA_BOARD" [class.disabled-field]="!isEditing"
+                     class="input-field" [(ngModel)]="JIRA_BOARD" #jiraBoard="ngModel"
+                     required [disabled]="!isEditing">
+              <div *ngIf="jiraBoard.invalid && (jiraBoard.dirty || jiraBoard.touched)" class="text-danger">
+                Jira Board is required.
+              </div>
+            </div>
+          </div>
+          <div *ngIf="jiraError" class="alert alert-danger">{{ jiraError }}</div>
+        </div>
+      </div>
+
+      <div class="accordion-panel" [class.active]="selectedConfig === 'reportSettings'">
+        <div class="accordion-header" (click)="toggleAccordion('reportSettings')">
+          <p><i class="fas fa-chart-bar me-2 text-primary"></i> Report Types and Formats</p>
+          <i class="fas" [ngClass]="selectedConfig === 'reportSettings' ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+        </div>
+        <div class="accordion-content" [class.show]="selectedConfig === 'reportSettings'">
+          <div class="alert alert-info">Select the desired report types and formats.</div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <p class="fw-bold">Report Types</p>
+              <div *ngFor="let type of ['seo', 'security', 'functional', 'full']" class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" [id]="'report_' + type" [class.disabled-field]="!isEditing"
+                       [disabled]="!isEditing"
+                       [ngModel]="report_types.includes(type)"
+                       [ngModelOptions]="{standalone: true}"
+                       (ngModelChange)="onCheckboxChange($event, type, 'report_types')">
+                <label class="form-check-label" [for]="'report_' + type">
+                  {{ type | titlecase }} Report
+                </label>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <p class="fw-bold">Output Formats</p>
+              <div *ngFor="let format of ['html', 'pdf', 'csv', 'zip', 'json']" class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" [id]="'format_' + format" [class.disabled-field]="!isEditing"
+                       [disabled]="!isEditing"
+                       [ngModel]="report_formats.includes(format)"
+                       [ngModelOptions]="{standalone: true}"
+                       (ngModelChange)="onCheckboxChange($event, format, 'report_formats')">
+                <label class="form-check-label" [for]="'format_' + format">
+                  {{ format.toUpperCase() }}
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mb-2">
+        <label class="option">I agree to the <a href="#">Terms and Conditions</a>
+          <input type="checkbox" checked [disabled]="!isEditing">
+          <span class="checkmark"></span>
+        </label>
+      </div>
+
+      <div class="form-field d-flex justify-content-end">
+        <input type="submit" value="Send Configuration" class="register" name="send" [class.disabled-field]="!isEditing"
+               [disabled]="!isFormValid() || !isEditing">
+      </div>
+
+      <div *ngIf="successMessage" class="alert alert-success">
+        {{ successMessage }}
+      </div>
+    </form>
+  </div>
+</div>

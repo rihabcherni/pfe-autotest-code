@@ -1,0 +1,17 @@
+.dropdown-menu a{
+    padding: 10px !important;
+}
+.dropdown-menu i{
+    font-size: 18px !important;
+}
+.logout{
+ background-color: rgb(212, 212, 212);
+}
+@media (max-width: 768px) {
+    .navmenu-liste li{
+    padding: 8px 20px;
+    }
+    .navmenu-liste li:hover{
+        background-color: rgb(211, 248, 248);
+    }
+}

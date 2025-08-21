@@ -1,0 +1,309 @@
+.contact-container {
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  min-height: 100vh;
+}
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.page-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+  background: linear-gradient(135deg, var(--hover-color), #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.clear-icon {
+  cursor: pointer;
+  color: #64748b;
+  transition: color 0.2s ease;
+}
+.clear-icon:hover {
+  color: #ef4444;
+}
+.stats-section {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.stat-card {
+  background: linear-gradient(135deg, #ffffff, #f1f5f9);
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 120px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.15);
+}
+.stat-number {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--hover-color);
+  margin-bottom: 4px;
+}
+.stat-label {
+  font-size: 12px;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+.table-container {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  margin-bottom: 24px;
+}
+.modern-table {
+  width: 100%;
+  background: transparent;
+}
+.header-row {
+  background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+  border-bottom: 2px solid #e2e8f0;
+}
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.header-icon {
+  font-size: 18px;
+  color: #64748b;
+}
+.data-row {
+  transition: all 0.2s ease;
+  border-bottom: 1px solid #f1f5f9;
+}
+.data-row:hover {
+  background: linear-gradient(135deg, #f8fafc, rgba(59, 130, 246, 0.03));
+  transform: scale(1.01);
+  box-shadow: 0 4px 12px -4px rgba(0, 0, 0, 0.1);
+}
+.name-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.avatar {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--hover-color), #8b5cf6);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+.name-text {
+  font-weight: 500;
+}
+.email-link {
+  color: var(--hover-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  padding: 8px 12px;
+  border-radius: 8px;
+  display: inline-block;
+}
+.email-link:hover {
+  background: rgba(59, 130, 246, 0.1);
+  color: #2563eb;
+  transform: translateX(2px);
+}
+.subject-badge {
+  background: linear-gradient(135deg, #e0f2fe, #b3e5fc);
+  color: #0277bd;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+  border: 1px solid #81d4fa;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.message-preview {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 300px;
+}
+.message-preview span {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #64748b;
+  font-style: italic;
+}
+.expand-icon {
+  color: #94a3b8;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.expand-icon:hover {
+  color: var(--hover-color);
+}
+.actions-header {
+  text-align: center;
+  width: 80px;
+}
+.actions-cell {
+  text-align: center;
+  width: 80px;
+}
+.action-button {
+  color: #64748b;
+  transition: all 0.2s ease;
+}
+.action-button:hover {
+  color: var(--hover-color);
+  background: rgba(59, 130, 246, 0.1);
+}
+.delete-action {
+  color: #ef4444;
+}
+.delete-action:hover {
+  background: rgba(239, 68, 68, 0.1);
+}
+.empty-row {
+  height: 400px;
+}
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+}
+.empty-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.empty-icon {
+  font-size: 64px;
+  color: #cbd5e1;
+  margin-bottom: 8px;
+}
+.empty-content h3 {
+  color: #64748b;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+.empty-content p {
+  color: #94a3b8;
+  font-size: 14px;
+  margin: 0;
+}
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
+.modern-paginator {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+  backdrop-filter: blur(10px);
+}
+@media (max-width: 1200px) {
+  .contact-container {
+    padding: 16px;
+  }  
+  .table-container {
+    overflow-x: auto;
+  }
+}
+@media (max-width: 768px) {
+  .header-section {
+    flex-direction: column;
+    align-items: stretch;
+  } 
+  .stats-section {
+    justify-content: center;
+  }
+  .name-cell {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .message-preview {
+    max-width: 150px;
+  }
+}
+@media (max-width: 480px) {
+  .avatar {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+  } 
+  .subject-badge {
+    max-width: 120px;
+    font-size: 11px;
+    padding: 6px 12px;
+  }
+  .stat-card {
+    min-width: 100px;
+    padding: 16px;
+  }
+  .page-title {
+    font-size: 24px;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.modern-table {
+  animation: fadeIn 0.5s ease-out;
+}
+.action-button:focus, .email-link:focus {
+  outline: 2px solid var(--hover-color);
+  outline-offset: 2px;
+}
+.mat-menu-panel {
+  border-radius: 12px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
+}
+.mat-menu-item {
+  transition: all 0.2s ease;
+}
+.mat-menu-item:hover {
+  background: rgba(59, 130, 246, 0.1);
+}

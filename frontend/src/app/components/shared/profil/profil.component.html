@@ -1,0 +1,151 @@
+<div class="container-box">
+  <app-title [title]="titleValue"></app-title>
+  <ul class="nav nav-tabs mb-2">
+    <li class="nav-item">
+      <a class="nav-link" [class.active]="activeTab === 'profile'" (click)="activeTab = 'profile'">Profile</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [class.active]="activeTab === 'password'" (click)="activeTab = 'password'">Change password</a>
+    </li>
+  </ul>
+  <div *ngIf="activeTab === 'profile'" class="row">
+    <div class="col-md-3 d-flex justify-content-center">
+      <div class="card mb-4 shadow-sm p-3 text-center position-relative">
+        <div class="position-relative mx-auto mt-5">
+          <img
+            [src]="previewUrl || profileImageUrl"
+            alt="Profile image"
+            class="rounded-circle"
+            style="width: 220px; height: 220px; object-fit: cover; border: 3px solid #ccc;" />
+          <label class="upload-icon" for="fileInput">
+            <i class="bi bi-camera-fill"></i>
+          </label>
+        </div>
+        <input id="fileInput" type="file" (change)="onFileSelected($event)" accept="image/*" hidden />
+        <button class="btn btn-primary w-100 mt-5" (click)="uploadImage()" [disabled]="!selectedFile">Upload</button>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="card shadow-sm p-3 mb-1">
+        <div>
+          <div class="d-flex align-items-center mb-1">
+            <label class="fw-bold mb-0 me-2">Permissions:</label>
+            <button *ngIf="userProfile?.role === 'tester'"
+                    class="icon-button"
+                    (click)="openEditDialog()">
+              <i class="bi bi-pencil-square"></i>
+            </button>
+          </div>
+
+          <div *ngIf="userProfile?.permissions?.length; else noPermissions">
+            <span *ngFor="let perm of userProfile.permissions" class="badge bg-primary me-1 mb-1">{{ perm.toUpperCase() }}</span>
+          </div>
+        </div>
+        <ng-template #noPermissions>
+          <p class="text-muted mb-0">No permissions assigned.</p>
+        </ng-template>
+      </div>
+      <div class="card shadow-sm p-3 profile">
+        <form *ngIf="profileForm" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+          <div class="row mb-2">
+            <div class="col">
+              <label for="first_name">First Name</label>
+              <input id="first_name" formControlName="first_name" class="form-control" />
+            </div>
+            <div class="col">
+              <label for="last_name">Last Name</label>
+              <input id="last_name" formControlName="last_name" class="form-control" />
+            </div>
+          </div>
+
+          <div class="mb-2">
+            <label for="email">Email</label>
+            <input id="email" type="email" formControlName="email" class="form-control" />
+          </div>
+
+          <div class="mb-2">
+            <label for="phone">Phone</label>
+            <input id="phone" type="tel" formControlName="phone" class="form-control" />
+          </div>
+
+          <div class="mb-2">
+            <label for="address">Address</label>
+            <input id="address" formControlName="address" class="form-control" />
+          </div>
+
+          <button class="btn btn-primary w-100" type="submit">Update Profile</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="activeTab === 'password'">
+    <div class="card shadow-sm p-3">
+      <form  *ngIf="passwordForm" [formGroup]="passwordForm" (ngSubmit)="onSubmitChangePassword()">
+        <div class="mb-2 position-relative">
+          <label for="currentPassword">Current Password</label>
+          <input [type]="showCurrentPassword ? 'text' : 'password'" id="currentPassword" formControlName="currentPassword" class="form-control" />
+          <i class="fa" [ngClass]="showCurrentPassword ? 'fa-eye-slash' : 'fa-eye'"
+            (click)="showCurrentPassword = !showCurrentPassword"
+            style="position: absolute; top: 35px; right: 15px; cursor: pointer;"></i>
+        </div>
+        <div class="mb-2 position-relative">
+          <label for="newPassword">New Password</label>
+          <input [type]="showNewPassword ? 'text' : 'password'" id="newPassword" formControlName="newPassword" class="form-control" />
+          <i class="fa" [ngClass]="showNewPassword ? 'fa-eye-slash' : 'fa-eye'"
+            (click)="showNewPassword = !showNewPassword"
+            style="position: absolute; top: 35px; right: 15px; cursor: pointer;"></i>
+        </div>
+        <div class="mb-2 position-relative">
+          <label for="confirmPassword">Confirm Password</label>
+          <input [type]="showConfirmPassword ? 'text' : 'password'" id="confirmPassword" formControlName="confirmPassword" class="form-control" />
+          <i class="fa" [ngClass]="showConfirmPassword ? 'fa-eye-slash' : 'fa-eye'"
+            (click)="showConfirmPassword = !showConfirmPassword"
+            style="position: absolute; top: 35px; right: 15px; cursor: pointer;"></i>
+        </div>
+
+
+        <button class="btn btn-primary w-100" type="submit" [disabled]="passwordForm.invalid">
+          Change Password
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="showEditDialog" class="dialog-overlay" (click)="closeEditDialog()">
+  <div class="dialog-content" (click)="$event.stopPropagation()">
+    <div class="dialog-header">
+      <h4>Request Other Permissions:</h4>
+      <button mat-icon-button (click)="closeEditDialog()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <div class="dialog-body">
+      <div class="permissions-section">
+        <div class="permissions-grid">
+          <mat-checkbox *ngFor="let permission of availablePermissions; let i = index"
+              [(ngModel)]="permission.selected"
+              [name]="'permission_' + i"
+              class="permission-checkbox"
+              [disabled]="!!permission.disabled">
+            {{ permission.name }}
+          </mat-checkbox>
+
+
+        </div>
+      </div>
+    </div>
+
+    <div class="dialog-actions">
+      <button mat-button class="btn-cancel" (click)="closeEditDialog()">Cancel</button>
+
+      <button mat-raised-button
+              class="save-btn"
+              (click)="sendAdminPermissions()">
+        {{ isSaving ? 'Saving...' : 'Save' }}
+      </button>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,130 @@
+<div *ngIf="report.security_details" class="security-details-container">
+    <div class="mb-1 section-card">
+      <div class="stats-container">
+        <div class="stat-card total-card">
+          <div class="stat-header"><span class="stat-label">Total</span></div>
+          <div class="stat-value">{{ report.security_details.number_vulnerabilities }}</div>
+        </div>
+        <div class="stat-card high-risk-card">
+          <div class="stat-header">
+            <mat-icon class="stat-icon">error</mat-icon>
+            <span class="stat-label">High</span>
+          </div>
+          <div class="stat-value">{{ report.security_details.total_High }}</div>
+        </div>
+        <div class="stat-card medium-risk-card">
+          <div class="stat-header">
+            <mat-icon class="stat-icon">warning</mat-icon>
+            <span class="stat-label">Medium</span>
+          </div>
+          <div class="stat-value">{{ report.security_details.total_Medium }}</div>
+        </div>
+        <div class="stat-card low-risk-card">
+          <div class="stat-header">
+            <mat-icon class="stat-icon">priority_high</mat-icon>
+            <span class="stat-label">Low</span>
+          </div>
+          <div class="stat-value">{{ report.security_details.total_Low }}</div>
+        </div>
+        <div class="stat-card info-card">
+          <div class="stat-header">
+            <mat-icon class="stat-icon">info</mat-icon>
+            <span class="stat-label">Info</span>
+          </div>
+          <div class="stat-value">{{ report.security_details.total_Informational }}</div>
+        </div>
+        <div class="stat-card other-card">
+          <div class="stat-header">
+            <mat-icon class="stat-icon">extension</mat-icon>
+            <span class="stat-label">Other</span>
+          </div>
+          <div class="stat-value">{{ totalOther }}</div>
+        </div>
+      </div>
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="info-label">Status</span>
+          <span class="status-badge" [ngClass]="{
+            'status-completed': report.status === 'completed',
+            'status-pending': report.status === 'pending',
+            'status-failed': report.status === 'failed'
+          }">{{ report.status }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Authentication</span>
+          <span class="auth-badge" [ngClass]="report.authentification ? 'auth-enabled' : 'auth-disabled'">
+            <mat-icon class="badge-icon">{{ report.authentification ? 'verified_user' : 'no_accounts' }}</mat-icon>
+            {{ report.authentification ? 'Enabled' : 'Disabled' }}
+          </span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Scheduled</span>
+          <span class="schedule-badge" [ngClass]="report.schedule_scan ? 'schedule-yes' : 'schedule-no'">
+            {{ report.schedule_scan ? 'Yes' : 'No' }}
+          </span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Started</span>
+          <span class="info-value">{{ report.scan_started_at | date:'short' }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Finished</span>
+          <span class="info-value">{{ report.scan_finished_at | date:'short' }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Duration</span>
+          <span class="info-value">{{ getFullFormattedScanDuration(report) }}</span>
+        </div>
+      </div>
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="info-label">
+            <span class="stat-label">Tools</span>
+          </div>
+          <div class="stat-tools-container">
+            <span *ngFor="let tool of report.security_details.tools_used.split(',')" class="stat-tool">
+              {{ tool.trim() }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="report.authentication_details && report.authentification" class="auth-section mb-1">
+      <div class="section-card auth-card">
+        <div class="section-header">
+          <mat-icon class="section-icon">account_circle</mat-icon>
+          <h6 class="section-title-details">Authentication Details</h6>
+        </div>
+        <div class="auth-grid">
+          <div class="auth-item">
+            <span class="info-label">Auth ID</span>
+            <span class="info-value">{{ report.authentication_details.id }}</span>
+          </div>
+          <div class="auth-item">
+            <span class="info-label">Login URL</span>
+            <span class="info-value truncate">{{ report.authentication_details.login_page_url }}</span>
+          </div>
+          <div class="auth-item">
+            <span class="info-label">Username</span>
+            <span class="info-value">{{ report.authentication_details.username }}</span>
+          </div>
+          <div class="auth-item">
+            <span class="info-label">Password</span>
+            <span class="password-value">{{ report.authentication_details.password ? '••••••••' : 'Not provided' }}</span>
+          </div>
+          <div class="auth-item">
+            <span class="info-label">Token</span>
+            <span class="token-badge" [ngClass]="report.authentication_details.token ? 'token-present' : 'token-absent'">
+              {{ report.authentication_details.token ? 'Present' : 'Not provided' }}
+            </span>
+          </div>
+          <div class="auth-item">
+            <span class="info-label">Cookies</span>
+            <span class="cookie-badge" [ngClass]="report.authentication_details.cookies ? 'cookie-present' : 'cookie-absent'">
+              {{ report.authentication_details.cookies ? 'Present' : 'Not provided' }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

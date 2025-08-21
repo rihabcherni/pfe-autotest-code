@@ -1,0 +1,59 @@
+<div class="container-box">
+    <app-title [title]="titleValue"></app-title>
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+    <div class="flex-grow-1" style="max-width: 280px;">
+        <app-search-input [placeholder]="'Search ...'"
+            [value]="searchTerm" (valueChange)="searchTerm = $event" (onSearch)="applyFilter()">
+        </app-search-input>
+    </div>
+    <div class="d-flex justify-content-end align-items-center gap-2 my-3">
+        <button class="new-scan-btn" mat-raised-button (click)="openNewReportDialog()"><mat-icon>add</mat-icon>New Scan</button>
+        <app-download
+            [exportToPDF]="exportAllReportsToPDF.bind(this)"
+            [exportToHTML]="exportAllToHTML.bind(this)"
+            [exportToCSV]="exportAllToCSV.bind(this)"
+            [downloadAllAsZip]="downloadAllReportAsZip.bind(this)">
+        </app-download>
+      </div>
+    </div>
+        <mat-accordion multi class="reports-accordion">
+          <mat-expansion-panel *ngFor="let report of dataSource.filteredData" 
+            [ngClass]="{'high-risk': hasHighRisk(report), 'medium-risk': hasMediumRisk(report), 'low-risk': hasLowRisk(report)}">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-icon [ngClass]="getStatusIconClass(report)">{{getStatusIcon(report)}}</mat-icon>
+                <span class="ml-2">{{ report.url }}</span>
+              </mat-panel-title>
+              <mat-panel-description>
+                Start: {{ report.scan_started_at | date:'short' }}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="report-content">
+              <div class="header-container d-flex justify-between items-center mb-1">
+                <div>
+                  <p class="text-secondary fw-bold">Security Scan Details</p>
+                </div>
+                <div class="flex gap-2">
+                    <div class="flex items-center gap-1 align-items">
+                      <button mat-icon-button color="primary" (click)="viewTestResults(report)" matTooltip="View Test Results"
+                        class="action-button">
+                        <mat-icon>visibility</mat-icon>
+                      </button>
+                      <button mat-icon-button color="warn" (click)="deleteReport(report, $event)" matTooltip="Delete Report"
+                        class="action-button delete-button">
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                      <div  (click)="$event.stopPropagation()">
+                        <app-download [exportToPDF]="exportToPDF" [exportToHTML]="exportToHTML" [exportToCSV]="exportToCSV"
+                          [downloadAllAsZip]="downloadAllAsZip">
+                        </app-download>
+                      </div>
+                    </div>
+                </div>
+              </div>    
+              <app-seo-table-details [report]="report"></app-seo-table-details>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 50]" showFirstLastButtons></mat-paginator>
+  </div>

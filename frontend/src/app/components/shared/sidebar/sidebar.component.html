@@ -1,0 +1,62 @@
+<div class="sidebar" [ngClass]="{'expanded': isExpanded}">
+  <div class="sidebar-header">
+    <div class="logo-container">
+      <div class="logo d-flex align-items-center me-auto me-xl-0">
+        <img src="assets/img/logo/logo4.png" alt="">
+        <span class="logo-text" *ngIf="isExpanded">AutoTest</span>
+      </div>
+      <div class="toggle-btn" (click)="toggleSidebar()" [attr.title]="isExpanded ? 'Collapse Sidebar' : 'Expand Sidebar'">
+        <i class="bi" [ngClass]="isExpanded ? 'bi-chevron-left' : 'bi-chevron-right'"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar-content">
+    <ul class="nav flex-column">
+      <li class="nav-item" *ngFor="let item of menuItems">
+        <ng-container *ngIf="!item.items">
+          <a class="nav-link" [routerLink]="item.route" routerLinkActive="active" [attr.title]="item.label">
+            <i class="bi {{item.icon}}" data-bs-toggle="tooltip" [attr.title]="item.label"></i>
+            <span class="link-text" *ngIf="isExpanded">{{ item.label }}</span>
+          </a>
+        </ng-container>
+
+        <ng-container *ngIf="item.items">
+          <div class="nav-link d-flex justify-content-between align-items-center"
+               (click)="toggleSubMenu(item.label)" [attr.title]="item.label" [attr.title]="item.label">
+            <div>
+              <i class="bi {{item.icon}}" data-bs-toggle="tooltip" [attr.title]="item.label"></i>
+              <span class="link-text" *ngIf="isExpanded">{{ item.label }}</span>
+            </div>
+            <i class="bi" *ngIf="isExpanded" [ngClass]="openItem === item.label ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
+          </div>
+          <ul class="submenu list-unstyled ps-2" *ngIf="openItem === item.label">
+            <li *ngFor="let sub of item.items">
+              <a class="nav-link d-flex align-items-center gap-2" [routerLink]="sub.route" routerLinkActive="active">
+                <i class="bi {{sub.icon}}" *ngIf="sub.icon" data-bs-toggle="tooltip" [attr.title]="item.label"></i>
+                <span *ngIf="isExpanded">{{ sub.label }}</span>
+              </a>
+            </li>
+          </ul>          
+        </ng-container>
+      </li>
+    </ul>
+  </div>
+    <div class="sidebar-footer">
+      <div class="user-info" *ngIf="isExpanded">
+        <img
+          [src]="user?.avatar"
+          alt="User"
+          class="user-avatar"
+          [title]="user?.name"
+        />
+        <div class="user-text">
+          <p class="name">{{ user!.name }}</p>
+          <p class="role">{{ role }}</p>
+        </div>
+      </div>
+      <div class="logout-icon-container">
+        <i class="bi bi-box-arrow-right logout-icon" (click)="logout()" title="Logout"></i>
+      </div>
+    </div>
+</div>

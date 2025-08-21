@@ -1,0 +1,83 @@
+<div class="dialog-container">
+  <h2 mat-dialog-title class="dialog-title">
+    <mat-icon class="title-icon">assessment</mat-icon>
+    Create Functional Report
+  </h2>
+
+  <mat-dialog-content class="dialog-content">
+    <form [formGroup]="reportForm" class="report-form">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Project Name *</mat-label>
+        <input matInput formControlName="project_name" placeholder="Project name" required>
+        <mat-icon matSuffix>folder</mat-icon>
+        <mat-error *ngIf="reportForm.get('project_name')?.hasError('required')">Project name is required</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Target URL *</mat-label>
+        <input matInput formControlName="url" placeholder="https://example.com" required>
+        <mat-icon matSuffix>link</mat-icon>
+        <mat-error *ngIf="reportForm.get('url')?.hasError('required')">Target URL is required</mat-error>
+        <mat-error *ngIf="reportForm.get('url')?.hasError('pattern')">Please enter a valid URL</mat-error>
+      </mat-form-field>
+
+      <mat-checkbox formControlName="enable_zap_manual">Enable ZAP Manual Exploring</mat-checkbox>
+      <div *ngIf="reportForm.get('enable_zap_manual')?.value">
+        <mat-checkbox formControlName="authentification">Enable Authentication</mat-checkbox>
+        <div *ngIf="reportForm.get('authentification')?.value">
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Authentication Type</mat-label>
+      <mat-select formControlName="auth_type">
+        <mat-option value="basic">Username / Password</mat-option>
+        <mat-option value="token">Token</mat-option>
+        <mat-option value="cookies">Cookies</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Login Page URL</mat-label>
+      <input matInput formControlName="login_page_url" placeholder="https://example.com/login">
+      <mat-icon matSuffix>login</mat-icon>
+    </mat-form-field>
+
+    <div *ngIf="reportForm.get('auth_type')?.value === 'basic'">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username">
+        <mat-icon matSuffix>person</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" type="password">
+        <mat-icon matSuffix>lock</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field *ngIf="reportForm.get('auth_type')?.value === 'token'" appearance="outline" class="form-field">
+      <mat-label>Authentication Token</mat-label>
+      <input matInput formControlName="token">
+      <mat-icon matSuffix>vpn_key</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="reportForm.get('auth_type')?.value === 'cookies'" appearance="outline" class="form-field">
+      <mat-label>Authentication Cookies</mat-label>
+      <textarea matInput formControlName="cookies" rows="3" placeholder="sessionid=abc123; csrftoken=xyz789"></textarea>
+      <mat-icon matSuffix>cookie</mat-icon>
+    </mat-form-field>
+
+  </div>
+</div>
+
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end" class="dialog-actions">
+    <button mat-button (click)="close()" class="cancel-button">
+      <mat-icon>close</mat-icon>Cancel
+    </button>
+    <button mat-raised-button color="primary" (click)="submit()" [disabled]="reportForm.invalid || isSubmitting">
+      <mat-icon>send</mat-icon>{{ isSubmitting ? 'Creating...' : 'Create Report' }}
+    </button>
+  </mat-dialog-actions>
+</div>

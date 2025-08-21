@@ -1,0 +1,276 @@
+<div *ngIf="!loading && dashboardStats" class="dashbaord-text">
+  <div class="row gx-2 top-cards">
+    <div class="col-xl-3 col-md-6 mb-2">
+      <div class="card border-left-primary shadow h-100">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-primary">
+                Total Users
+              </div>
+              <div class="h5 font-weight-bold text-gray-800">
+                {{ dashboardStats.total_users | number }}
+              </div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-users fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-2">
+      <div class="card border-left-success shadow h-100">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-success">
+                Total Reports
+              </div>
+              <div class="h5 font-weight-bold text-gray-800">
+                {{ dashboardStats.reports.total | number }}
+              </div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-file-alt fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-2">
+      <div class="card border-left-info shadow h-100">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-info">
+                Scans in Progress
+              </div>
+              <div class="h5 font-weight-bold text-gray-800">
+                {{ dashboardStats.reports.by_status.running | number }}
+              </div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-clock fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-2">
+      <div class="card border-left-warning shadow h-100">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-warning">
+                Average SEO Score
+              </div>
+              <div class="h5 font-weight-bold text-gray-800">
+                {{ dashboardStats.seo.average_score }}%
+              </div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-chart-line fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row gx-2">
+    <div class="col-lg-5 mb-2">
+      <div class="card shadow h-100">
+        <div class="card-header d-flex flex-row align-items-center justify-content-between">
+          <p class="m-0 font-weight-bold text-primary text-bold">Reports by Type</p>
+        </div>
+        <div class="card-body">
+          <div class="row no-gutters">
+            <div class="col-4 text-center">
+              <div class="text-xs font-weight-bold text-info">
+                <i class="fas fa-search fa-sm me-1"></i> SEO
+              </div>
+              <div class="h6 font-weight-bold text-gray-800">
+                {{ dashboardStats.reports.by_type.seo | number }}
+              </div>
+            </div>
+            <div class="col-4 text-center">
+              <div class="text-xs font-weight-bold text-success">
+                <i class="fas fa-cogs fa-sm me-1"></i> Functional
+              </div>
+              <div class="h6 font-weight-bold text-gray-800">
+                {{ dashboardStats.reports.by_type.functional | number }}
+              </div>
+            </div>
+            <div class="col-4 text-center">
+              <div class="text-xs font-weight-bold text-danger">
+                <i class="fas fa-shield-alt fa-sm me-1"></i> Security
+              </div>
+              <div class="h6 font-weight-bold text-gray-800">
+                {{ dashboardStats.reports.by_type.security | number }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-7 mb-2">
+      <div class="card shadow h-100">
+        <div class="card-header d-flex flex-row align-items-center justify-content-between">
+          <p class="m-0 font-weight-bold text-primary">Reports by Status</p>
+        </div>
+        <div class="card-body">
+          <div class="status-grid">
+            <div class="text-center">
+              <div class="text-xs font-weight-bold text-success">
+                <i class="fas fa-check-circle fa-sm me-1"></i> Completed
+              </div>
+              <div class="h6 font-weight-bold text-gray-800">
+                {{ dashboardStats.reports.by_status.completed | number }}
+              </div>
+            </div>
+            <div class="text-center">
+              <div class="text-xs font-weight-bold text-warning">
+                <i class="fas fa-spinner fa-sm me-1"></i> Running
+              </div>
+              <div class="h6 font-weight-bold text-gray-800">
+                {{ dashboardStats.reports.by_status.running | number }}
+              </div>
+            </div>
+            <div class="text-center">
+              <div class="text-xs font-weight-bold text-danger">
+                <i class="fas fa-times-circle fa-sm me-1"></i> Failed
+              </div>
+              <div class="h6 font-weight-bold text-gray-800">
+                {{ dashboardStats.reports.by_status.failed | number }}
+              </div>
+            </div>
+            <div class="text-center">
+              <div class="text-xs font-weight-bold text-secondary">
+                <i class="fas fa-ban fa-sm me-1"></i> Canceled
+              </div>
+              <div class="h6 font-weight-bold text-gray-800">
+                {{ dashboardStats.reports.by_status.canceled | number }}
+              </div>
+            </div>
+            <div class="text-center">
+              <div class="text-xs font-weight-bold text-info">
+                <i class="fas fa-hourglass-half fa-sm me-1"></i> Queued
+              </div>
+              <div class="h6 font-weight-bold text-gray-800">
+                {{ dashboardStats.reports.by_status.queued | number }}
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row gx-2">
+    <div class="col-lg-6 mb-1">
+      <div class="card shadow h-100">
+        <div class="card-header">
+          <p class="m-0 font-weight-bold text-primary">Functional Tests</p>
+        </div>
+        <div class="card-body">
+          <div class="mb-3">
+            <div class="progress" style="height: 20px;">
+              <div
+                class="progress-bar bg-success"
+                role="progressbar"
+                [style.width.%]="getSuccessRate(dashboardStats.functional.success, dashboardStats.functional.total)"
+                aria-valuemin="0" aria-valuemax="100">
+              </div>
+              <div
+                class="progress-bar bg-warning"
+                role="progressbar"
+                [style.width.%]="getPendingRate(dashboardStats.functional.pending, dashboardStats.functional.total)"
+                aria-valuemin="0" aria-valuemax="100">
+              </div>
+              <div
+                class="progress-bar bg-danger"
+                role="progressbar"
+                [style.width.%]="getFailedRate(dashboardStats.functional.fail, dashboardStats.functional.total)"
+                aria-valuemin="0" aria-valuemax="100">
+              </div>
+            </div>
+          </div>
+          <div class="row text-center">
+            <div class="col-4"> 
+              <div class="text-xs font-weight-bold text-success">{{ getSuccessRate(dashboardStats.functional.success, dashboardStats.functional.total) | number:'1.0-1' }}% Success</div>
+              <div class="h6 font-weight-bold text-gray-800">
+                {{ dashboardStats.functional.success | number }}
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="text-xs font-weight-bold text-warning">{{ getPendingRate(dashboardStats.functional.pending, dashboardStats.functional.total) | number:'1.0-1' }}% Pending</div>
+              <div class="h6 font-weight-bold text-gray-800">
+                {{ dashboardStats.functional.pending | number }}
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="text-xs font-weight-bold text-danger">{{ getFailedRate(dashboardStats.functional.fail, dashboardStats.functional.total) | number:'1.0-1' }}%  Failures</div>
+              <div class="h6 font-weight-bold text-gray-800">
+                {{ dashboardStats.functional.fail | number }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 mb-1">
+      <div class="card shadow h-100">
+        <div class="card-header">
+          <p class="m-0 font-weight-bold text-primary">Security Vulnerabilities</p>
+        </div>
+        <div class="card-body">
+          <div class="mb-3 text-center">
+            <div class="text-xs text-gray-600">
+              <div class="text-gray-500 text-[11px] mb-2">
+                <small>Total Vulnerabilities: {{ dashboardStats.security.total_vulnerabilities_reports | number }}</small>
+              </div>
+            </div>
+            <div class="status-grid text-center small d-flex flex-wrap justify-content-center gap-3">
+              <div>
+                <span class="badge badge-danger px-3 py-2">
+                  High: {{ dashboardStats.security.by_risk.high }}
+                </span>
+              </div>
+              <div>
+                <span class="badge badge-warning px-3 py-2">
+                  Medium: {{ dashboardStats.security.by_risk.medium }}
+                </span>
+              </div>
+              <div>
+                <span class="badge badge-info px-3 py-2">
+                  Low: {{ dashboardStats.security.by_risk.low }}
+                </span>
+              </div>
+              <div>
+                <span class="badge badge-primary px-3 py-2">
+                  Info: {{ dashboardStats.security.by_risk.informational }}
+                </span>
+              </div>
+              <div>
+                <span class="badge badge-dark px-3 py-2">
+                  Other: {{ dashboardStats.security.by_risk.other }}
+                </span>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="d-flex justify-content-center align-items-center" style="height: 50vh" *ngIf="loading">
+  <div class="spinner-border text-primary" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+<div class="alert alert-danger text-center" *ngIf="error">
+  <h4 class="alert-heading">Error!</h4>
+  <p>{{ error }}</p>
+  <button class="btn btn-outline-danger" (click)="loadDashboardStats()">
+    Retry
+  </button>
+</div>

@@ -1,0 +1,27 @@
+.dashboard-title {
+  position: relative;
+  padding-left: 2.2rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #155fa0;
+}
+.dashboard-title::before, .dashboard-title::after {
+  content: '';
+  position: absolute;
+  background-color: #155fa0;
+  transform: rotate(45deg);
+  border-radius: 4px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+.dashboard-title::before {
+  width: 16px;
+  height: 16px;
+  top: 4px;
+  left: 0;
+}
+.dashboard-title::after {
+  width: 10px;
+  height: 10px;
+  top: 26px;
+  left: 10px;
+}
